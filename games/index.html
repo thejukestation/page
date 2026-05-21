@@ -50,7 +50,7 @@
     .player-name { font-family: 'VT323', monospace; font-size: clamp(18px, 2vw, 24px); color: var(--cream); line-height: 1; }
  
     /* Custom audio player controls */
-    .player-controls { display: flex; align-items: center; gap: 10px; }
+    .player-controls { display: flex; align-items: center; gap: 8px; }
     .play-btn {
       width: 28px; height: 28px; flex-shrink: 0;
       background: none;
@@ -70,6 +70,19 @@
     }
     .progress-fill { height: 100%; background: var(--orange); border-radius: 2px; width: 0%; transition: width 0.1s; }
     .time { font-family: 'VT323', monospace; font-size: 14px; color: var(--muted); min-width: 36px; text-align: right; }
+    .vol-row { display: flex; align-items: center; gap: 8px; }
+    .vol-icon { font-family: "VT323", monospace; font-size: 14px; color: var(--muted); flex-shrink: 0; }
+    input[type=range].vol-slider {
+      flex: 1; height: 3px; cursor: pointer;
+      accent-color: var(--orange);
+      background: rgba(240,236,228,0.15);
+      border-radius: 2px;
+      appearance: none; -webkit-appearance: none;
+    }
+    input[type=range].vol-slider::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--orange); cursor: pointer;
+    }
  
     /* N64 section */
     .n64-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 24px); color: var(--cream); line-height: 1.75; }
@@ -100,6 +113,34 @@
     }
     .video-slot video { width: 100%; height: 100%; object-fit: cover; }
     .video-placeholder { font-size: clamp(6px, 0.7vw, 8px); color: rgba(212,132,90,0.3); letter-spacing: 0.1em; }
+ 
+    /* Console collection */
+    .console-btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(7px, 0.85vw, 10px);
+      color: var(--orange);
+      background: none;
+      border: 1px solid rgba(212,132,90,0.4);
+      border-radius: 3px;
+      padding: 12px 22px;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      transition: border-color 0.2s, color 0.2s;
+      align-self: center;
+    }
+    .console-btn:hover { border-color: var(--orange); color: var(--cream); }
+ 
+    .popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 100; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; cursor: pointer; }
+    .popup-box { background: #0c0806; border: 1px solid rgba(212,132,90,0.25); border-radius: 6px; padding: 32px; width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 20px; cursor: default; }
+    .popup-header { position: sticky; top: 0; background: #0c0806; padding-bottom: 16px; border-bottom: 1px solid rgba(212,132,90,0.15); display: flex; justify-content: space-between; align-items: center; z-index: 1; }
+    .popup-title { font-size: clamp(8px, 1vw, 11px); color: var(--orange); letter-spacing: 0.15em; }
+    .popup-close { font-family: 'Press Start 2P', monospace; font-size: clamp(6px, 0.7vw, 8px); color: var(--muted); background: none; border: 1px solid rgba(240,236,228,0.15); border-radius: 3px; padding: 8px 14px; cursor: pointer; letter-spacing: 0.1em; transition: color 0.2s; }
+    .popup-close:hover { color: var(--cream); }
+    .console-list { display: flex; flex-direction: column; gap: 8px; }
+    .console-row { display: flex; align-items: center; gap: 16px; padding: 10px 0; border-bottom: 1px solid rgba(212,132,90,0.08); }
+    .console-row:last-child { border-bottom: none; }
+    .console-name { font-family: 'VT323', monospace; font-size: clamp(20px, 2.4vw, 26px); color: var(--cream); flex: 1; }
+    .console-tag { font-size: clamp(6px, 0.65vw, 7px); color: var(--orange); letter-spacing: 0.1em; }
  
     @media (max-width: 640px) {
       nav { padding: 12px 16px; }
@@ -166,7 +207,11 @@
           <div class="progress-bar" onclick="seek(event,'p1')"><div class="progress-fill" id="p1-fill"></div></div>
           <div class="time" id="p1-time">0:00</div>
         </div>
-        <audio id="p1-audio" src="../audio/Gaming_Theme_6.mp3"></audio>
+        <div class="vol-row">
+          <span class="vol-icon">VOL</span>
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.7" oninput="document.getElementById('p1-audio').volume=this.value">
+        </div>
+        <audio id="p1-audio" src="../audio/Gaming Theme 6.mp3"></audio>
       </div>
       <div class="player" id="p2">
         <div class="player-title">GAMING THEME 10</div>
@@ -176,7 +221,11 @@
           <div class="progress-bar" onclick="seek(event,'p2')"><div class="progress-fill" id="p2-fill"></div></div>
           <div class="time" id="p2-time">0:00</div>
         </div>
-        <audio id="p2-audio" src="../audio/Gaming_Theme_10.mp3"></audio>
+        <div class="vol-row">
+          <span class="vol-icon">VOL</span>
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.7" oninput="document.getElementById('p2-audio').volume=this.value">
+        </div>
+        <audio id="p2-audio" src="../audio/Gaming Theme 10.mp3"></audio>
       </div>
       <div class="player" id="p3">
         <div class="player-title">GAMING THEME 12</div>
@@ -186,7 +235,11 @@
           <div class="progress-bar" onclick="seek(event,'p3')"><div class="progress-fill" id="p3-fill"></div></div>
           <div class="time" id="p3-time">0:00</div>
         </div>
-        <audio id="p3-audio" src="../audio/Gaming_Theme_12.mp3"></audio>
+        <div class="vol-row">
+          <span class="vol-icon">VOL</span>
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.7" oninput="document.getElementById('p3-audio').volume=this.value">
+        </div>
+        <audio id="p3-audio" src="../audio/Gaming Theme 12.mp3"></audio>
       </div>
     </div>
  
@@ -209,13 +262,39 @@
     <div class="section-label">VIDEO</div>
     <div class="video-slot">
       <iframe
-        src="https://www.youtube.com/embed/s7mkGC_1yF0?autoplay=0&loop=1&playlist=s7mkGC_1yF0&mute=0"
-        style="width:100%;height:100%;border:none;"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
+        src="https://www.youtube.com/embed/s7mkGC_1yF0?autoplay=1&mute=1&loop=1&playlist=s7mkGC_1yF0&controls=0&modestbranding=1&rel=0&disablekb=1"
+        style="width:100%;height:100%;border:none;pointer-events:none;"
+        allow="autoplay; encrypted-media">
       </iframe>
     </div>
  
+    <!-- Console collection -->
+    <div class="section-label">MY CONSOLES</div>
+    <button class="console-btn" onclick="document.getElementById('console-popup').style.display='flex'">► view my console collection</button>
+ 
+  </div>
+ 
+  <!-- CONSOLE POPUP -->
+  <div class="popup" id="console-popup" onclick="if(event.target===this)this.style.display='none'">
+    <div class="popup-box">
+      <div class="popup-header">
+        <div class="popup-title">MY CONSOLES</div>
+        <button class="popup-close" onclick="document.getElementById('console-popup').style.display='none'">✕ close</button>
+      </div>
+      <div class="console-list">
+        <div class="console-row"><div class="console-name">Nintendo 64</div><div class="console-tag">RETRO</div></div>
+        <div class="console-row"><div class="console-name">Game Boy Advance Color</div><div class="console-tag">RETRO</div></div>
+        <div class="console-row"><div class="console-name">Nintendo DS i</div><div class="console-tag">HANDHELD</div></div>
+        <div class="console-row"><div class="console-name">Nintendo 3DS</div><div class="console-tag">HANDHELD</div></div>
+        <div class="console-row"><div class="console-name">New Nintendo 3DS XL</div><div class="console-tag">HANDHELD</div></div>
+        <div class="console-row"><div class="console-name">Nintendo Wii</div><div class="console-tag">HOME</div></div>
+        <div class="console-row"><div class="console-name">Nintendo Wii U</div><div class="console-tag">HOME</div></div>
+        <div class="console-row"><div class="console-name">Nintendo Switch</div><div class="console-tag">HYBRID</div></div>
+        <div class="console-row"><div class="console-name">Nintendo Switch 2</div><div class="console-tag">SOON ;)</div></div>
+        <div class="console-row"><div class="console-name">PlayStation 5</div><div class="console-tag">HOME</div></div>
+        <div class="console-row"><div class="console-name">PC</div><div class="console-tag">HOME</div></div>
+      </div>
+    </div>
   </div>
  
   <script>
@@ -229,37 +308,46 @@
     });
     window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
  
+    // Set up each player
+    ['p1','p2','p3'].forEach(id => {
+      const audio = document.getElementById(id+'-audio');
+      audio.volume = 0.7;
+      audio.ontimeupdate = () => {
+        if (!audio.duration) return;
+        document.getElementById(id+'-fill').style.width = (audio.currentTime/audio.duration*100)+'%';
+        const m = Math.floor(audio.currentTime/60);
+        const s = Math.floor(audio.currentTime%60).toString().padStart(2,'0');
+        document.getElementById(id+'-time').textContent = m+':'+s;
+      };
+      audio.onended = () => {
+        document.querySelector('#'+id+' .play-btn').textContent = '►';
+        document.getElementById(id+'-fill').style.width = '0%';
+      };
+    });
+ 
     function togglePlay(id) {
-      const audio = document.getElementById(id + '-audio');
-      const btn = document.querySelector('#' + id + ' .play-btn');
+      const audio = document.getElementById(id+'-audio');
+      const btn = document.querySelector('#'+id+' .play-btn');
       if (audio.paused) {
-        // pause all others
         ['p1','p2','p3'].forEach(p => {
           if (p !== id) {
             document.getElementById(p+'-audio').pause();
             document.querySelector('#'+p+' .play-btn').textContent = '►';
           }
         });
-        audio.play();
+        audio.play().catch(()=>{});
         btn.textContent = '▐▐';
       } else {
         audio.pause();
         btn.textContent = '►';
       }
-      audio.ontimeupdate = () => {
-        const pct = (audio.currentTime / audio.duration * 100) || 0;
-        document.getElementById(id+'-fill').style.width = pct + '%';
-        const m = Math.floor(audio.currentTime/60);
-        const s = Math.floor(audio.currentTime%60).toString().padStart(2,'0');
-        document.getElementById(id+'-time').textContent = m+':'+s;
-      };
-      audio.onended = () => { btn.textContent = '►'; document.getElementById(id+'-fill').style.width = '0%'; };
     }
+ 
     function seek(e, id) {
       const audio = document.getElementById(id+'-audio');
-      const bar = e.currentTarget;
-      const pct = e.offsetX / bar.offsetWidth;
-      audio.currentTime = pct * audio.duration;
+      if (!audio.duration) return;
+      const rect = e.currentTarget.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
     }
   </script>
 </body>
