@@ -14,7 +14,7 @@
     .bg { position: fixed; inset: 0; background: url('../../images/HIMMEL1.jpg') center/cover no-repeat; z-index: 0; }
     .bg-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 0; }
  
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; transition: transform 0.3s ease; }
     .back { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
     .back:hover { color: var(--cream); }
     .back::before { content: '◄'; font-size: 0.8em; }
@@ -283,5 +283,15 @@
     </div>
   </div>
  
+<script>
+  let lastY = 0;
+  window.addEventListener("scroll", () => {
+    const nav = document.querySelector("nav");
+    const y = window.scrollY;
+    if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
+    else nav.style.transform = "translateY(0)";
+    lastY = y;
+  });
+</script>
 </body>
 </html>
