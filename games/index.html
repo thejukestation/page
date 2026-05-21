@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games — The Juke Station</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --cream: #f0ece4; --orange: #d4845a; --muted: rgba(240,236,228,0.60); --card-bg: rgba(0,0,0,0.35); }
+    html, body { width: 100%; background: #000; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
+ 
+    .bg { position: fixed; inset: 0; background: url('../images/HIMMEL3.jpg') center/cover no-repeat; z-index: 0; }
+    .bg-overlay { position: fixed; inset: 0; background: rgba(10,5,0,0.58); z-index: 0; }
+ 
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; transition: transform 0.3s ease; }
+    .back { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
+    .back:hover { color: var(--cream); }
+    .back::before { content: '◄'; font-size: 0.8em; }
+    .nav-links { list-style: none; display: flex; flex-direction: column; align-items: flex-end; }
+    .nav-links a { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; line-height: 2.2; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a.active { color: var(--orange); text-shadow: 0 0 12px rgba(212,132,90,0.5); }
+ 
+    .page { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; padding: 120px 40px 80px; display: flex; flex-direction: column; gap: 40px; }
+ 
+    .page-title { font-size: clamp(18px, 3vw, 38px); color: var(--cream); letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(212,132,90,0.3); text-align: center; }
+    .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--orange); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(212,132,90,0.4); }
+ 
+    .story-block { background: var(--card-bg); border: 1px solid rgba(212,132,90,0.12); border-radius: 4px; padding: 24px 28px; }
+    .story-year { font-size: clamp(7px, 0.8vw, 9px); color: var(--orange); letter-spacing: 0.2em; margin-bottom: 12px; text-shadow: 0 0 10px rgba(212,132,90,0.4); }
+    .story-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 24px); color: var(--cream); line-height: 1.75; }
+    .story-text span { color: var(--orange); }
+ 
+    /* Audio players */
+    .players-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--orange); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(212,132,90,0.4); }
+    .players { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+ 
+    .player {
+      background: var(--card-bg);
+      border: 1px solid rgba(212,132,90,0.15);
+      border-radius: 4px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .player-title { font-size: clamp(6px, 0.7vw, 8px); color: var(--orange); letter-spacing: 0.1em; }
+    .player-name { font-family: 'VT323', monospace; font-size: clamp(18px, 2vw, 24px); color: var(--cream); line-height: 1; }
+ 
+    /* Custom audio player controls */
+    .player-controls { display: flex; align-items: center; gap: 10px; }
+    .play-btn {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: none;
+      border: 1px solid rgba(212,132,90,0.5);
+      border-radius: 3px;
+      color: var(--orange);
+      cursor: pointer;
+      font-size: 10px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      font-family: monospace;
+    }
+    .play-btn:hover { background: rgba(212,132,90,0.15); }
+    .progress-bar {
+      flex: 1; height: 3px; background: rgba(240,236,228,0.15); border-radius: 2px;
+      cursor: pointer; position: relative;
+    }
+    .progress-fill { height: 100%; background: var(--orange); border-radius: 2px; width: 0%; transition: width 0.1s; }
+    .time { font-family: 'VT323', monospace; font-size: 14px; color: var(--muted); min-width: 36px; text-align: right; }
+ 
+    /* N64 section */
+    .n64-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 24px); color: var(--cream); line-height: 1.75; }
+    .n64-text span { color: var(--orange); }
+ 
+    /* Photos grid */
+    .photos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .photo-slot {
+      aspect-ratio: 1;
+      background: rgba(212,132,90,0.05);
+      border: 1px dashed rgba(212,132,90,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .photo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-placeholder { font-size: clamp(5px, 0.6vw, 7px); color: rgba(212,132,90,0.3); letter-spacing: 0.1em; text-align: center; padding: 8px; }
+ 
+    /* Video slot */
+    .video-slot {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: rgba(212,132,90,0.05);
+      border: 1px dashed rgba(212,132,90,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .video-slot video { width: 100%; height: 100%; object-fit: cover; }
+    .video-placeholder { font-size: clamp(6px, 0.7vw, 8px); color: rgba(212,132,90,0.3); letter-spacing: 0.1em; }
+ 
+    @media (max-width: 640px) {
+      nav { padding: 12px 16px; }
+      .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
+      .nav-links a { font-size: 8px; line-height: 2; }
+      .page { padding: 100px 20px 60px; gap: 30px; }
+      .players { grid-template-columns: 1fr; }
+      .photos { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="bg-overlay"></div>
+ 
+  <nav>
+    <a class="back" href="/">back</a>
+    <ul class="nav-links">
+      <li><a href="/music/">music</a></li>
+      <li><a href="/films/">films</a></li>
+      <li><a href="/games/" class="active">games</a></li>
+      <li><a href="/art/">art</a></li>
+      <li><a href="/about/">about</a></li>
+    </ul>
+  </nav>
+ 
+  <div class="page">
+    <h1 class="page-title">GAMES</h1>
+ 
+    <div class="story-block">
+      <div class="story-year">2012 — THE BEGINNING</div>
+      <p class="story-text">i always played video games and i never really stopped. we got a <span>NINTENDO WII U</span> at home in 2012 and at that time it was the best thing that could've happened. later, in 2015 we got a <span>NINTENDO 3DS</span> and in 2018 i bought myself a <span>NINTENDO SWITCH</span>. i bought it with all the money i had at the time. 320 euros. i was broke for months because i still owed my brother money for <span>SUPER MARIO ODYSSEY</span>.</p>
+    </div>
+ 
+    <div class="story-block">
+      <div class="story-year">2020 — THE PC ERA</div>
+      <p class="story-text">in 2020, when the pandemic started, i bought his old PC. for the first time i could play all the <span>ASSASSIN'S CREEDS</span>, the <span>GTAs</span>, and of course <span>MINECRAFT</span> with my friends. MINECRAFT is a magical game. and if you ask me, it's the best ever made.</p>
+    </div>
+ 
+    <div class="story-block">
+      <div class="story-year">2021 — RED DEAD</div>
+      <p class="story-text">speaking of the best game ever: in 2021 i started playing other games on PC, especially <span>RED DEAD REDEMPTION 2</span>. i loved it and i still do. i have around 500 hours of playing time and i still like to play it sometimes.</p>
+    </div>
+ 
+    <div class="story-block">
+      <div class="story-year">2024 → NOW</div>
+      <p class="story-text">since 2024, i am playing new games regularly. some of the best were <span>GOD OF WAR 2018</span>, <span>RAGNAROK</span>, <span>GHOST OF TSUSHIMA</span>, <span>OUTER WILDS</span>, <span>RED DEAD REDEMPTION</span>, <span>THE LAST OF US PART I</span>, <span>MAFIA I&II</span>, <span>UNDERTALE</span>, <span>THE WITCHER 3</span> and recently <span>KINGDOM COME DELIVERANCE II</span>.<br><br>also a couple of games that i enjoy playing with friends are <span>PEAK</span>, <span>RV THERE YET</span>, <span>LETHAL COMPANY</span>, <span>R.E.P.O.</span>, <span>HOLDFAST</span>, <span>LIAR'S BAR</span>, <span>ONCE HUMAN</span>, <span>ASTRONEER</span> and <span>RED DEAD ONLINE</span>.</p>
+    </div>
+ 
+    <!-- GODOT section -->
+    <div class="story-block">
+      <div class="story-year">2025 — MY OWN GAME</div>
+      <p class="story-text">in 2025 i almost made a dream come true. i started making my own video game in <span>GODOT</span> engine. i composed half the soundtrack and started creating the hubworld and lots of textures. then, due to work and university i shelved the project FOR NOW!! i'd really like to finish the game one day.</p>
+    </div>
+ 
+    <div class="section-label">HERE SOME SNEAK PEEKS</div>
+    <div class="players">
+      <!-- CHANGE: replace src with your real MP3 files in /images/ or a subfolder -->
+      <div class="player" id="p1">
+        <div class="player-title">TRACK 01</div>
+        <div class="player-name">title coming soon</div>
+        <div class="player-controls">
+          <button class="play-btn" onclick="togglePlay('p1')">►</button>
+          <div class="progress-bar" onclick="seek(event,'p1')"><div class="progress-fill" id="p1-fill"></div></div>
+          <div class="time" id="p1-time">0:00</div>
+        </div>
+        <audio id="p1-audio" src="#"></audio>
+      </div>
+      <div class="player" id="p2">
+        <div class="player-title">TRACK 02</div>
+        <div class="player-name">title coming soon</div>
+        <div class="player-controls">
+          <button class="play-btn" onclick="togglePlay('p2')">►</button>
+          <div class="progress-bar" onclick="seek(event,'p2')"><div class="progress-fill" id="p2-fill"></div></div>
+          <div class="time" id="p2-time">0:00</div>
+        </div>
+        <audio id="p2-audio" src="#"></audio>
+      </div>
+      <div class="player" id="p3">
+        <div class="player-title">TRACK 03</div>
+        <div class="player-name">title coming soon</div>
+        <div class="player-controls">
+          <button class="play-btn" onclick="togglePlay('p3')">►</button>
+          <div class="progress-bar" onclick="seek(event,'p3')"><div class="progress-fill" id="p3-fill"></div></div>
+          <div class="time" id="p3-time">0:00</div>
+        </div>
+        <audio id="p3-audio" src="#"></audio>
+      </div>
+      <div class="player" id="p4">
+        <div class="player-title">TRACK 04</div>
+        <div class="player-name">title coming soon</div>
+        <div class="player-controls">
+          <button class="play-btn" onclick="togglePlay('p4')">►</button>
+          <div class="progress-bar" onclick="seek(event,'p4')"><div class="progress-fill" id="p4-fill"></div></div>
+          <div class="time" id="p4-time">0:00</div>
+        </div>
+        <audio id="p4-audio" src="#"></audio>
+      </div>
+    </div>
+ 
+    <!-- N64 section -->
+    <div class="story-block">
+      <div class="story-year">2025 — NINTENDO 64</div>
+      <p class="n64-text">but a dream that i made come true was buying a <span>NINTENDO 64</span> this year. with that, i bought <span>SUPER MARIO 64</span>, <span>ZELDA OCARINA OF TIME</span>, <span>BANJO KAZOOIE</span> and <span>DONKEY KONG 64</span>. i finished SUPER MARIO 64 100% in a few days and loved it so much. now i'm playing OCARINA OF TIME and finishing BANJO KAZOOIE.</p>
+    </div>
+ 
+    <!-- N64 Photos — CHANGE: replace with real images -->
+    <div class="section-label">N64</div>
+    <div class="photos">
+      <div class="photo-slot"><div class="photo-placeholder">PHOTO COMING SOON</div></div>
+      <div class="photo-slot"><div class="photo-placeholder">PHOTO COMING SOON</div></div>
+      <div class="photo-slot"><div class="photo-placeholder">PHOTO COMING SOON</div></div>
+      <div class="photo-slot"><div class="photo-placeholder">PHOTO COMING SOON</div></div>
+    </div>
+ 
+    <!-- Video/GIF slot -->
+    <div class="section-label">VIDEO</div>
+    <div class="video-slot">
+      <!-- CHANGE: replace src with your video file, or use a YouTube embed -->
+      <div class="video-placeholder">VIDEO COMING SOON</div>
+    </div>
+ 
+  </div>
+ 
+  <script>
+    const nav = document.querySelector("nav");
+    let lastY = 0;
+    window.addEventListener("scroll", () => {
+      if (window.innerWidth > 640) { nav.style.transform = "translateY(0)"; return; }
+      const y = window.scrollY;
+      nav.style.transform = (y > lastY && y > 80) ? "translateY(-100%)" : "translateY(0)";
+      lastY = y;
+    });
+    window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
+ 
+    function togglePlay(id) {
+      const audio = document.getElementById(id + '-audio');
+      const btn = document.querySelector('#' + id + ' .play-btn');
+      if (audio.paused) {
+        // pause all others
+        ['p1','p2','p3','p4'].forEach(p => {
+          if (p !== id) {
+            document.getElementById(p+'-audio').pause();
+            document.querySelector('#'+p+' .play-btn').textContent = '►';
+          }
+        });
+        audio.play();
+        btn.textContent = '▐▐';
+      } else {
+        audio.pause();
+        btn.textContent = '►';
+      }
+      audio.ontimeupdate = () => {
+        const pct = (audio.currentTime / audio.duration * 100) || 0;
+        document.getElementById(id+'-fill').style.width = pct + '%';
+        const m = Math.floor(audio.currentTime/60);
+        const s = Math.floor(audio.currentTime%60).toString().padStart(2,'0');
+        document.getElementById(id+'-time').textContent = m+':'+s;
+      };
+      audio.onended = () => { btn.textContent = '►'; document.getElementById(id+'-fill').style.width = '0%'; };
+    }
+    function seek(e, id) {
+      const audio = document.getElementById(id+'-audio');
+      const bar = e.currentTarget;
+      const pct = e.offsetX / bar.offsetWidth;
+      audio.currentTime = pct * audio.duration;
+    }
+  </script>
+</body>
+</html>
