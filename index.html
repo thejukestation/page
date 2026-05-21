@@ -8,16 +8,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
     :root {
       --cream: #e8dcc8;
       --purple: #b89be0;
       --muted: rgba(232,220,200,0.60);
       --card-bg: rgba(0,0,0,0.88);
-      --glow-cream: 0 0 20px rgba(232,220,200,0.3), 0 0 60px rgba(180,155,224,0.15);
-      --glow-purple: 0 0 20px rgba(184,155,224,0.5), 0 0 50px rgba(140,100,255,0.25);
     }
-
+ 
     html, body {
       width: 100%;
       height: 100%;
@@ -26,16 +24,18 @@
       font-family: 'Press Start 2P', monospace;
       overflow-x: hidden;
     }
-
+ 
     .scene {
       position: relative;
       width: 100%;
       height: 100vh;
       min-height: 560px;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
-
-    /* LAYER 0 — stars */
+ 
+    /* STARS — full background */
     .bg-stars {
       position: absolute;
       inset: 0;
@@ -43,101 +43,26 @@
       opacity: 0.75;
       z-index: 0;
     }
-
-    /* LAYER 1 — orb (behind dune) */
-    @keyframes pulse {
-      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.95; }
-      50% { transform: translateX(-50%) scale(1.04); opacity: 1; }
-    }
-
-    .orb {
-      position: absolute;
-      top: 4%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: clamp(240px, 34vw, 420px);
-      aspect-ratio: 1 / 1;
-      z-index: 1;
-      animation: pulse 6s ease-in-out infinite;
-    }
-    .orb img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    /* LAYER 2 — dune as background-image div (more reliable than img tag) */
-    .dune {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 40vh;
-      background: url('images/DUNE.webp') top center / cover no-repeat;
+ 
+    /* TOP ZONE: nav + orb + hero text — takes up space above cards */
+    .top-zone {
+      position: relative;
       z-index: 2;
-      pointer-events: none;
-    }
-
-    /* LAYER 3 — hero text, anchored to top of dune */
-    .hero {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: calc(40vh + 10px);
-      z-index: 3;
+      flex: 1;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding-bottom: 20px;
-      text-align: center;
-      gap: 14px;
     }
-
-    .hero h1 {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(16px, 2.6vw, 32px);
-      line-height: 2.2;
-      color: var(--cream);
-      text-shadow: var(--glow-cream);
-    }
-    .hero h1 .accent {
-      color: var(--purple);
-      text-shadow: var(--glow-purple);
-    }
-
-    .sub {
-      font-family: 'VT323', monospace;
-      font-size: clamp(20px, 2.4vw, 30px);
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-shadow: 0 0 16px rgba(232,220,200,0.2);
-    }
-
-    .pill {
-      border: 1px solid rgba(184,155,224,0.45);
-      border-radius: 3px;
-      padding: 10px 22px;
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(7px, 0.85vw, 10px);
-      color: var(--purple);
-      letter-spacing: 0.12em;
-      text-shadow: var(--glow-purple);
-      box-shadow: 0 0 14px rgba(184,155,224,0.15);
-    }
-
-    /* LAYER 4 — nav */
+ 
+    /* NAV */
     nav {
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      z-index: 4;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       padding: 28px 40px;
       gap: 20px;
+      flex-shrink: 0;
     }
-
+ 
     .logo {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(12px, 1.6vw, 18px);
@@ -148,7 +73,7 @@
       letter-spacing: 0.06em;
       flex-shrink: 0;
     }
-
+ 
     .nav-links {
       list-style: none;
       display: flex;
@@ -163,23 +88,96 @@
       text-decoration: none;
       letter-spacing: 0.06em;
       line-height: 2.2;
-      transition: color 0.2s, text-shadow 0.2s;
+      transition: color 0.2s;
     }
-    .nav-links a:hover {
+    .nav-links a:hover { color: var(--cream); }
+ 
+    /* ORB — centered in remaining space */
+    .orb-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding-bottom: 20px;
+    }
+ 
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.04); opacity: 1; }
+    }
+ 
+    .orb {
+      width: clamp(200px, 28vw, 360px);
+      aspect-ratio: 1;
+      animation: pulse 6s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    .orb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+ 
+    /* HERO TEXT — directly below orb */
+    .hero {
+      text-align: center;
+      padding: 16px 20px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+ 
+    .hero h1 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(15px, 2.4vw, 30px);
+      line-height: 2.2;
       color: var(--cream);
-      text-shadow: 0 0 12px rgba(232,220,200,0.4);
+      text-shadow: 0 0 20px rgba(232,220,200,0.3), 0 0 60px rgba(180,155,224,0.15);
     }
-
-    /* LAYER 5 — cards */
-    .cards {
+    .hero h1 .accent {
+      color: var(--purple);
+      text-shadow: 0 0 20px rgba(184,155,224,0.5), 0 0 50px rgba(140,100,255,0.25);
+    }
+ 
+    .sub {
+      font-family: 'VT323', monospace;
+      font-size: clamp(18px, 2.2vw, 28px);
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+ 
+    .pill {
+      border: 1px solid rgba(184,155,224,0.45);
+      border-radius: 3px;
+      padding: 9px 20px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(6px, 0.8vw, 9px);
+      color: var(--purple);
+      letter-spacing: 0.12em;
+      box-shadow: 0 0 14px rgba(184,155,224,0.15);
+    }
+ 
+    /* DUNE — overlaps between top-zone and cards */
+    .dune {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      z-index: 5;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 45vh;
+      background: url('images/DUNE.webp') top center / cover no-repeat;
+      z-index: 1;
+      pointer-events: none;
+    }
+ 
+    /* CARDS — at bottom, above dune */
+    .cards {
+      position: relative;
+      z-index: 3;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       border-top: 1px solid rgba(232,220,200,0.15);
+      flex-shrink: 0;
     }
-
+ 
     .card {
       padding: 18px 24px;
       background: var(--card-bg);
@@ -190,7 +188,7 @@
     }
     .card:last-child { border-right: none; }
     .card:hover { background: rgba(20,10,30,0.96); }
-
+ 
     .card-tag {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(7px, 0.8vw, 9px);
@@ -198,43 +196,39 @@
       margin-bottom: 8px;
       letter-spacing: 0.1em;
     }
-
     .card-title {
       font-family: 'VT323', monospace;
-      font-size: clamp(28px, 3.2vw, 38px);
+      font-size: clamp(26px, 3vw, 36px);
       color: var(--cream);
       line-height: 1.1;
       margin-bottom: 3px;
     }
-
     .card-desc {
       font-family: 'VT323', monospace;
-      font-size: clamp(18px, 2.1vw, 26px);
+      font-size: clamp(17px, 2vw, 24px);
       color: var(--muted);
       line-height: 1.3;
     }
-
-    /* ── MOBILE ── */
+ 
+    /* MOBILE */
     @media (max-width: 640px) {
       nav {
         flex-direction: column;
         align-items: center;
         padding: 16px 20px 10px;
         gap: 10px;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.75), transparent);
       }
       .logo { font-size: 10px; text-align: center; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 14px; }
       .nav-links a { font-size: 8px; line-height: 2; }
-
-      .orb { top: 14%; width: 70vw; }
-      .dune { height: 28vh; }
-
-      .hero { bottom: calc(28vh + 8px); padding-bottom: 12px; gap: 8px; }
-      .hero h1 { font-size: 13px; line-height: 2; }
-      .sub { font-size: 18px; }
-      .pill { font-size: 6px; padding: 8px 14px; }
-
+ 
+      .orb { width: 62vw; }
+      .hero h1 { font-size: 13px; }
+      .sub { font-size: 17px; }
+      .pill { font-size: 6px; padding: 7px 12px; }
+ 
+      .dune { height: 30vh; }
+ 
       .cards { grid-template-columns: 1fr; }
       .card {
         border-right: none;
@@ -253,33 +247,34 @@
 </head>
 <body>
   <div class="scene">
-
+ 
     <div class="bg-stars"></div>
-
-    <div class="orb">
-      <img src="images/HIMMEL.png" alt="sky window">
-    </div>
-
-    <!-- Düne jetzt als div mit background-image statt img tag -->
     <div class="dune"></div>
-
-    <div class="hero">
-      <h1>MUSIC.<br><span class="accent">STORIES.</span><br>IN MOTION.</h1>
-      <p class="sub">a corner of the internet that's mine.</p>
-      <div class="pill">★ STORIES IN MOTION — OUT NOW</div>
+ 
+    <div class="top-zone">
+      <nav>
+        <a class="logo" href="index.html">THE<br>JUKE<br>STATION</a>
+        <ul class="nav-links">
+          <li><a href="music.html">music</a></li>
+          <li><a href="films.html">films</a></li>
+          <li><a href="games.html">games</a></li>
+          <li><a href="art.html">art</a></li>
+          <li><a href="about.html">about</a></li>
+        </ul>
+      </nav>
+ 
+      <div class="orb-wrap">
+        <div class="orb">
+          <img src="images/HIMMEL.png" alt="sky window">
+        </div>
+        <div class="hero">
+          <h1>MUSIC.<br><span class="accent">STORIES.</span><br>IN MOTION.</h1>
+          <p class="sub">a corner of the internet that's mine.</p>
+          <div class="pill">★ STORIES IN MOTION — OUT NOW</div>
+        </div>
+      </div>
     </div>
-
-    <nav>
-      <a class="logo" href="index.html">THE<br>JUKE<br>STATION</a>
-      <ul class="nav-links">
-        <li><a href="music.html">music</a></li>
-        <li><a href="films.html">films</a></li>
-        <li><a href="games.html">games</a></li>
-        <li><a href="art.html">art</a></li>
-        <li><a href="about.html">about</a></li>
-      </ul>
-    </nav>
-
+ 
     <div class="cards">
       <a class="card" href="music.html">
         <div class="card-tag">MUSIC</div>
@@ -297,7 +292,7 @@
         <div class="card-desc">Photos, visuals & favourites.</div>
       </a>
     </div>
-
+ 
   </div>
 </body>
 </html>
