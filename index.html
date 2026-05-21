@@ -33,7 +33,7 @@
     /* Dune — real img, full width, anchored bottom, painted after orb so it covers orb bottom */
     .dune {
       position: absolute;
-      bottom: 0; left: 0;
+      bottom: -80px; left: 0;
       width: 100%;
       height: auto;
       z-index: 2;
@@ -45,7 +45,7 @@
     .hero {
       position: absolute;
       left: 0; right: 0;
-      bottom: 22vh;
+      bottom: 28vh;
       z-index: 3;
       display: flex; flex-direction: column; align-items: center;
       gap: 10px; text-align: center; padding: 0 20px;
@@ -74,7 +74,7 @@
       .logo { font-size: 9px; text-align: center; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 12px; }
       .nav-links a { font-size: 8px; }
-      .orb { width: 70vw; }
+      .orb { width: 80vw; top: 0; }
       .hero { bottom: 30vh; }
       .hero h1 { font-size: 12px; }
       .sub { font-size: 17px; }
