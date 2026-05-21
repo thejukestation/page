@@ -209,7 +209,7 @@
         </div>
         <div class="vol-row">
           <span class="vol-icon">VOL</span>
-          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.7" oninput="document.getElementById('p1-audio').volume=this.value">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.35" oninput="document.getElementById('p1-audio').volume=this.value">
         </div>
         <audio id="p1-audio" src="../audio/Gaming%20Theme%206.mp3"></audio>
       </div>
@@ -223,7 +223,7 @@
         </div>
         <div class="vol-row">
           <span class="vol-icon">VOL</span>
-          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.7" oninput="document.getElementById('p2-audio').volume=this.value">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.35" oninput="document.getElementById('p2-audio').volume=this.value">
         </div>
         <audio id="p2-audio" src="../audio/Gaming%20Theme%2010.mp3"></audio>
       </div>
@@ -237,7 +237,7 @@
         </div>
         <div class="vol-row">
           <span class="vol-icon">VOL</span>
-          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.7" oninput="document.getElementById('p3-audio').volume=this.value">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.35" oninput="document.getElementById('p3-audio').volume=this.value">
         </div>
         <audio id="p3-audio" src="../audio/Gaming%20Theme%2012.mp3"></audio>
       </div>
@@ -262,10 +262,16 @@
     <div class="section-label">VIDEO</div>
     <div class="video-slot">
       <iframe
-        src="https://www.youtube.com/embed/s7mkGC_1yF0?autoplay=1&mute=1&loop=1&playlist=s7mkGC_1yF0&controls=0&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3&fs=0"
-        style="width:140%;height:140%;border:none;pointer-events:none;position:absolute;top:-20%;left:-20%;"
+        src="https://www.youtube.com/embed/s7mkGC_1yF0?autoplay=1&mute=1&loop=1&playlist=s7mkGC_1yF0&controls=0&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3"
+        style="width:100%;height:100%;border:none;pointer-events:none;position:absolute;top:0;left:0;"
         allow="autoplay; encrypted-media">
       </iframe>
+      <!-- top bar covers YouTube branding/title -->
+      <div style="position:absolute;top:0;left:0;right:0;height:52px;background:#000;z-index:2;pointer-events:none;"></div>
+      <!-- bottom bar covers controls -->
+      <div style="position:absolute;bottom:0;left:0;right:0;height:46px;background:#000;z-index:2;pointer-events:none;"></div>
+      <!-- left/right subtle fade -->
+      <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.15) 0%,transparent 8%,transparent 92%,rgba(0,0,0,0.15) 100%);z-index:1;pointer-events:none;"></div>
     </div>
  
     <!-- Console collection -->
@@ -311,7 +317,7 @@
     // Set up each player
     ['p1','p2','p3'].forEach(id => {
       const audio = document.getElementById(id+'-audio');
-      audio.volume = 0.7;
+      audio.volume = 0.35;
       audio.ontimeupdate = () => {
         if (!audio.duration) return;
         document.getElementById(id+'-fill').style.width = (audio.currentTime/audio.duration*100)+'%';
