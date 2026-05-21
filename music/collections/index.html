@@ -72,6 +72,7 @@
     .list-btn:hover { border-color: var(--gold); color: var(--cream); }
  
     /* Favourites section */
+    .date-note { font-family: 'VT323', monospace; font-size: clamp(14px, 1.6vw, 18px); color: var(--muted); letter-spacing: 0.08em; text-align: center; margin-top: -36px; }
     .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--gold); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(200,169,110,0.4); }
  
     .fav-block {
@@ -180,6 +181,7 @@
  
   <div class="page">
     <h1 class="page-title">MY COLLECTIONS</h1>
+    <div class="date-note">as of may 21, 2026</div>
  
     <!-- Stats -->
     <div class="stats">
@@ -192,7 +194,7 @@
     <button class="list-btn" onclick="document.getElementById('list-popup').style.display='flex'">► view the complete list</button>
  
     <!-- Favourites -->
-    <div class="section-label">MY FAVOURITE ALBUMS OF ALL TIME — AS OF MAY 21, 2026</div>
+    <div class="section-label">MY FAVOURITE ALBUMS OF ALL TIME</div>
     <div class="fav-block">
       <p class="fav-text">
         <span>Tame Impala</span> — The Slow Rush & Currents<br>
@@ -588,7 +590,7 @@
 <script>
   let lastY = 0;
   window.addEventListener("scroll", () => {
-    if (window.innerWidth > 640) return;
+    if (window.innerWidth > 640) { nav.style.transform = "translateY(0)"; return; }
     const nav = document.querySelector("nav");
     const y = window.scrollY;
     if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
