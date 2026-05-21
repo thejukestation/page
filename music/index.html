@@ -13,9 +13,9 @@
     .scene { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; }
     .bg-stars { position: fixed; inset: 0; background: url('../images/HIMMEL1.jpg') center/cover no-repeat; z-index: 0; }
     .bg-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 0; }
- 
+
     nav { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; }
- 
+
     .back {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(12px, 1.5vw, 18px);
@@ -29,7 +29,7 @@
     }
     .back:hover { color: var(--cream); }
     .back::before { content: '◄'; font-size: 0.8em; }
- 
+
     .nav-links { list-style: none; display: flex; flex-direction: column; align-items: flex-end; gap: 0; }
     .nav-links a {
       font-family: 'Press Start 2P', monospace;
@@ -42,7 +42,7 @@
     }
     .nav-links a:hover { color: var(--cream); }
     .nav-links a.active { color: var(--purple); text-shadow: 0 0 12px rgba(200,169,110,0.5); }
- 
+
     .content {
       position: relative;
       z-index: 2;
@@ -55,14 +55,14 @@
       gap: 32px;
       text-align: center;
     }
- 
+
     .page-title {
       font-size: clamp(22px, 4vw, 52px);
       color: var(--cream);
       text-shadow: 0 0 20px rgba(240,232,216,0.4), 0 0 60px rgba(200,169,110,0.2); letter-spacing: 0.15em;
       letter-spacing: 0.08em;
     }
- 
+
     .quote p {
       font-family: 'VT323', monospace;
       font-size: clamp(18px, 2.2vw, 26px);
@@ -79,7 +79,7 @@
       font-style: normal;
       text-shadow: 0 0 10px rgba(200,169,110,0.3);
     }
- 
+
     .cats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -87,7 +87,7 @@
       width: 100%;
       max-width: 1040px;
     }
- 
+
     .cat {
       display: flex;
       flex-direction: column;
@@ -100,12 +100,12 @@
       min-height: 160px;
       transition: border-color 0.25s, background 0.25s;
     }
-    .cat:hover { border-color: rgba(184,155,224,0.4); background: rgba(20,10,40,0.65); }
- 
+    .cat:hover { border-color: rgba(200,169,110,0.5); background: rgba(20,14,4,0.65); }
+
     .cat-tag { font-size: clamp(7px, 0.8vw, 9px); color: var(--purple); letter-spacing: 0.18em; margin-bottom: 10px; text-shadow: 0 0 10px rgba(200,169,110,0.4); }
     .cat-title { font-family: 'VT323', monospace; font-size: clamp(26px, 3vw, 40px); color: var(--cream); line-height: 1.15; margin-bottom: 6px; letter-spacing: 0.06em; }
     .cat-desc { font-family: 'VT323', monospace; font-size: clamp(15px, 1.8vw, 21px); color: var(--muted); line-height: 1.4; }
- 
+
     .cat-arrow {
       margin-top: 12px;
       font-size: clamp(6px, 0.75vw, 9px);
@@ -118,7 +118,7 @@
     /* pixel right arrow using ► */
     .cat-arrow::after { content: ' ►'; font-size: 0.9em; }
     .cat:hover .cat-arrow { opacity: 1; transform: translateX(0); }
- 
+
     @media (max-width: 640px) {
       nav { padding: 16px 20px; }
       .back { font-size: 10px; }
