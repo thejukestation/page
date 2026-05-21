@@ -3,173 +3,306 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Music — The Juke Station</title>
+  <title>My Music — The Juke Station</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --cream: #f0e8d8; --purple: #c8a96e; --muted: rgba(240,232,216,0.65); --card-bg: rgba(0,0,0,0.35); }
-    html, body { width: 100%; height: 100%; background: #000; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
-    .scene { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; }
-    .bg-stars { position: fixed; inset: 0; background: url('../images/HIMMEL1.jpg') center/cover no-repeat; z-index: 0; }
+    :root { --cream: #f0e8d8; --gold: #c8a96e; --muted: rgba(240,232,216,0.65); --card-bg: rgba(0,0,0,0.35); }
+    html, body { width: 100%; background: #000; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
+ 
+    .bg { position: fixed; inset: 0; background: url('../../images/HIMMEL1.jpg') center/cover no-repeat; z-index: 0; }
     .bg-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 0; }
  
-    nav { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; }
- 
-    .back {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(12px, 1.5vw, 18px);
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      transition: color 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; transition: transform 0.3s ease; }
+    .back { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
     .back:hover { color: var(--cream); }
     .back::before { content: '◄'; font-size: 0.8em; }
- 
-    .nav-links { list-style: none; display: flex; flex-direction: column; align-items: flex-end; gap: 0; }
-    .nav-links a {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(12px, 1.5vw, 18px);
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      line-height: 2.2;
-      transition: color 0.2s;
-    }
+    .nav-links { list-style: none; display: flex; flex-direction: column; align-items: flex-end; }
+    .nav-links a { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; line-height: 2.2; transition: color 0.2s; }
     .nav-links a:hover { color: var(--cream); }
-    .nav-links a.active { color: var(--purple); text-shadow: 0 0 12px rgba(200,169,110,0.5); }
+    .nav-links a.active { color: var(--gold); text-shadow: 0 0 12px rgba(200,169,110,0.5); }
  
-    .content {
+    .page {
       position: relative;
       z-index: 2;
-      flex: 1;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 120px 40px 80px;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 20px 40px 60px;
-      gap: 32px;
+      gap: 60px;
+    }
+ 
+    /* Page title */
+    .page-title {
+      font-size: clamp(18px, 3vw, 38px);
+      color: var(--cream);
+      letter-spacing: 0.15em;
+      text-shadow: 0 0 20px rgba(240,232,216,0.3);
       text-align: center;
     }
  
-    .page-title {
-      font-size: clamp(22px, 4vw, 52px);
-      color: var(--cream);
-      text-shadow: 0 0 20px rgba(240,232,216,0.4), 0 0 60px rgba(200,169,110,0.2); letter-spacing: 0.15em;
-      letter-spacing: 0.08em;
+    /* Story section */
+    .story { display: flex; flex-direction: column; gap: 28px; }
+ 
+    .story-block {
+      background: var(--card-bg);
+      border: 1px solid rgba(240,232,216,0.1);
+      border-radius: 4px;
+      padding: 24px 28px;
     }
  
-    .quote p {
+    .story-year {
+      font-size: clamp(7px, 0.8vw, 9px);
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+      text-shadow: 0 0 10px rgba(200,169,110,0.4);
+    }
+ 
+    .story-text {
       font-family: 'VT323', monospace;
-      font-size: clamp(18px, 2.2vw, 26px);
-      color: var(--muted);
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--cream);
+      line-height: 1.7;
+      letter-spacing: 0.03em;
+    }
+ 
+    /* Album section */
+    .album-section { display: flex; flex-direction: column; gap: 20px; }
+ 
+    .section-label {
+      font-size: clamp(7px, 0.8vw, 9px);
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      text-shadow: 0 0 10px rgba(200,169,110,0.4);
+    }
+ 
+    .album-card {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      background: var(--card-bg);
+      border: 1px solid rgba(240,232,216,0.1);
+      border-radius: 4px;
+      padding: 28px;
+      text-decoration: none;
+      transition: border-color 0.25s;
+      cursor: pointer;
+    }
+    .album-card:hover { border-color: rgba(200,169,110,0.4); }
+ 
+    .album-cover {
+      width: clamp(120px, 18vw, 200px);
+      aspect-ratio: 1;
+      flex-shrink: 0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .album-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+ 
+    .album-info { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+ 
+    .album-tag { font-size: clamp(6px, 0.7vw, 8px); color: var(--gold); letter-spacing: 0.18em; }
+ 
+    .album-title {
+      font-family: 'VT323', monospace;
+      font-size: clamp(28px, 4vw, 52px);
+      color: var(--cream);
+      line-height: 1.1;
       letter-spacing: 0.05em;
     }
-    .quote cite {
-      display: block;
+ 
+    .album-desc {
+      font-family: 'VT323', monospace;
+      font-size: clamp(16px, 1.9vw, 22px);
+      color: var(--muted);
+      line-height: 1.5;
+    }
+ 
+    .album-cta {
       margin-top: 8px;
+      font-size: clamp(6px, 0.7vw, 9px);
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .album-card:hover .album-cta { opacity: 1; }
+ 
+    .old-videos-btn {
+      margin-top: 16px;
       font-family: 'Press Start 2P', monospace;
-      font-size: clamp(7px, 0.8vw, 10px);
-      color: rgba(232,220,200,0.65);
+      font-size: clamp(6px, 0.75vw, 9px);
+      color: var(--gold);
+      background: none;
+      border: 1px solid rgba(200,169,110,0.4);
+      border-radius: 3px;
+      padding: 8px 16px;
+      cursor: pointer;
       letter-spacing: 0.1em;
-      font-style: normal;
-      text-shadow: 0 0 10px rgba(200,169,110,0.3);
+      transition: border-color 0.2s, color 0.2s;
     }
+    .old-videos-btn:hover { border-color: var(--gold); color: var(--cream); }
  
-    .cats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+    /* Popup */
+    .popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .popup-box {
+      background: #0a0806;
+      border: 1px solid rgba(200,169,110,0.3);
+      border-radius: 6px;
+      padding: 32px;
+      max-width: 500px;
       width: 100%;
-      max-width: 1040px;
-    }
- 
-    .cat {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 24px 22px 20px;
-      background: var(--card-bg);
-      border: 1px solid rgba(232,220,200,0.1);
-      border-radius: 4px;
+      gap: 20px;
+    }
+    .popup-title {
+      font-size: clamp(9px, 1vw, 12px);
+      color: var(--gold);
+      letter-spacing: 0.15em;
+    }
+    .popup-links { display: flex; flex-direction: column; gap: 12px; }
+    .popup-link {
+      font-family: 'VT323', monospace;
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--cream);
       text-decoration: none;
-      min-height: 160px;
-      transition: border-color 0.25s, background 0.25s;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s;
     }
-    .cat:hover { border-color: rgba(240,220,160,0.25); background: rgba(30,22,8,0.55); }
- 
-    .cat-tag { font-size: clamp(7px, 0.8vw, 9px); color: var(--purple); letter-spacing: 0.18em; margin-bottom: 10px; text-shadow: 0 0 10px rgba(200,169,110,0.4); }
-    .cat-title { font-family: 'VT323', monospace; font-size: clamp(26px, 3vw, 40px); color: var(--cream); line-height: 1.15; margin-bottom: 6px; letter-spacing: 0.06em; }
-    .cat-desc { font-family: 'VT323', monospace; font-size: clamp(15px, 1.8vw, 21px); color: var(--muted); line-height: 1.4; }
- 
-    .cat-arrow {
-      margin-top: 12px;
-      font-size: clamp(6px, 0.75vw, 9px);
-      color: var(--purple);
-      opacity: 0;
-      transform: translateX(-4px);
-      transition: opacity 0.2s, transform 0.2s;
+    .popup-link:hover { color: var(--gold); }
+    .popup-link::before { content: '►'; font-size: 0.7em; color: var(--gold); }
+    .popup-close {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(6px, 0.7vw, 8px);
+      color: var(--muted);
+      background: none;
+      border: 1px solid rgba(240,232,216,0.15);
+      border-radius: 3px;
+      padding: 8px 14px;
+      cursor: pointer;
       letter-spacing: 0.1em;
+      align-self: flex-start;
+      transition: color 0.2s;
     }
-    /* pixel right arrow using ► */
-    .cat-arrow::after { content: ' ►'; font-size: 0.9em; }
-    .cat:hover .cat-arrow { opacity: 1; transform: translateX(0); }
- 
-    @media (max-width: 640px) {
+    .popup-close:hover { color: var(--cream); }
       nav { padding: 16px 20px; }
-      .back { font-size: 10px; }
-      .nav-links a { font-size: 10px; }
-      .content { padding: 16px 20px 50px; gap: 24px; }
-      .cats { grid-template-columns: 1fr; gap: 10px; }
-      .cat { min-height: 100px; padding: 16px 18px 14px; }
+      .page { padding: 100px 20px 60px; gap: 40px; }
+      .album-card { flex-direction: column; gap: 20px; }
+      .album-cover { width: 100%; aspect-ratio: 1; }
     }
   </style>
 </head>
 <body>
-<div class="scene">
-  <div class="bg-stars"></div>
+  <div class="bg"></div>
   <div class="bg-overlay"></div>
+ 
   <nav>
     <a class="back" href="../">back</a>
     <ul class="nav-links">
-      <li><a href="./" class="active">music</a></li>
-      <li><a href="../films/">films</a></li>
-      <li><a href="../games/">games</a></li>
-      <li><a href="../art/">art</a></li>
-      <li><a href="../about/">about</a></li>
+      <li><a href="../../music/" class="active">music</a></li>
+      <li><a href="../../films/">films</a></li>
+      <li><a href="../../games/">games</a></li>
+      <li><a href="../../art/">art</a></li>
+      <li><a href="../../about/">about</a></li>
     </ul>
   </nav>
-  <div class="content">
-    <h1 class="page-title">MUSIC</h1>
-    <div class="quote">
-      <p>"music in itself is healing. it's an explosive expression of humanity."</p>
-      <cite>— Billy Joel</cite>
+ 
+  <div class="page">
+    <h1 class="page-title">MY MUSIC</h1>
+ 
+    <div class="story">
+ 
+      <div class="story-block">
+        <div class="story-year">2020 — THE BEGINNING</div>
+        <p class="story-text">in 2020 my music teacher taught our class to use a simple DAW. it was called SOUNDTRAP, a free software by SPOTIFY themselves. it was very easy to use and i immediately started making my first beats.</p>
+      </div>
+ 
+      <div class="story-block">
+        <div class="story-year">2021 — GOING DEEPER</div>
+        <p class="story-text">after a couple months i already made a ton of tracks and they got better and better. in 2021 i recorded with an audio interface for the first time. it blew my mind and i finally could play REAL instruments on my songs.</p>
+      </div>
+ 
+      <div class="story-block">
+        <div class="story-year">2022 — FIRST ALBUM</div>
+        <p class="story-text">in 2022 i made my first album — not on spotify, but only for friends and family. it was called MELTING. after that, i was hungry for more and so i started the next one.</p>
+      </div>
+ 
+      <div class="story-block">
+        <div class="story-year">2023 — GOING ONLINE</div>
+        <p class="story-text">one year later i started posting online and started my career on spotify and all the other platforms. it didn't perform very well, so i took it down. some of the music is still online on youtube though.</p>
+        <button class="old-videos-btn" onclick="document.getElementById('videos-popup').style.display='flex'">► old youtube videos</button>
+      </div>
+ 
     </div>
-    <div class="cats">
-      <a class="cat" href="mymusic/">
-        <div class="cat-tag">MY MUSIC</div>
-        <div class="cat-title">my music</div>
-        <div class="cat-desc">stories in motion & everything i've made.</div>
-        <div class="cat-arrow">enter</div>
+ 
+    <!-- Album section — link to be added later -->
+    <div class="album-section">
+      <div class="section-label">NEW CHAPTER</div>
+      <a class="album-card" href="#" title="coming soon">
+        <div class="album-cover">
+          <img src="../../images/Stories%20In%20Motion%20Cover%20Final.jpg" alt="Stories in Motion">
+        </div>
+        <div class="album-info">
+          <div class="album-tag">ALBUM — 2026</div>
+          <div class="album-title">Stories in Motion</div>
+          <div class="album-desc">my debut album. out now on spotify, apple music, youtube music & more.</div>
+          <div class="album-cta">listen now ►</div>
+        </div>
       </a>
-      <a class="cat" href="collections/">
-        <div class="cat-tag">COLLECTIONS</div>
-        <div class="cat-title">my collections</div>
-        <div class="cat-desc">vinyls, cds & everything i've collected.</div>
-        <div class="cat-arrow">enter</div>
-      </a>
-      <a class="cat" href="concerts/">
-        <div class="cat-tag">LIVE</div>
-        <div class="cat-title">concerts</div>
-        <div class="cat-desc">the most important ones i've been to.</div>
-        <div class="cat-arrow">enter</div>
-      </a>
+    </div>
+ 
+  </div>
+  <!-- Old videos popup — CHANGE the href links to your real YouTube URLs -->
+  <div class="popup" id="videos-popup">
+    <div class="popup-box">
+      <div class="popup-title">OLD YOUTUBE VIDEOS</div>
+      <div class="popup-links">
+        <a class="popup-link" href="https://www.youtube.com/watch?v=aFiEmguheHM" target="_blank">why worry when plants are laughing</a>
+        <a class="popup-link" href="https://www.youtube.com/watch?v=YyccrLF8VJE" target="_blank">half a year</a>
+        <a class="popup-link" href="https://www.youtube.com/watch?v=VBHCMI7EJpE" target="_blank">the lick</a>
+        <a class="popup-link" href="https://www.youtube.com/watch?v=7Bg7Oh8YLHA" target="_blank">time passes (clock's ticking)</a>
+        <a class="popup-link" href="https://www.youtube.com/watch?v=8de_mWdxTXI" target="_blank">time (instrumental)</a>
+      </div>
+      <button class="popup-close" onclick="document.getElementById('videos-popup').style.display='none'">✕ close</button>
     </div>
   </div>
-</div>
+ 
+<script>
+  let lastY = 0;
+  window.addEventListener("scroll", () => {
+    const nav = document.querySelector("nav");
+    const y = window.scrollY;
+    if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
+    else nav.style.transform = "translateY(0)";
+    lastY = y;
+  });
+</script>
+<script>
+  let lastY = 0;
+  window.addEventListener("scroll", () => {
+    if (window.innerWidth > 640) { nav.style.transform = "translateY(0)"; return; }
+    const nav = document.querySelector("nav");
+    const y = window.scrollY;
+    if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
+    else nav.style.transform = "translateY(0)";
+    lastY = y;
+  });
+</script>
 </body>
 </html>
