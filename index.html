@@ -14,7 +14,7 @@
       --cream:   #e8dcc8;
       --purple:  #b89be0;
       --muted:   rgba(232, 220, 200, 0.60);
-      --card-bg: rgba(0, 0, 0, 0.80);
+      --card-bg: rgba(0, 0, 0, 0.85);
     }
  
     html, body {
@@ -34,7 +34,6 @@
       overflow: hidden;
     }
  
-    /* Stars — always covers full screen */
     .bg-stars {
       position: absolute;
       inset: 0;
@@ -43,30 +42,29 @@
       z-index: 0;
     }
  
-    /* Orb */
     .orb {
       position: absolute;
-      top: 9%;
+      top: 7%;
       left: 50%;
       transform: translateX(-50%);
-      width: clamp(200px, 26vw, 340px);
+      width: clamp(180px, 22vw, 300px);
       aspect-ratio: 1;
       z-index: 2;
     }
     .orb img { width: 100%; height: 100%; object-fit: contain; display: block; }
  
-    /* Dune — anchored bottom, always full width, never cropped */
+    /* Düne — NUR 42% der Bildschirmhöhe, von oben beschnitten */
     .dune {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: auto;
+      height: 42vh;
+      object-fit: cover;
+      object-position: top center;
       z-index: 3;
       display: block;
       pointer-events: none;
-      object-fit: cover;
-      object-position: top center;
     }
  
     /* ── NAV ── */
@@ -98,9 +96,12 @@
       flex-direction: column;
       align-items: flex-end;
       gap: 2px;
+      /* dark bg so links stay readable over the dune */
+      background: rgba(0,0,0,0.35);
+      padding: 10px 14px;
+      border-radius: 4px;
     }
  
-    /* Nav links — same font & size as logo */
     .nav-links a {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(10px, 1.3vw, 15px);
@@ -121,7 +122,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
-      padding-bottom: clamp(140px, 26vh, 260px);
+      padding-bottom: clamp(120px, 22vh, 220px);
       text-align: center;
       gap: 16px;
       pointer-events: none;
@@ -161,11 +162,11 @@
       z-index: 10;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid rgba(232,220,200,0.12);
+      border-top: 1px solid rgba(232,220,200,0.15);
     }
  
     .card {
-      padding: 22px 28px;
+      padding: 20px 26px;
       background: var(--card-bg);
       border-right: 1px solid rgba(232,220,200,0.08);
       cursor: pointer;
@@ -174,7 +175,7 @@
       transition: background 0.2s;
     }
     .card:last-child { border-right: none; }
-    .card:hover { background: rgba(20,10,30,0.90); }
+    .card:hover { background: rgba(20,10,30,0.95); }
  
     .card-tag {
       font-family: 'Press Start 2P', monospace;
@@ -184,18 +185,19 @@
       letter-spacing: 0.1em;
     }
  
-    /* Card titles — VT323 is wide and bold-looking at larger sizes */
+    /* VT323 at 34px+ looks wide and bold */
     .card-title {
       font-family: 'VT323', monospace;
-      font-size: clamp(22px, 2.6vw, 30px);
+      font-size: clamp(26px, 3vw, 36px);
       color: var(--cream);
       margin-bottom: 4px;
-      line-height: 1.2;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
     }
  
     .card-desc {
       font-family: 'VT323', monospace;
-      font-size: clamp(16px, 1.9vw, 22px);
+      font-size: clamp(17px, 2vw, 24px);
       color: var(--muted);
       line-height: 1.4;
     }
@@ -205,25 +207,25 @@
       nav {
         flex-direction: column;
         align-items: center;
-        padding: 20px 20px 14px;
-        gap: 14px;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.72) 0%, transparent 100%);
+        padding: 16px 20px;
+        gap: 12px;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%);
       }
- 
-      .logo { font-size: 10px; text-align: center; line-height: 1.8; }
- 
       .nav-links {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 8px 16px;
-        align-items: center;
+        gap: 6px 14px;
+        background: none;
+        padding: 0;
       }
+      .logo { font-size: 10px; text-align: center; line-height: 1.8; }
       .nav-links a { font-size: 8px; line-height: 1.6; }
  
-      .orb { top: 26%; width: 64vw; }
+      .orb { top: 24%; width: 62vw; }
+      .dune { height: 38vh; }
  
-      .hero { padding-bottom: 190px; gap: 10px; }
+      .hero { padding-bottom: 180px; gap: 10px; }
       .hero h1 { font-size: 13px; line-height: 2; }
       .sub { font-size: 19px; }
       .pill { font-size: 6px; padding: 8px 14px; }
@@ -232,14 +234,14 @@
       .card {
         border-right: none;
         border-bottom: 1px solid rgba(232,220,200,0.08);
-        padding: 14px 20px;
+        padding: 12px 18px;
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 14px;
       }
       .card:last-child { border-bottom: none; }
-      .card-tag { margin-bottom: 0; min-width: 55px; }
-      .card-title { font-size: 22px; }
+      .card-tag { margin-bottom: 0; min-width: 55px; flex-shrink: 0; }
+      .card-title { font-size: 24px; }
       .card-desc { display: none; }
     }
   </style>
@@ -272,7 +274,9 @@
         <span class="accent">STORIES.</span><br>
         EVERYTHING.
       </h1>
+      <!-- CHANGE: diesen Text anpassen -->
       <p class="sub">a corner of the internet that's mine.</p>
+      <!-- CHANGE: Album-Pill Text hier ändern -->
       <div class="pill">★ STORIES IN MOTION — OUT NOW</div>
     </div>
  
