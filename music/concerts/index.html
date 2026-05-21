@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concerts — The Juke Station</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --cream: #f0e8d8; --gold: #c8a96e; --muted: rgba(240,232,216,0.65); --card-bg: rgba(0,0,0,0.35); }
+    html, body { width: 100%; background: #000; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
+ 
+    .bg { position: fixed; inset: 0; background: url('../../images/HIMMEL1.jpg') center/cover no-repeat; z-index: 0; }
+    .bg-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 0; }
+ 
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; transition: transform 0.3s ease; }
+    .back { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
+    .back:hover { color: var(--cream); }
+    .back::before { content: '◄'; font-size: 0.8em; }
+    .nav-links { list-style: none; display: flex; flex-direction: column; align-items: flex-end; }
+    .nav-links a { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; line-height: 2.2; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a.active { color: var(--gold); text-shadow: 0 0 12px rgba(200,169,110,0.5); }
+ 
+    .page { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; padding: 120px 40px 80px; display: flex; flex-direction: column; gap: 50px; }
+ 
+    .page-title { font-size: clamp(18px, 3vw, 38px); color: var(--cream); letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(240,232,216,0.3); text-align: center; }
+ 
+    .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--gold); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(200,169,110,0.4); }
+ 
+    /* Concert list */
+    .concert-list { display: flex; flex-direction: column; gap: 8px; }
+ 
+    .concert-row {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      background: var(--card-bg);
+      border: 1px solid rgba(240,232,216,0.08);
+      border-radius: 4px;
+      transition: border-color 0.2s;
+    }
+    .concert-row:hover { border-color: rgba(240,220,160,0.2); }
+ 
+    .concert-year { font-size: clamp(7px, 0.8vw, 9px); color: var(--gold); letter-spacing: 0.1em; }
+    .concert-artist { font-family: 'VT323', monospace; font-size: clamp(20px, 2.4vw, 28px); color: var(--cream); line-height: 1; }
+    .concert-city { font-family: 'VT323', monospace; font-size: clamp(16px, 1.9vw, 22px); color: var(--muted); letter-spacing: 0.05em; text-align: right; }
+ 
+    /* Wishlist */
+    .wish-block {
+      background: var(--card-bg);
+      border: 1px solid rgba(240,232,216,0.08);
+      border-radius: 4px;
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .wish-title { font-size: clamp(7px, 0.8vw, 9px); color: var(--gold); letter-spacing: 0.2em; margin-bottom: 4px; }
+    .wish-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.2vw, 26px); color: var(--cream); line-height: 1.7; }
+    .wish-text span { color: var(--muted); }
+    .wish-divider { border: none; border-top: 1px solid rgba(240,232,216,0.08); }
+ 
+    /* Photo + best concert */
+    .photo-section { display: flex; flex-direction: column; gap: 16px; }
+ 
+    .concert-photo {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: rgba(240,232,216,0.05);
+      border: 1px dashed rgba(240,232,216,0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .concert-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .concert-photo-placeholder { font-size: clamp(6px, 0.7vw, 8px); color: rgba(240,232,216,0.3); letter-spacing: 0.12em; }
+ 
+    .best-concert-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      background: var(--card-bg);
+      border: 1px solid rgba(200,169,110,0.25);
+      border-radius: 4px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+    .best-concert-btn:hover { border-color: rgba(200,169,110,0.5); background: rgba(30,22,8,0.55); }
+    .best-concert-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--gold); letter-spacing: 0.15em; }
+    .best-concert-title { font-family: 'VT323', monospace; font-size: clamp(20px, 2.5vw, 30px); color: var(--cream); margin-top: 4px; }
+    .best-concert-arrow { font-size: clamp(10px, 1.2vw, 14px); color: var(--gold); }
+ 
+    @media (max-width: 640px) {
+      nav { padding: 12px 16px; }
+      .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
+      .nav-links a { font-size: 8px; line-height: 2; }
+      .page { padding: 100px 20px 60px; gap: 36px; }
+      .concert-row { grid-template-columns: 50px 1fr; gap: 10px; padding: 12px 14px; }
+      .concert-city { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="bg-overlay"></div>
+ 
+  <nav>
+    <a class="back" href="../">back</a>
+    <ul class="nav-links">
+      <li><a href="../../music/" class="active">music</a></li>
+      <li><a href="../../films/">films</a></li>
+      <li><a href="../../games/">games</a></li>
+      <li><a href="../../art/">art</a></li>
+      <li><a href="../../about/">about</a></li>
+    </ul>
+  </nav>
+ 
+  <div class="page">
+    <h1 class="page-title">CONCERTS</h1>
+ 
+    <div class="section-label">I'VE BEEN TO</div>
+    <div class="concert-list">
+      <div class="concert-row"><div class="concert-year">2022</div><div class="concert-artist">Queen</div><div class="concert-city">Munich</div></div>
+      <div class="concert-row"><div class="concert-year">2022</div><div class="concert-artist">Tame Impala</div><div class="concert-city">Milano</div></div>
+      <div class="concert-row"><div class="concert-year">2022</div><div class="concert-artist">Toto</div><div class="concert-city">Arbon</div></div>
+      <div class="concert-row"><div class="concert-year">2022</div><div class="concert-artist">Billy Talent</div><div class="concert-city">Vienna</div></div>
+      <div class="concert-row"><div class="concert-year">2023</div><div class="concert-artist">Muse</div><div class="concert-city">Vienna</div></div>
+      <div class="concert-row"><div class="concert-year">2023</div><div class="concert-artist">Bilderbuch</div><div class="concert-city">Lustenau</div></div>
+      <div class="concert-row"><div class="concert-year">2023</div><div class="concert-artist">Elton John</div><div class="concert-city">Munich</div></div>
+      <div class="concert-row"><div class="concert-year">2024</div><div class="concert-artist">Coldplay</div><div class="concert-city">Vienna</div></div>
+      <div class="concert-row"><div class="concert-year">2024</div><div class="concert-artist">Beatles Tribute Band</div><div class="concert-city">New York</div></div>
+      <div class="concert-row"><div class="concert-year">2025</div><div class="concert-artist">Tyler, the Creator</div><div class="concert-city">Zurich</div></div>
+      <div class="concert-row"><div class="concert-year">2025</div><div class="concert-artist">Von Wegen Lisbeth</div><div class="concert-city">Vienna</div></div>
+      <div class="concert-row"><div class="concert-year">2025</div><div class="concert-artist">Mac DeMarco</div><div class="concert-city">Prague</div></div>
+      <div class="concert-row"><div class="concert-year">2026</div><div class="concert-artist">Tame Impala</div><div class="concert-city">Zurich</div></div>
+    </div>
+ 
+    <div class="wish-block">
+      <div class="wish-title">I WOULD LOVE TO SEE</div>
+      <p class="wish-text">Vulfpeck · Paul McCartney · Jamiroquai · Radiohead · Stevie Wonder</p>
+      <hr class="wish-divider">
+      <div class="wish-title">I WOULD HAVE LOVED TO SEE</div>
+      <p class="wish-text"><span>Daft Punk · Wings · The Beatles · Led Zeppelin · Queen · Michael Jackson · Genesis · Fleetwood Mac</span></p>
+    </div>
+ 
+    <!-- Photo + best concert link -->
+    <div class="photo-section">
+      <div class="section-label">TAME IMPALA — MILANO 2022</div>
+      <div class="concert-photo">
+        <!-- CHANGE: replace with your real photo once you have it -->
+        <!-- <img src="../../images/tame-impala-2022.jpg" alt="Tame Impala Milano 2022"> -->
+        <div class="concert-photo-placeholder">PHOTO COMING SOON</div>
+      </div>
+ 
+      <!-- CHANGE: replace href with the real YouTube link -->
+      <a class="best-concert-btn" href="https://www.youtube.com/watch?v=NcjpFlKs1-I&t=3760s" target="_blank">
+        <div>
+          <div class="best-concert-label">THE BEST CONCERT I KNOW</div>
+          <div class="best-concert-title">Tame Impala — Live in Milano 2022 ►</div>
+        </div>
+        <div class="best-concert-arrow">►</div>
+      </a>
+    </div>
+ 
+  </div>
+ 
+  <script>
+    let lastY = 0;
+    window.addEventListener("scroll", () => {
+      const nav = document.querySelector("nav");
+      const y = window.scrollY;
+      if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
+      else nav.style.transform = "translateY(0)";
+      lastY = y;
+    });
+  </script>
+<script>
+  let lastY = 0;
+  window.addEventListener("scroll", () => {
+    if (window.innerWidth > 640) return;
+    const nav = document.querySelector("nav");
+    const y = window.scrollY;
+    if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
+    else nav.style.transform = "translateY(0)";
+    lastY = y;
+  });
+</script>
+</body>
+</html>
