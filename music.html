@@ -10,70 +10,54 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --cream: #e8dcc8; --purple: #b89be0; --muted: rgba(232,220,200,0.60); --card-bg: rgba(0,0,0,0.55); }
     html, body { width: 100%; height: 100%; background: #000; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
-
-    .scene {
-      position: relative;
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .bg-stars {
-      position: fixed;
-      inset: 0;
-      background: url('images/STARS.jpg') center/cover no-repeat;
-      opacity: 0.75;
-      z-index: 0;
-    }
-
-    /* NAV */
+ 
+    .scene { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; }
+ 
+    .bg-stars { position: fixed; inset: 0; background: url('images/STARS.jpg') center/cover no-repeat; opacity: 0.75; z-index: 0; }
+ 
     nav {
       position: relative;
       z-index: 2;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 24px 36px;
+      padding: 28px 36px;
     }
-
+ 
     .back {
       font-family: 'Press Start 2P', monospace;
-      font-size: clamp(9px, 1.1vw, 13px);
+      font-size: clamp(12px, 1.5vw, 18px);
       color: var(--muted);
       text-decoration: none;
       letter-spacing: 0.06em;
       transition: color 0.2s;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .back:hover { color: var(--cream); }
-    /* pixel arrow */
     .back::before {
       content: '';
       display: inline-block;
-      width: 18px;
-      height: 12px;
+      width: 22px;
+      height: 14px;
       background: currentColor;
       clip-path: polygon(40% 0%, 0% 50%, 40% 100%, 40% 65%, 100% 65%, 100% 35%, 40% 35%);
     }
-
+ 
     .nav-links { list-style: none; display: flex; flex-direction: column; align-items: flex-end; gap: 0; }
     .nav-links a {
       font-family: 'Press Start 2P', monospace;
-      font-size: clamp(10px, 1.3vw, 15px);
+      font-size: clamp(12px, 1.5vw, 18px);
       color: var(--muted);
       text-decoration: none;
       letter-spacing: 0.06em;
       line-height: 2.2;
-      text-shadow: 0 0 12px rgba(232,220,200,0.2);
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--cream); }
     .nav-links a.active { color: var(--purple); text-shadow: 0 0 12px rgba(184,155,224,0.4); }
-
-    /* CONTENT */
+ 
     .content {
       position: relative;
       z-index: 2;
@@ -82,39 +66,35 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px 40px 60px;
-      gap: 40px;
+      padding: 0 40px 60px;
+      gap: 32px;
       text-align: center;
     }
-
+ 
     .page-title {
       font-size: clamp(22px, 4vw, 52px);
       color: var(--cream);
       text-shadow: 0 0 20px rgba(232,220,200,0.3), 0 0 60px rgba(180,155,224,0.15);
       letter-spacing: 0.08em;
     }
-
-    .quote {
-      max-width: 600px;
-    }
+ 
     .quote p {
       font-family: 'VT323', monospace;
-      font-size: clamp(16px, 2vw, 24px);
+      font-size: clamp(18px, 2.2vw, 26px);
       color: var(--muted);
-      line-height: 1.7;
       letter-spacing: 0.05em;
+      white-space: nowrap;
     }
     .quote cite {
       display: block;
-      margin-top: 8px;
+      margin-top: 6px;
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(6px, 0.7vw, 8px);
       color: rgba(232,220,200,0.35);
       letter-spacing: 0.1em;
       font-style: normal;
     }
-
-    /* CATEGORY CARDS */
+ 
     .cats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -122,9 +102,8 @@
       width: 100%;
       max-width: 860px;
     }
-
+ 
     .cat {
-      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
@@ -133,46 +112,37 @@
       border: 1px solid rgba(232,220,200,0.1);
       border-radius: 4px;
       text-decoration: none;
-      min-height: 180px;
+      min-height: 160px;
       transition: border-color 0.25s, background 0.25s;
-      overflow: hidden;
     }
     .cat:hover {
       border-color: rgba(184,155,224,0.4);
       background: rgba(20,10,40,0.65);
     }
-
-    .cat-num {
-      position: absolute;
-      top: 16px; right: 18px;
-      font-size: clamp(32px, 5vw, 60px);
-      color: rgba(184,155,224,0.12);
-      line-height: 1;
-    }
-
+ 
     .cat-tag {
-      font-size: clamp(6px, 0.7vw, 8px);
+      font-size: clamp(7px, 0.8vw, 9px);
       color: var(--purple);
       letter-spacing: 0.14em;
       margin-bottom: 10px;
       text-shadow: 0 0 10px rgba(184,155,224,0.4);
     }
-
+ 
     .cat-title {
       font-family: 'VT323', monospace;
-      font-size: clamp(24px, 3vw, 38px);
+      font-size: clamp(26px, 3vw, 40px);
       color: var(--cream);
       line-height: 1.15;
       margin-bottom: 6px;
     }
-
+ 
     .cat-desc {
       font-family: 'VT323', monospace;
-      font-size: clamp(14px, 1.8vw, 20px);
+      font-size: clamp(15px, 1.8vw, 21px);
       color: var(--muted);
       line-height: 1.4;
     }
-
+ 
     .cat-arrow {
       margin-top: 12px;
       font-size: clamp(6px, 0.75vw, 9px);
@@ -183,20 +153,22 @@
       letter-spacing: 0.1em;
     }
     .cat:hover .cat-arrow { opacity: 1; transform: translateX(0); }
-
-    /* MOBILE */
+ 
     @media (max-width: 640px) {
       nav { padding: 16px 20px; }
-      .content { padding: 16px 20px 50px; gap: 28px; }
+      .back { font-size: 10px; }
+      .nav-links a { font-size: 10px; }
+      .content { padding: 0 20px 50px; gap: 24px; }
+      .quote p { white-space: normal; }
       .cats { grid-template-columns: 1fr; gap: 10px; }
-      .cat { min-height: 120px; padding: 16px 18px 14px; }
+      .cat { min-height: 100px; padding: 16px 18px 14px; }
     }
   </style>
 </head>
 <body>
 <div class="scene">
   <div class="bg-stars"></div>
-
+ 
   <nav>
     <a class="back" href="index.html">back</a>
     <ul class="nav-links">
@@ -207,36 +179,33 @@
       <li><a href="about.html">about</a></li>
     </ul>
   </nav>
-
+ 
   <div class="content">
     <h1 class="page-title">MUSIC</h1>
-
+ 
     <div class="quote">
-      <p>"Music in itself is healing. It's an explosive expression of humanity."</p>
-      <cite>— Billy Joel</cite>
+      <p>"music in itself is healing. it's an explosive expression of humanity."</p>
+      <cite>— billy joel</cite>
     </div>
-
+ 
     <div class="cats">
       <a class="cat" href="music-mymusic.html">
-        <span class="cat-num">01</span>
         <div class="cat-tag">MY MUSIC</div>
-        <div class="cat-title">My Music</div>
-        <div class="cat-desc">Stories in Motion & everything I've made.</div>
-        <div class="cat-arrow">ENTER →</div>
+        <div class="cat-title">my music</div>
+        <div class="cat-desc">stories in motion & everything i've made.</div>
+        <div class="cat-arrow">enter →</div>
       </a>
       <a class="cat" href="music-collections.html">
-        <span class="cat-num">02</span>
         <div class="cat-tag">COLLECTIONS</div>
-        <div class="cat-title">My Collections</div>
-        <div class="cat-desc">Vinyls, CDs & everything I've collected.</div>
-        <div class="cat-arrow">ENTER →</div>
+        <div class="cat-title">my collections</div>
+        <div class="cat-desc">vinyls, cds & everything i've collected.</div>
+        <div class="cat-arrow">enter →</div>
       </a>
       <a class="cat" href="music-concerts.html">
-        <span class="cat-num">03</span>
         <div class="cat-tag">LIVE</div>
-        <div class="cat-title">Concerts I've been to</div>
-        <div class="cat-desc">Every show, every memory.</div>
-        <div class="cat-arrow">ENTER →</div>
+        <div class="cat-title">concerts i've been to</div>
+        <div class="cat-desc">every show, every memory.</div>
+        <div class="cat-arrow">enter →</div>
       </a>
     </div>
   </div>
