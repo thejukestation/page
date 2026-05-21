@@ -296,7 +296,7 @@
 <script>
   let lastY = 0;
   window.addEventListener("scroll", () => {
-    if (window.innerWidth > 640) return;
+    if (window.innerWidth > 640) { nav.style.transform = "translateY(0)"; return; }
     const nav = document.querySelector("nav");
     const y = window.scrollY;
     if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
