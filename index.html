@@ -18,10 +18,8 @@
       position: absolute;
       bottom: 0; left: 0;
       width: 100%;
-      /* groß genug dass die Düne hoch ins Bild ragt */
       height: 75vh;
-      /* contain: ganzes Bild sichtbar, schwarzer Hintergrund verschmilzt mit Sternen */
-      background: url('images/DUNE.webp') bottom center / contain no-repeat;
+      background: url('images/DUNE.webp') bottom center / cover no-repeat;
       z-index: 1;
       pointer-events: none;
     }
@@ -34,7 +32,7 @@
       position: absolute;
       top: 16px; left: 50%;
       transform: translateX(-50%);
-      width: clamp(260px, 34vw, 440px);
+      width: clamp(300px, 42vw, 540px);
       aspect-ratio: 1;
       z-index: 2;
       animation: pulse 6s ease-in-out infinite;
