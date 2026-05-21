@@ -12,172 +12,141 @@
     :root {
       --cream: #e8dcc8;
       --purple: #b89be0;
-      --muted: rgba(232,220,200,0.60);
+      --muted: rgba(232,220,200,0.75);
       --card-bg: rgba(0,0,0,0.88);
     }
  
     html, body {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background: #000;
       color: var(--cream);
       font-family: 'Press Start 2P', monospace;
-      overflow-x: hidden;
+      overflow: hidden;
     }
  
     .scene {
       position: relative;
-      width: 100%;
-      height: 100vh;
-      min-height: 560px;
+      width: 100%; height: 100vh;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
  
-    /* STARS — full background */
+    /* Sterne */
     .bg-stars {
-      position: absolute;
-      inset: 0;
-      background: url('images/STARS.jpg') center center / cover no-repeat;
+      position: absolute; inset: 0;
+      background: url('images/STARS.jpg') center/cover no-repeat;
       opacity: 0.75;
       z-index: 0;
     }
  
-    /* TOP ZONE: nav + orb + hero text — takes up space above cards */
-    .top-zone {
-      position: relative;
-      z-index: 2;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+    /* Düne — 55% Höhe, von unten */
+    .dune {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: 55vh;
+      background: url('images/DUNE.webp') top center / cover no-repeat;
+      z-index: 1;
     }
  
-    /* NAV */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 28px 40px;
-      gap: 20px;
-      flex-shrink: 0;
-    }
- 
-    .logo {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(12px, 1.6vw, 18px);
-      line-height: 2;
-      color: var(--cream);
-      text-decoration: none;
-      text-shadow: 0 0 18px rgba(180,155,224,0.6);
-      letter-spacing: 0.06em;
-      flex-shrink: 0;
-    }
- 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0;
-    }
-    .nav-links a {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(10px, 1.3vw, 15px);
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.06em;
-      line-height: 2.2;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--cream); }
- 
-    /* ORB — centered in remaining space */
-    .orb-wrap {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      padding-bottom: 20px;
-    }
- 
+    /* Orb — oben mittig, groß */
     @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.95; }
-      50% { transform: scale(1.04); opacity: 1; }
+      0%,100% { transform: translateX(-50%) scale(1); }
+      50%      { transform: translateX(-50%) scale(1.04); }
     }
- 
     .orb {
-      width: clamp(200px, 28vw, 360px);
+      position: absolute;
+      top: 4vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(220px, 30vw, 380px);
       aspect-ratio: 1;
+      z-index: 2;
       animation: pulse 6s ease-in-out infinite;
-      flex-shrink: 0;
     }
-    .orb img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .orb img { width: 100%; height: 100%; object-fit: contain; }
  
-    /* HERO TEXT — directly below orb */
+    /* Hero — sitzt zwischen Orb-Unterkante und Karten */
     .hero {
-      text-align: center;
-      padding: 16px 20px 0;
+      position: absolute;
+      left: 0; right: 0;
+      /* 18vh von oben = ungefähr unter dem Orb */
+      top: calc(4vh + clamp(220px, 30vw, 380px) + 10px);
+      z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 12px;
+      text-align: center;
+      padding: 0 20px;
     }
  
     .hero h1 {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(15px, 2.4vw, 30px);
+      font-size: clamp(15px, 2.3vw, 28px);
       line-height: 2.2;
       color: var(--cream);
-      text-shadow: 0 0 20px rgba(232,220,200,0.3), 0 0 60px rgba(180,155,224,0.15);
+      text-shadow: 0 0 20px rgba(232,220,200,0.4), 0 0 60px rgba(180,155,224,0.2);
     }
     .hero h1 .accent {
       color: var(--purple);
-      text-shadow: 0 0 20px rgba(184,155,224,0.5), 0 0 50px rgba(140,100,255,0.25);
+      text-shadow: 0 0 20px rgba(184,155,224,0.6), 0 0 50px rgba(140,100,255,0.3);
     }
- 
     .sub {
       font-family: 'VT323', monospace;
       font-size: clamp(18px, 2.2vw, 28px);
       color: var(--muted);
       letter-spacing: 0.1em;
     }
- 
     .pill {
-      border: 1px solid rgba(184,155,224,0.45);
+      border: 1px solid rgba(184,155,224,0.5);
       border-radius: 3px;
       padding: 9px 20px;
-      font-family: 'Press Start 2P', monospace;
       font-size: clamp(6px, 0.8vw, 9px);
       color: var(--purple);
       letter-spacing: 0.12em;
       box-shadow: 0 0 14px rgba(184,155,224,0.15);
+      text-shadow: 0 0 10px rgba(184,155,224,0.4);
     }
  
-    /* DUNE — overlaps between top-zone and cards */
-    .dune {
+    /* Nav */
+    nav {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 45vh;
-      background: url('images/DUNE.webp') top center / cover no-repeat;
-      z-index: 1;
-      pointer-events: none;
+      top: 0; left: 0; right: 0;
+      z-index: 4;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 24px 36px;
     }
+    .logo {
+      font-size: clamp(12px, 1.5vw, 17px);
+      line-height: 2;
+      color: var(--cream);
+      text-decoration: none;
+      text-shadow: 0 0 18px rgba(180,155,224,0.7);
+      letter-spacing: 0.06em;
+    }
+    .nav-links { list-style: none; display: flex; flex-direction: column; align-items: flex-end; }
+    .nav-links a {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(10px, 1.2vw, 14px);
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      line-height: 2.2;
+      text-shadow: 0 0 12px rgba(232,220,200,0.35);
+      transition: text-shadow 0.2s;
+    }
+    .nav-links a:hover { text-shadow: 0 0 18px rgba(232,220,200,0.7); }
  
-    /* CARDS — at bottom, above dune */
+    /* Karten */
     .cards {
-      position: relative;
-      z-index: 3;
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 5;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       border-top: 1px solid rgba(232,220,200,0.15);
-      flex-shrink: 0;
     }
- 
     .card {
       padding: 18px 24px;
       background: var(--card-bg);
@@ -188,7 +157,6 @@
     }
     .card:last-child { border-right: none; }
     .card:hover { background: rgba(20,10,30,0.96); }
- 
     .card-tag {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(7px, 0.8vw, 9px);
@@ -210,89 +178,70 @@
       line-height: 1.3;
     }
  
-    /* MOBILE */
+    /* Mobile */
     @media (max-width: 640px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
-        padding: 16px 20px 10px;
-        gap: 10px;
-      }
-      .logo { font-size: 10px; text-align: center; }
-      .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 14px; }
-      .nav-links a { font-size: 8px; line-height: 2; }
+      nav { flex-direction: column; align-items: center; padding: 14px 20px; gap: 8px; }
+      .logo { font-size: 9px; text-align: center; }
+      .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 12px; }
+      .nav-links a { font-size: 8px; }
  
-      .orb { width: 62vw; }
-      .hero h1 { font-size: 13px; }
+      .orb { top: 12vh; width: 65vw; }
+      .dune { height: 35vh; }
+      .hero { top: calc(12vh + 65vw + 8px); }
+      .hero h1 { font-size: 12px; }
       .sub { font-size: 17px; }
       .pill { font-size: 6px; padding: 7px 12px; }
  
-      .dune { height: 30vh; }
- 
       .cards { grid-template-columns: 1fr; }
-      .card {
-        border-right: none;
-        border-bottom: 1px solid rgba(232,220,200,0.08);
-        padding: 11px 18px;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
+      .card { border-right: none; border-bottom: 1px solid rgba(232,220,200,0.08); padding: 11px 18px; display: flex; align-items: center; gap: 14px; }
       .card:last-child { border-bottom: none; }
-      .card-tag { margin-bottom: 0; min-width: 58px; flex-shrink: 0; font-size: 6px; }
+      .card-tag { margin-bottom: 0; min-width: 55px; flex-shrink: 0; font-size: 6px; }
       .card-title { font-size: 24px; }
       .card-desc { display: none; }
     }
   </style>
 </head>
 <body>
-  <div class="scene">
+<div class="scene">
+  <div class="bg-stars"></div>
+  <div class="dune"></div>
  
-    <div class="bg-stars"></div>
-    <div class="dune"></div>
+  <div class="orb"><img src="images/HIMMEL.png" alt="sky window"></div>
  
-    <div class="top-zone">
-      <nav>
-        <a class="logo" href="index.html">THE<br>JUKE<br>STATION</a>
-        <ul class="nav-links">
-          <li><a href="music.html">music</a></li>
-          <li><a href="films.html">films</a></li>
-          <li><a href="games.html">games</a></li>
-          <li><a href="art.html">art</a></li>
-          <li><a href="about.html">about</a></li>
-        </ul>
-      </nav>
- 
-      <div class="orb-wrap">
-        <div class="orb">
-          <img src="images/HIMMEL.png" alt="sky window">
-        </div>
-        <div class="hero">
-          <h1>MUSIC.<br><span class="accent">STORIES.</span><br>IN MOTION.</h1>
-          <p class="sub">a corner of the internet that's mine.</p>
-          <div class="pill">★ STORIES IN MOTION — OUT NOW</div>
-        </div>
-      </div>
-    </div>
- 
-    <div class="cards">
-      <a class="card" href="music.html">
-        <div class="card-tag">MUSIC</div>
-        <div class="card-title">Stories in Motion</div>
-        <div class="card-desc">Debut album, collections & shows.</div>
-      </a>
-      <a class="card" href="games.html">
-        <div class="card-tag">GAMES</div>
-        <div class="card-title">From N64 to Godot</div>
-        <div class="card-desc">A lifelong love for games.</div>
-      </a>
-      <a class="card" href="films.html">
-        <div class="card-tag">FILMS & ART</div>
-        <div class="card-title">What I watch & make</div>
-        <div class="card-desc">Photos, visuals & favourites.</div>
-      </a>
-    </div>
- 
+  <div class="hero">
+    <h1>MUSIC.<br><span class="accent">STORIES.</span><br>IN MOTION.</h1>
+    <p class="sub">a corner of the internet that's mine.</p>
+    <div class="pill">★ STORIES IN MOTION — OUT NOW</div>
   </div>
+ 
+  <nav>
+    <a class="logo" href="index.html">THE<br>JUKE<br>STATION</a>
+    <ul class="nav-links">
+      <li><a href="music.html">music</a></li>
+      <li><a href="films.html">films</a></li>
+      <li><a href="games.html">games</a></li>
+      <li><a href="art.html">art</a></li>
+      <li><a href="about.html">about</a></li>
+    </ul>
+  </nav>
+ 
+  <div class="cards">
+    <a class="card" href="music.html">
+      <div class="card-tag">MUSIC</div>
+      <div class="card-title">Stories in Motion</div>
+      <div class="card-desc">Debut album, collections & shows.</div>
+    </a>
+    <a class="card" href="games.html">
+      <div class="card-tag">GAMES</div>
+      <div class="card-title">From N64 to Godot</div>
+      <div class="card-desc">A lifelong love for games.</div>
+    </a>
+    <a class="card" href="films.html">
+      <div class="card-tag">FILMS & ART</div>
+      <div class="card-title">What I watch & make</div>
+      <div class="card-desc">Photos, visuals & favourites.</div>
+    </a>
+  </div>
+</div>
 </body>
 </html>
