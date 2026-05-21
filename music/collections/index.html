@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Music — The Juke Station</title>
+  <title>My Collections — The Juke Station</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <style>
@@ -23,188 +23,144 @@
     .nav-links a:hover { color: var(--cream); }
     .nav-links a.active { color: var(--gold); text-shadow: 0 0 12px rgba(200,169,110,0.5); }
  
-    .page {
-      position: relative;
-      z-index: 2;
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 120px 40px 80px;
+    .page { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; padding: 120px 40px 80px; display: flex; flex-direction: column; gap: 50px; }
+ 
+    .page-title { font-size: clamp(18px, 3vw, 38px); color: var(--cream); letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(240,232,216,0.3); text-align: center; }
+ 
+    /* Stats row */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .stat {
+      background: var(--card-bg);
+      border: 1px solid rgba(240,232,216,0.1);
+      border-radius: 4px;
+      padding: 20px 16px;
+      text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 60px;
+      gap: 10px;
     }
- 
-    /* Page title */
-    .page-title {
-      font-size: clamp(18px, 3vw, 38px);
+    .stat-num {
+      font-family: 'VT323', monospace;
+      font-size: clamp(36px, 5vw, 60px);
       color: var(--cream);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: clamp(6px, 0.7vw, 8px);
+      color: var(--gold);
       letter-spacing: 0.15em;
-      text-shadow: 0 0 20px rgba(240,232,216,0.3);
-      text-align: center;
     }
  
-    /* Story section */
-    .story { display: flex; flex-direction: column; gap: 28px; }
+    /* View full list button */
+    .list-btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(7px, 0.85vw, 10px);
+      color: var(--gold);
+      background: none;
+      border: 1px solid rgba(200,169,110,0.4);
+      border-radius: 3px;
+      padding: 12px 22px;
+      cursor: pointer;
+      letter-spacing: 0.1em;
+      transition: border-color 0.2s, color 0.2s;
+      align-self: center;
+    }
+    .list-btn:hover { border-color: var(--gold); color: var(--cream); }
  
-    .story-block {
+    /* Favourites section */
+    .date-note { font-family: 'VT323', monospace; font-size: clamp(14px, 1.6vw, 18px); color: var(--muted); letter-spacing: 0.08em; text-align: center; margin-top: -36px; }
+    .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--gold); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(200,169,110,0.4); }
+ 
+    .fav-block {
       background: var(--card-bg);
       border: 1px solid rgba(240,232,216,0.1);
       border-radius: 4px;
       padding: 24px 28px;
     }
- 
-    .story-year {
-      font-size: clamp(7px, 0.8vw, 9px);
-      color: var(--gold);
-      letter-spacing: 0.2em;
-      margin-bottom: 12px;
-      text-shadow: 0 0 10px rgba(200,169,110,0.4);
-    }
- 
-    .story-text {
+    .fav-text {
       font-family: 'VT323', monospace;
       font-size: clamp(18px, 2vw, 24px);
       color: var(--cream);
-      line-height: 1.7;
-      letter-spacing: 0.03em;
+      line-height: 1.8;
     }
+    .fav-text span { color: var(--gold); }
  
-    /* Album section */
-    .album-section { display: flex; flex-direction: column; gap: 20px; }
- 
-    .section-label {
-      font-size: clamp(7px, 0.8vw, 9px);
-      color: var(--gold);
-      letter-spacing: 0.2em;
-      text-shadow: 0 0 10px rgba(200,169,110,0.4);
-    }
- 
-    .album-card {
+    /* Image placeholders */
+    .photos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .photo-slot {
+      aspect-ratio: 4/3;
+      background: rgba(240,232,216,0.05);
+      border: 1px dashed rgba(240,232,216,0.2);
+      border-radius: 4px;
       display: flex;
-      gap: 32px;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .photo-slot-label { font-size: clamp(6px, 0.7vw, 8px); color: rgba(240,232,216,0.3); letter-spacing: 0.12em; text-align: center; }
+ 
+    /* Instruments */
+    .instr-block {
       background: var(--card-bg);
       border: 1px solid rgba(240,232,216,0.1);
       border-radius: 4px;
-      padding: 28px;
-      text-decoration: none;
-      transition: border-color 0.25s;
-      cursor: pointer;
-    }
-    .album-card:hover { border-color: rgba(200,169,110,0.4); }
- 
-    .album-cover {
-      width: clamp(120px, 18vw, 200px);
-      aspect-ratio: 1;
-      flex-shrink: 0;
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .album-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
- 
-    .album-info { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
- 
-    .album-tag { font-size: clamp(6px, 0.7vw, 8px); color: var(--gold); letter-spacing: 0.18em; }
- 
-    .album-title {
-      font-family: 'VT323', monospace;
-      font-size: clamp(28px, 4vw, 52px);
-      color: var(--cream);
-      line-height: 1.1;
-      letter-spacing: 0.05em;
-    }
- 
-    .album-desc {
-      font-family: 'VT323', monospace;
-      font-size: clamp(16px, 1.9vw, 22px);
-      color: var(--muted);
-      line-height: 1.5;
-    }
- 
-    .album-cta {
-      margin-top: 8px;
-      font-size: clamp(6px, 0.7vw, 9px);
-      color: var(--gold);
-      letter-spacing: 0.12em;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .album-card:hover .album-cta { opacity: 1; }
- 
-    .old-videos-btn {
-      margin-top: 16px;
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(6px, 0.75vw, 9px);
-      color: var(--gold);
-      background: none;
-      border: 1px solid rgba(200,169,110,0.4);
-      border-radius: 3px;
-      padding: 8px 16px;
-      cursor: pointer;
-      letter-spacing: 0.1em;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .old-videos-btn:hover { border-color: var(--gold); color: var(--cream); }
- 
-    /* Popup */
-    .popup {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.8);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .popup-box {
-      background: #0a0806;
-      border: 1px solid rgba(200,169,110,0.3);
-      border-radius: 6px;
-      padding: 32px;
-      max-width: 500px;
-      width: 100%;
+      padding: 24px 28px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
-    .popup-title {
-      font-size: clamp(9px, 1vw, 12px);
-      color: var(--gold);
-      letter-spacing: 0.15em;
-    }
-    .popup-links { display: flex; flex-direction: column; gap: 12px; }
-    .popup-link {
-      font-family: 'VT323', monospace;
-      font-size: clamp(18px, 2vw, 24px);
-      color: var(--cream);
-      text-decoration: none;
-      letter-spacing: 0.04em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: color 0.2s;
-    }
-    .popup-link:hover { color: var(--gold); }
-    .popup-link::before { content: '►'; font-size: 0.7em; color: var(--gold); }
-    .popup-close {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(6px, 0.7vw, 8px);
-      color: var(--muted);
-      background: none;
-      border: 1px solid rgba(240,232,216,0.15);
-      border-radius: 3px;
-      padding: 8px 14px;
-      cursor: pointer;
-      letter-spacing: 0.1em;
-      align-self: flex-start;
-      transition: color 0.2s;
-    }
+    .instr-item { display: flex; flex-direction: column; gap: 6px; }
+    .instr-name { font-family: 'VT323', monospace; font-size: clamp(22px, 2.5vw, 30px); color: var(--cream); line-height: 1.1; }
+    .instr-desc { font-family: 'VT323', monospace; font-size: clamp(15px, 1.8vw, 20px); color: var(--muted); }
+    .instr-divider { border: none; border-top: 1px solid rgba(240,232,216,0.08); }
+ 
+    /* POPUP */
+    .popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 100; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; cursor: pointer; }
+    .popup-box { background: #0c0906; border: 1px solid rgba(200,169,110,0.25); border-radius: 6px; padding: 32px; width: 100%; max-width: 700px; display: flex; flex-direction: column; gap: 28px; cursor: default; position: relative; }
+    .popup-header { display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: #0c0906; padding-bottom: 16px; border-bottom: 1px solid rgba(200,169,110,0.15); z-index: 1; }
+    .popup-title { font-size: clamp(8px, 1vw, 11px); color: var(--gold); letter-spacing: 0.15em; }
+    .popup-close { font-family: 'Press Start 2P', monospace; font-size: clamp(6px, 0.7vw, 8px); color: var(--muted); background: none; border: 1px solid rgba(240,232,216,0.15); border-radius: 3px; padding: 8px 14px; cursor: pointer; letter-spacing: 0.1em; transition: color 0.2s; }
     .popup-close:hover { color: var(--cream); }
+ 
+    .popup-section { display: flex; flex-direction: column; gap: 8px; }
+    .popup-section-title { font-size: clamp(6px, 0.7vw, 8px); color: var(--gold); letter-spacing: 0.2em; margin-bottom: 4px; }
+    .popup-row { display: grid; grid-template-columns: 60px 1fr 1fr; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(240,232,216,0.06); font-family: 'VT323', monospace; font-size: clamp(15px, 1.8vw, 19px); }
+    .popup-row:last-child { border-bottom: none; }
+    .popup-year { color: var(--gold); }
+    .popup-artist { color: var(--cream); }
+    .popup-album { color: var(--muted); }
+ 
+    .gear-btns { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .gear-btn {
+      background: var(--card-bg);
+      border: 1px solid rgba(240,232,216,0.1);
+      border-radius: 4px;
+      padding: 20px 22px;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .gear-btn:hover { border-color: rgba(240,220,160,0.3); background: rgba(30,22,8,0.55); }
+    .gear-btn-tag { font-family: 'Press Start 2P', monospace; font-size: clamp(6px, 0.65vw, 8px); color: var(--gold); letter-spacing: 0.15em; }
+    .gear-btn-title { font-family: 'VT323', monospace; font-size: clamp(22px, 2.8vw, 34px); color: var(--cream); line-height: 1.1; }
+ 
+    @media (max-width: 640px) {
+      nav { padding: 12px 16px; }
+      .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
+      .nav-links a { font-size: 8px; line-height: 2; }
       nav { padding: 16px 20px; }
-      .page { padding: 100px 20px 60px; gap: 40px; }
-      .album-card { flex-direction: column; gap: 20px; }
-      .album-cover { width: 100%; aspect-ratio: 1; }
+      .page { padding: 100px 20px 60px; gap: 36px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .photos { grid-template-columns: 1fr; }
+      .gear-btns { grid-template-columns: 1fr; }
+      .popup-row { grid-template-columns: 50px 1fr; }
+      .popup-album { display: none; }
     }
   </style>
 </head>
@@ -224,62 +180,400 @@
   </nav>
  
   <div class="page">
-    <h1 class="page-title">MY MUSIC</h1>
+    <h1 class="page-title">MY COLLECTIONS</h1>
+    <div class="date-note">as of may 21, 2026</div>
  
-    <div class="story">
- 
-      <div class="story-block">
-        <div class="story-year">2020 — THE BEGINNING</div>
-        <p class="story-text">in 2020 my music teacher taught our class to use a simple DAW. it was called SOUNDTRAP, a free software by SPOTIFY themselves. it was very easy to use and i immediately started making my first beats.</p>
-      </div>
- 
-      <div class="story-block">
-        <div class="story-year">2021 — GOING DEEPER</div>
-        <p class="story-text">after a couple months i already made a ton of tracks and they got better and better. in 2021 i recorded with an audio interface for the first time. it blew my mind and i finally could play REAL instruments on my songs.</p>
-      </div>
- 
-      <div class="story-block">
-        <div class="story-year">2022 — FIRST ALBUM</div>
-        <p class="story-text">in 2022 i made my first album — not on spotify, but only for friends and family. it was called MELTING. after that, i was hungry for more and so i started the next one.</p>
-      </div>
- 
-      <div class="story-block">
-        <div class="story-year">2023 — GOING ONLINE</div>
-        <p class="story-text">one year later i started posting online and started my career on spotify and all the other platforms. it didn't perform very well, so i took it down. some of the music is still online on youtube though.</p>
-        <button class="old-videos-btn" onclick="document.getElementById('videos-popup').style.display='flex'">► old youtube videos</button>
-      </div>
- 
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat"><div class="stat-num">87</div><div class="stat-label">LPs</div></div>
+      <div class="stat"><div class="stat-num">13</div><div class="stat-label">SINGLES</div></div>
+      <div class="stat"><div class="stat-num">32</div><div class="stat-label">CASSETTES</div></div>
+      <div class="stat"><div class="stat-num">19</div><div class="stat-label">CDs</div></div>
     </div>
  
-    <!-- Album section — link to be added later -->
-    <div class="album-section">
-      <div class="section-label">NEW CHAPTER</div>
-      <a class="album-card" href="#" title="coming soon">
-        <div class="album-cover">
-          <img src="../../images/Stories%20In%20Motion%20Cover%20Final.jpg" alt="Stories in Motion">
-        </div>
-        <div class="album-info">
-          <div class="album-tag">ALBUM — 2026</div>
-          <div class="album-title">Stories in Motion</div>
-          <div class="album-desc">my debut album. out now on spotify, apple music, youtube music & more.</div>
-          <div class="album-cta">listen now ►</div>
-        </div>
-      </a>
+    <button class="list-btn" onclick="document.getElementById('list-popup').style.display='flex'">► view the complete list</button>
+ 
+    <!-- Favourites -->
+    <div class="section-label">MY FAVOURITE ALBUMS OF ALL TIME</div>
+    <div class="fav-block">
+      <p class="fav-text">
+        <span>Tame Impala</span> — The Slow Rush & Currents<br>
+        <span>The Beatles</span> — Abbey Road<br>
+        <span>Wings</span> — Band on the Run & One Hand Clapping<br>
+        <span>Daft Punk</span> — Discovery<br>
+        <span>Stevie Wonder</span> — Songs in the Key of Life<br>
+        <span>Pink Floyd</span> — The Dark Side of the Moon<br>
+        <span>Coldplay</span> — X&Y<br>
+        <span>Queen</span> — A Day at the Races<br>
+        <span>Bilderbuch</span> — Gelb ist das Feld
+      </p>
     </div>
  
+    <!-- Photos -->
+    <div class="section-label">PHOTOS</div>
+    <div class="photos">
+      <div class="photo-slot"><div class="photo-slot-label">PHOTO COMING SOON</div></div>
+      <div class="photo-slot"><div class="photo-slot-label">PHOTO COMING SOON</div></div>
+      <div class="photo-slot"><div class="photo-slot-label">PHOTO COMING SOON</div></div>
+      <div class="photo-slot"><div class="photo-slot-label">PHOTO COMING SOON</div></div>
+    </div>
+ 
+    <!-- Gear section -->
+    <div class="section-label">MY GEAR</div>
+    <div class="gear-btns">
+      <button class="gear-btn" onclick="document.getElementById('popup-instruments').style.display='flex'">
+        <div class="gear-btn-tag">19 PIECES</div>
+        <div class="gear-btn-title">instruments</div>
+      </button>
+      <button class="gear-btn" onclick="document.getElementById('popup-amps').style.display='flex'">
+        <div class="gear-btn-tag">AMPS · MICS · PEDALS</div>
+        <div class="gear-btn-title">amps & gear</div>
+      </button>
+      <button class="gear-btn" onclick="document.getElementById('popup-software').style.display='flex'">
+        <div class="gear-btn-tag">DAWs · PLUGINS</div>
+        <div class="gear-btn-title">software</div>
+      </button>
+      <button class="gear-btn" onclick="document.getElementById('popup-hifi').style.display='flex'">
+        <div class="gear-btn-tag">PLAYERS · MONITORS · HPs</div>
+        <div class="gear-btn-title">hifi & players</div>
+      </button>
+    </div>
   </div>
-  <!-- Old videos popup — CHANGE the href links to your real YouTube URLs -->
-  <div class="popup" id="videos-popup">
+ 
+  <!-- FULL LIST POPUP -->
+  <div class="popup" id="list-popup" onclick="if(event.target===this)this.style.display='none'">
     <div class="popup-box">
-      <div class="popup-title">OLD YOUTUBE VIDEOS</div>
-      <div class="popup-links">
-        <a class="popup-link" href="https://www.youtube.com/watch?v=aFiEmguheHM" target="_blank">why worry when plants are laughing</a>
-        <a class="popup-link" href="https://www.youtube.com/watch?v=YyccrLF8VJE" target="_blank">half a year</a>
-        <a class="popup-link" href="https://www.youtube.com/watch?v=VBHCMI7EJpE" target="_blank">the lick</a>
-        <a class="popup-link" href="https://www.youtube.com/watch?v=7Bg7Oh8YLHA" target="_blank">time passes (clock's ticking)</a>
-        <a class="popup-link" href="https://www.youtube.com/watch?v=8de_mWdxTXI" target="_blank">time (instrumental)</a>
+      <div class="popup-header">
+        <div class="popup-title">COMPLETE COLLECTION</div>
+        <button class="popup-close" onclick="document.getElementById('list-popup').style.display='none'">✕ close</button>
       </div>
-      <button class="popup-close" onclick="document.getElementById('videos-popup').style.display='none'">✕ close</button>
+ 
+      <div class="popup-section">
+        <div class="popup-section-title">LPs</div>
+        <div class="popup-row"><span class="popup-year">1960</span><span class="popup-artist">Ludwig Van Beethoven</span><span class="popup-album">Symphonie Pastorale</span></div>
+        <div class="popup-row"><span class="popup-year">1964</span><span class="popup-artist">P. Tchaikovsky / Rachmaninoff</span><span class="popup-album">Concerto pour piano n°1/2</span></div>
+        <div class="popup-row"><span class="popup-year">1965</span><span class="popup-artist">The Beatles</span><span class="popup-album">Rubber Soul</span></div>
+        <div class="popup-row"><span class="popup-year">1966</span><span class="popup-artist">The Beatles</span><span class="popup-album">Revolver</span></div>
+        <div class="popup-row"><span class="popup-year">1967</span><span class="popup-artist">The Beatles</span><span class="popup-album">Sgt. Pepper's Lonely Hearts Club Band</span></div>
+        <div class="popup-row"><span class="popup-year">1967</span><span class="popup-artist">The Beatles</span><span class="popup-album">Magical Mystery Tour</span></div>
+        <div class="popup-row"><span class="popup-year">1968</span><span class="popup-artist">The Beatles</span><span class="popup-album">The White Album</span></div>
+        <div class="popup-row"><span class="popup-year">1969</span><span class="popup-artist">The Beatles</span><span class="popup-album">Abbey Road</span></div>
+        <div class="popup-row"><span class="popup-year">1969</span><span class="popup-artist">The Beatles</span><span class="popup-album">Don't Let Me Down, Billy</span></div>
+        <div class="popup-row"><span class="popup-year">1969</span><span class="popup-artist">Led Zeppelin</span><span class="popup-album">II</span></div>
+        <div class="popup-row"><span class="popup-year">1969</span><span class="popup-artist">The Jackson 5</span><span class="popup-album">Diana Ross Presents The Jackson 5</span></div>
+        <div class="popup-row"><span class="popup-year">1970</span><span class="popup-artist">The Beatles</span><span class="popup-album">Let It Be</span></div>
+        <div class="popup-row"><span class="popup-year">1970</span><span class="popup-artist">The Beatles</span><span class="popup-album">Hey Jude</span></div>
+        <div class="popup-row"><span class="popup-year">1970</span><span class="popup-artist">Paul McCartney</span><span class="popup-album">McCartney</span></div>
+        <div class="popup-row"><span class="popup-year">1971</span><span class="popup-artist">Led Zeppelin</span><span class="popup-album">IV</span></div>
+        <div class="popup-row"><span class="popup-year">1971</span><span class="popup-artist">Paul McCartney & Linda</span><span class="popup-album">RAM</span></div>
+        <div class="popup-row"><span class="popup-year">1971</span><span class="popup-artist">Marvin Gaye</span><span class="popup-album">What's Going On</span></div>
+        <div class="popup-row"><span class="popup-year">1971</span><span class="popup-artist">Stevie Wonder</span><span class="popup-album">Fulfillingness' First Finale</span></div>
+        <div class="popup-row"><span class="popup-year">1971</span><span class="popup-artist">Claude Debussy</span><span class="popup-album">Children's Corner</span></div>
+        <div class="popup-row"><span class="popup-year">1971</span><span class="popup-artist">Various</span><span class="popup-album">Temple Radha-Krishna</span></div>
+        <div class="popup-row"><span class="popup-year">1972</span><span class="popup-artist">Frédéric Chopin</span><span class="popup-album">Les quatorze valses</span></div>
+        <div class="popup-row"><span class="popup-year">1973</span><span class="popup-artist">Paul McCartney & Wings</span><span class="popup-album">Band on the Run</span></div>
+        <div class="popup-row"><span class="popup-year">1973</span><span class="popup-artist">Pink Floyd</span><span class="popup-album">The Dark Side of the Moon</span></div>
+        <div class="popup-row"><span class="popup-year">1974</span><span class="popup-artist">Paul McCartney & Wings</span><span class="popup-album">One Hand Clapping</span></div>
+        <div class="popup-row"><span class="popup-year">1974</span><span class="popup-artist">Stevie Wonder</span><span class="popup-album">Fulfillingness' First Finale</span></div>
+        <div class="popup-row"><span class="popup-year">1974</span><span class="popup-artist">Golden Gate Quartet</span><span class="popup-album">Jazz Session</span></div>
+        <div class="popup-row"><span class="popup-year">1975</span><span class="popup-year">Wings</span><span class="popup-album">Venus and Mars</span></div>
+        <div class="popup-row"><span class="popup-year">1975</span><span class="popup-artist">Queen</span><span class="popup-album">A Night at the Opera</span></div>
+        <div class="popup-row"><span class="popup-year">1975</span><span class="popup-artist">Cortex</span><span class="popup-album">Troupeau bleu</span></div>
+        <div class="popup-row"><span class="popup-year">1975</span><span class="popup-artist">Maurice Ravel</span><span class="popup-album">Les deux concertos</span></div>
+        <div class="popup-row"><span class="popup-year">1976</span><span class="popup-artist">Stevie Wonder</span><span class="popup-album">Songs in the Key of Life</span></div>
+        <div class="popup-row"><span class="popup-year">1976</span><span class="popup-artist">Queen</span><span class="popup-album">A Day at the Races</span></div>
+        <div class="popup-row"><span class="popup-year">1977</span><span class="popup-artist">Supertramp</span><span class="popup-album">Even In The Quietest Moments</span></div>
+        <div class="popup-row"><span class="popup-year">1977</span><span class="popup-artist">Frank Sinatra</span><span class="popup-album">Sinatra At The Sands</span></div>
+        <div class="popup-row"><span class="popup-year">1978</span><span class="popup-artist">Wings</span><span class="popup-album">Wings Greatest</span></div>
+        <div class="popup-row"><span class="popup-year">1979</span><span class="popup-artist">Supertramp</span><span class="popup-album">Breakfast In America</span></div>
+        <div class="popup-row"><span class="popup-year">1979</span><span class="popup-artist">Electric Light Orchestra</span><span class="popup-album">Discovery</span></div>
+        <div class="popup-row"><span class="popup-year">1979</span><span class="popup-artist">Revanche</span><span class="popup-album">Music Man</span></div>
+        <div class="popup-row"><span class="popup-year">1979</span><span class="popup-artist">Rickie Lee Jones</span><span class="popup-album">The Magazine</span></div>
+        <div class="popup-row"><span class="popup-year">1980</span><span class="popup-artist">Paul McCartney</span><span class="popup-album">McCartney II</span></div>
+        <div class="popup-row"><span class="popup-year">1980</span><span class="popup-artist">Genesis</span><span class="popup-album">Duke</span></div>
+        <div class="popup-row"><span class="popup-year">1981</span><span class="popup-artist">Phil Collins</span><span class="popup-album">Face Value</span></div>
+        <div class="popup-row"><span class="popup-year">1981</span><span class="popup-artist">Journey</span><span class="popup-album">Escape</span></div>
+        <div class="popup-row"><span class="popup-year">1982</span><span class="popup-artist">Phil Collins</span><span class="popup-album">Hello, I Must Be Going</span></div>
+        <div class="popup-row"><span class="popup-year">1982</span><span class="popup-artist">Supertramp</span><span class="popup-album">...Famous Last Words...</span></div>
+        <div class="popup-row"><span class="popup-year">1982</span><span class="popup-artist">Michael Jackson</span><span class="popup-album">Thriller</span></div>
+        <div class="popup-row"><span class="popup-year">1983</span><span class="popup-artist">Al Jarreau</span><span class="popup-album">Jarreau</span></div>
+        <div class="popup-row"><span class="popup-year">1984</span><span class="popup-artist">Toni Stricker</span><span class="popup-album">Erdverbunden</span></div>
+        <div class="popup-row"><span class="popup-year">1984</span><span class="popup-artist">Creedence Clearwater Revival</span><span class="popup-album">Compilation</span></div>
+        <div class="popup-row"><span class="popup-year">1984</span><span class="popup-artist">Cream</span><span class="popup-album">Compilation</span></div>
+        <div class="popup-row"><span class="popup-year">1984</span><span class="popup-artist">Bob Marley</span><span class="popup-album">Legend</span></div>
+        <div class="popup-row"><span class="popup-year">1985</span><span class="popup-artist">Phil Collins</span><span class="popup-album">No Jacket Required</span></div>
+        <div class="popup-row"><span class="popup-year">1986</span><span class="popup-artist">Alphaville</span><span class="popup-album">Afternoons in Utopia</span></div>
+        <div class="popup-row"><span class="popup-year">1988</span><span class="popup-artist">Edie Brickell</span><span class="popup-album">Shooting Rubberbands At The Stars</span></div>
+        <div class="popup-row"><span class="popup-year">1991</span><span class="popup-artist">Red Hot Chili Peppers</span><span class="popup-album">Blood Sugar Sex Magik</span></div>
+        <div class="popup-row"><span class="popup-year">1995</span><span class="popup-artist">Queen</span><span class="popup-album">Made In Heaven</span></div>
+        <div class="popup-row"><span class="popup-year">1996</span><span class="popup-artist">Jamiroquai</span><span class="popup-album">Travelling Without Moving</span></div>
+        <div class="popup-row"><span class="popup-year">1997</span><span class="popup-artist">Radiohead</span><span class="popup-album">OK Computer OKNOTOK</span></div>
+        <div class="popup-row"><span class="popup-year">2000</span><span class="popup-artist">Coldplay</span><span class="popup-album">Parachutes</span></div>
+        <div class="popup-row"><span class="popup-year">2001</span><span class="popup-artist">Daft Punk</span><span class="popup-album">Discovery</span></div>
+        <div class="popup-row"><span class="popup-year">2005</span><span class="popup-artist">Jamiroquai</span><span class="popup-album">High Times: Singles 1992-2006</span></div>
+        <div class="popup-row"><span class="popup-year">2005</span><span class="popup-artist">Coldplay</span><span class="popup-album">X&Y</span></div>
+        <div class="popup-row"><span class="popup-year">2007</span><span class="popup-artist">Radiohead</span><span class="popup-album">In Rainbows</span></div>
+        <div class="popup-row"><span class="popup-year">2009</span><span class="popup-artist">Muse</span><span class="popup-album">The Resistance</span></div>
+        <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">Coldplay</span><span class="popup-album">Mylo Xyloto</span></div>
+        <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">C418</span><span class="popup-album">Minecraft - Volume Alpha</span></div>
+        <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">Daft Punk</span><span class="popup-album">Random Access Memories</span></div>
+        <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">Tame Impala</span><span class="popup-album">Currents</span></div>
+        <div class="popup-row"><span class="popup-year">2016</span><span class="popup-artist">Matatu</span><span class="popup-album">They Move</span></div>
+        <div class="popup-row"><span class="popup-year">2018</span><span class="popup-artist">Bilderbuch</span><span class="popup-album">mea culpa</span></div>
+        <div class="popup-row"><span class="popup-year">2019</span><span class="popup-artist">Tyler, The Creator</span><span class="popup-album">IGOR</span></div>
+        <div class="popup-row"><span class="popup-year">2020</span><span class="popup-artist">Tame Impala</span><span class="popup-album">The Slow Rush</span></div>
+        <div class="popup-row"><span class="popup-year">2020</span><span class="popup-artist">Howard Shore</span><span class="popup-album">The Hobbit & Lord of the Rings</span></div>
+        <div class="popup-row"><span class="popup-year">2021</span><span class="popup-artist">Bruno Mars / Anderson .Paak</span><span class="popup-album">An Evening with Silk Sonic</span></div>
+        <div class="popup-row"><span class="popup-year">2022</span><span class="popup-artist">Muse</span><span class="popup-album">Will Of The People</span></div>
+        <div class="popup-row"><span class="popup-year">2022</span><span class="popup-artist">Billy Talent</span><span class="popup-album">Crisis Of Faith</span></div>
+        <div class="popup-row"><span class="popup-year">2022</span><span class="popup-artist">Frank Elster</span><span class="popup-album">Contenance</span></div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Laufey</span><span class="popup-album">Bewitched</span></div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Cobario</span><span class="popup-album">new dimension</span></div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Mar Malade</span><span class="popup-album">Balloon</span></div>
+        <div class="popup-row"><span class="popup-year">2022</span><span class="popup-artist">Bilderbuch</span><span class="popup-album">Gelb ist das Feld</span></div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Surprise Chef</span><span class="popup-album">Education & Recreation</span></div>
+        <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Billie Eilish</span><span class="popup-album">HIT ME HARD AND SOFT</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Tame Impala</span><span class="popup-album">Deadbeat</span></div>
+        <div class="popup-row"><span class="popup-year">Various</span><span class="popup-artist">Various</span><span class="popup-album">Jazz Classics of New Orleans</span></div>
+      </div>
+ 
+      <div class="popup-section">
+        <div class="popup-section-title">SINGLES</div>
+        <div class="popup-row"><span class="popup-year">1965</span><span class="popup-artist">The Rolling Stones</span><span class="popup-album">(I Can't Get No) Satisfaction</span></div>
+        <div class="popup-row"><span class="popup-year">1968</span><span class="popup-artist">The Beatles</span><span class="popup-album">Hey Jude / Revolution</span></div>
+        <div class="popup-row"><span class="popup-year">1971</span><span class="popup-artist">Paul McCartney</span><span class="popup-album">Another Day</span></div>
+        <div class="popup-row"><span class="popup-year">1972</span><span class="popup-artist">Wings</span><span class="popup-album">Mary Had a Little Lamb</span></div>
+        <div class="popup-row"><span class="popup-year">1972</span><span class="popup-artist">Wings</span><span class="popup-album">Hi, Hi, Hi / C Moon</span></div>
+        <div class="popup-row"><span class="popup-year">1973</span><span class="popup-artist">Wings</span><span class="popup-album">Helen Wheels</span></div>
+        <div class="popup-row"><span class="popup-year">1979</span><span class="popup-artist">Wings</span><span class="popup-album">Goodnight Tonight</span></div>
+        <div class="popup-row"><span class="popup-year">1983</span><span class="popup-artist">Frankie Goes To Hollywood</span><span class="popup-album">Relax</span></div>
+        <div class="popup-row"><span class="popup-year">1984</span><span class="popup-artist">Queen</span><span class="popup-album">Radio Ga Ga</span></div>
+        <div class="popup-row"><span class="popup-year">1984</span><span class="popup-artist">Pointer Sisters</span><span class="popup-album">Neutron Dance</span></div>
+        <div class="popup-row"><span class="popup-year">1986</span><span class="popup-artist">Bonnie Tyler</span><span class="popup-album">Rebel Without A Clue</span></div>
+        <div class="popup-row"><span class="popup-year">1986</span><span class="popup-artist">Madonna</span><span class="popup-album">Causing A Commotion</span></div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">The Beatles</span><span class="popup-album">Now And Then / Love Me Do</span></div>
+      </div>
+ 
+      <div class="popup-section">
+        <div class="popup-section-title">CASSETTES</div>
+        <div class="popup-row"><span class="popup-year">1963</span><span class="popup-artist">The Beatles</span><span class="popup-album">With The Beatles</span></div>
+        <div class="popup-row"><span class="popup-year">1964</span><span class="popup-artist">The Beatles</span><span class="popup-album">Beatles For Sale</span></div>
+        <div class="popup-row"><span class="popup-year">1965</span><span class="popup-artist">The Beatles</span><span class="popup-album">Rubber Soul</span></div>
+        <div class="popup-row"><span class="popup-year">1966</span><span class="popup-artist">The Beatles</span><span class="popup-album">Revolver</span></div>
+        <div class="popup-row"><span class="popup-year">1967</span><span class="popup-artist">The Beatles</span><span class="popup-album">Magical Mystery Tour</span></div>
+        <div class="popup-row"><span class="popup-year">1968</span><span class="popup-artist">The Beatles</span><span class="popup-album">The White Album</span></div>
+        <div class="popup-row"><span class="popup-year">1969</span><span class="popup-artist">The Beatles</span><span class="popup-album">Abbey Road</span></div>
+        <div class="popup-row"><span class="popup-year">1970</span><span class="popup-artist">Paul McCartney</span><span class="popup-album">McCartney</span></div>
+        <div class="popup-row"><span class="popup-year">1973</span><span class="popup-artist">Wings</span><span class="popup-album">Red Rose Speedway</span></div>
+        <div class="popup-row"><span class="popup-year">1974</span><span class="popup-artist">Supertramp</span><span class="popup-album">Crime Of The Century</span></div>
+        <div class="popup-row"><span class="popup-year">1975</span><span class="popup-artist">Supertramp</span><span class="popup-album">Crisis? What Crisis?</span></div>
+        <div class="popup-row"><span class="popup-year">1976</span><span class="popup-artist">Wings</span><span class="popup-album">Wings At The Speed Of Sound</span></div>
+        <div class="popup-row"><span class="popup-year">1977</span><span class="popup-artist">Supertramp</span><span class="popup-album">Even In The Quietest Moments</span></div>
+        <div class="popup-row"><span class="popup-year">1978</span><span class="popup-artist">Wings</span><span class="popup-album">Wings Over America</span></div>
+        <div class="popup-row"><span class="popup-year">1979</span><span class="popup-artist">Supertramp</span><span class="popup-album">Breakfast in America</span></div>
+        <div class="popup-row"><span class="popup-year">1979</span><span class="popup-artist">AC/DC</span><span class="popup-album">Highway to Hell</span></div>
+        <div class="popup-row"><span class="popup-year">1979</span><span class="popup-artist">Dire Straits</span><span class="popup-album">Communiqué</span></div>
+        <div class="popup-row"><span class="popup-year">1979</span><span class="popup-artist">The Police</span><span class="popup-album">Reggatta De Blanc</span></div>
+        <div class="popup-row"><span class="popup-year">1980</span><span class="popup-artist">Stevie Wonder</span><span class="popup-album">Hotter Than July</span></div>
+        <div class="popup-row"><span class="popup-year">1981</span><span class="popup-artist">Depeche Mode</span><span class="popup-album">Speak & Spell</span></div>
+        <div class="popup-row"><span class="popup-year">1981</span><span class="popup-artist">Queen</span><span class="popup-album">Greatest Hits</span></div>
+        <div class="popup-row"><span class="popup-year">1982</span><span class="popup-artist">The Alan Parsons Project</span><span class="popup-album">Eye In The Sky</span></div>
+        <div class="popup-row"><span class="popup-year">1984</span><span class="popup-artist">Bob Marley</span><span class="popup-album">Legend</span></div>
+        <div class="popup-row"><span class="popup-year">1986</span><span class="popup-artist">Queen</span><span class="popup-album">A Kind Of Magic</span></div>
+        <div class="popup-row"><span class="popup-year">1986</span><span class="popup-artist">Peter Gabriel</span><span class="popup-album">So</span></div>
+        <div class="popup-row"><span class="popup-year">1986</span><span class="popup-artist">Queen</span><span class="popup-album">Live At Wembley</span></div>
+        <div class="popup-row"><span class="popup-year">1987</span><span class="popup-artist">Steely Dan</span><span class="popup-album">Ree</span></div>
+        <div class="popup-row"><span class="popup-year">1987</span><span class="popup-artist">U2</span><span class="popup-album">The Joshua Tree</span></div>
+        <div class="popup-row"><span class="popup-year">1995</span><span class="popup-artist">Oasis</span><span class="popup-album">(What's The Story) Morning Glory?</span></div>
+        <div class="popup-row"><span class="popup-year">1996</span><span class="popup-artist">Jamiroquai</span><span class="popup-album">Emergency on Planet Earth</span></div>
+        <div class="popup-row"><span class="popup-year">—</span><span class="popup-artist">John Lennon / Paul McCartney</span><span class="popup-album">Singles Compilation</span></div>
+      </div>
+ 
+      <div class="popup-section">
+        <div class="popup-section-title">CDs</div>
+        <div class="popup-row"><span class="popup-year">1963</span><span class="popup-artist">The Beatles</span><span class="popup-album">1962–1966 (Red Album)</span></div>
+        <div class="popup-row"><span class="popup-year">1967</span><span class="popup-artist">The Beatles</span><span class="popup-album">1967–1970 (Blue Album)</span></div>
+        <div class="popup-row"><span class="popup-year">1969</span><span class="popup-artist">The Beatles</span><span class="popup-album">Abbey Road</span></div>
+        <div class="popup-row"><span class="popup-year">1994</span><span class="popup-artist">The Beatles</span><span class="popup-album">Anthology 1</span></div>
+        <div class="popup-row"><span class="popup-year">1994</span><span class="popup-artist">The Beatles</span><span class="popup-album">Live at the BBC</span></div>
+        <div class="popup-row"><span class="popup-year">1962</span><span class="popup-artist">Booker T. & the MGs</span><span class="popup-album">Green Onions</span></div>
+        <div class="popup-row"><span class="popup-year">1979</span><span class="popup-artist">Supertramp</span><span class="popup-album">Breakfast in America</span></div>
+        <div class="popup-row"><span class="popup-year">1987</span><span class="popup-artist">U2</span><span class="popup-album">The Joshua Tree</span></div>
+        <div class="popup-row"><span class="popup-year">1977</span><span class="popup-artist">Steely Dan</span><span class="popup-album">Aja</span></div>
+        <div class="popup-row"><span class="popup-year">1981</span><span class="popup-artist">Queen</span><span class="popup-album">Greatest Hits 1</span></div>
+        <div class="popup-row"><span class="popup-year">1991</span><span class="popup-artist">Queen</span><span class="popup-album">Greatest Hits 2</span></div>
+        <div class="popup-row"><span class="popup-year">1999</span><span class="popup-artist">Queen</span><span class="popup-album">Greatest Hits 3</span></div>
+        <div class="popup-row"><span class="popup-year">2005</span><span class="popup-artist">Coldplay</span><span class="popup-album">X&Y</span></div>
+        <div class="popup-row"><span class="popup-year">2002</span><span class="popup-artist">Coldplay</span><span class="popup-album">A Rush of Blood to the Head</span></div>
+        <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">Coldplay</span><span class="popup-album">A Head Full of Dreams</span></div>
+        <div class="popup-row"><span class="popup-year">2006</span><span class="popup-artist">Muse</span><span class="popup-album">Black Holes and Revelations</span></div>
+        <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">Muse</span><span class="popup-album">Drones</span></div>
+        <div class="popup-row"><span class="popup-year">2000</span><span class="popup-artist">Erykah Badu</span><span class="popup-album">Mama's Gun</span></div>
+        <div class="popup-row"><span class="popup-year">2022</span><span class="popup-artist">Bilderbuch</span><span class="popup-album">Gelb ist das Feld</span></div>
+        <div class="popup-row"><span class="popup-year">2001</span><span class="popup-artist">Jamiroquai</span><span class="popup-album">A Funk Odyssey</span></div>
+        <div class="popup-row"><span class="popup-year">1996</span><span class="popup-artist">Jamiroquai</span><span class="popup-album">Travelling Without Moving</span></div>
+        <div class="popup-row"><span class="popup-year">1999</span><span class="popup-artist">Jamiroquai</span><span class="popup-album">Synkronized</span></div>
+        <div class="popup-row"><span class="popup-year">2005</span><span class="popup-artist">Jamiroquai</span><span class="popup-album">Dynamite</span></div>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <!-- INSTRUMENTS POPUP -->
+  <div class="popup" id="popup-instruments" onclick="if(event.target===this)this.style.display='none'">
+    <div class="popup-box">
+      <div class="popup-header">
+        <div class="popup-title">INSTRUMENTS</div>
+        <button class="popup-close" onclick="document.getElementById('popup-instruments').style.display='none'">✕ close</button>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">BASSES</div>
+        <div class="popup-row"><span class="popup-year">2019</span><span class="popup-artist">Harley Benton JB-20 SB</span><span class="popup-album">Jazz Bass</span></div>
+        <div class="popup-row"><span class="popup-year">2020</span><span class="popup-artist">Ibanez GSR180-BK</span><span class="popup-album">Jazz Bass</span></div>
+        <div class="popup-row"><span class="popup-year">2021</span><span class="popup-artist">Marcus Miller V3 5</span><span class="popup-album">5-String Jazz Bass</span></div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Höfner Ignition SE</span><span class="popup-album">Violin Bass</span></div>
+        <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Squier CV 60s P-Bass</span><span class="popup-album">Precision Bass</span></div>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">GUITARS</div>
+        <div class="popup-row"><span class="popup-year">2021</span><span class="popup-artist">Ibanez FR365</span><span class="popup-album">Telecaster</span></div>
+        <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Harley Benton HB-35 Plus</span><span class="popup-album">Hollowbody</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Fender American Vintage II 1973</span><span class="popup-album">Stratocaster</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Epiphone Casino Vintage</span><span class="popup-album">Hollowbody</span></div>
+        <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Epiphone J-45 EC Studio</span><span class="popup-album">Western Guitar</span></div>
+        <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Baton Rouge</span><span class="popup-album">Western Guitar</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">LAG T70DCE</span><span class="popup-album">Western Guitar</span></div>
+        <div class="popup-row"><span class="popup-year">2026</span><span class="popup-artist">Harley Benton CLJ-412 E</span><span class="popup-album">12-String Acoustic</span></div>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">KEYS & OTHER</div>
+        <div class="popup-row"><span class="popup-year">2012</span><span class="popup-artist">Yamaha YUS</span><span class="popup-album">Piano</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Yamaha YDP-165 Arius</span><span class="popup-album">Digital Piano</span></div>
+        <div class="popup-row"><span class="popup-year">2012</span><span class="popup-artist">Yamaha Stage Custom</span><span class="popup-album">Drumset</span></div>
+        <div class="popup-row"><span class="popup-year">2016</span><span class="popup-artist">Leho Mahagony Soprano</span><span class="popup-album">Ukulele</span></div>
+        <div class="popup-row"><span class="popup-year">2026</span><span class="popup-artist">Hohner Special 20 C</span><span class="popup-album">Harmonica</span></div>
+        <div class="popup-row"><span class="popup-year">2026</span><span class="popup-artist">Traditional</span><span class="popup-album">Saz / Baglama</span></div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- AMPS & GEAR POPUP -->
+  <div class="popup" id="popup-amps" onclick="if(event.target===this)this.style.display='none'">
+    <div class="popup-box">
+      <div class="popup-header">
+        <div class="popup-title">AMPS & GEAR</div>
+        <button class="popup-close" onclick="document.getElementById('popup-amps').style.display='none'">✕ close</button>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">AMPS</div>
+        <div class="popup-row"><span class="popup-year">2019</span><span class="popup-artist">Harley Benton HB-80B</span><span class="popup-album">Bass Amp</span></div>
+        <div class="popup-row"><span class="popup-year">2021</span><span class="popup-artist">PRS Sonzera 50 Head</span><span class="popup-album">Topteil</span></div>
+        <div class="popup-row"><span class="popup-year">2021</span><span class="popup-artist">Harley Benton G212</span><span class="popup-album">Guitar Cab</span></div>
+        <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Harley Benton HB-20B</span><span class="popup-album">Bass Amp</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Harley Benton HB-80R Celestion</span><span class="popup-album">Guitar Amp</span></div>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">INTERFACES & MIDI</div>
+        <div class="popup-row"><span class="popup-year">2021</span><span class="popup-artist">Focusrite Scarlett 2i2</span><span class="popup-album">Audio Interface</span></div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Native Instruments Komplete M32</span><span class="popup-album">MIDI Keyboard</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Focusrite Scarlett Solo</span><span class="popup-album">Audio Interface</span></div>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">MICROPHONES</div>
+        <div class="popup-row"><span class="popup-year">2022</span><span class="popup-artist">sE Electronics X1 S</span><span class="popup-album">Condenser</span></div>
+        <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Audio Technica AT2020</span><span class="popup-album">Condenser</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Shure SM57</span><span class="popup-album">Dynamic</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Shure SM58</span><span class="popup-album">Dynamic</span></div>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">PEDALS</div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">TC Electronic PolyTune 3</span><span class="popup-album">Tuner</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Boss DD-7</span><span class="popup-album">Delay</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Boss OS-2</span><span class="popup-album">Overdrive</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Boss DS-2</span><span class="popup-album">Distortion</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Boss RC-30</span><span class="popup-album">Loop Station</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">T-Rex Senseway</span><span class="popup-album">Auto-Wah</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Mooer Tender Octaver MK II</span><span class="popup-album">Octaver</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Valeton CH-10</span><span class="popup-album">Chorus</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Harley Benton PS-5</span><span class="popup-album">Phaser</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Harley Benton Dyna Compressor</span><span class="popup-album">Compressor</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Stagg Blaxx Overdrive Plus</span><span class="popup-album">Overdrive</span></div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- SOFTWARE POPUP -->
+  <div class="popup" id="popup-software" onclick="if(event.target===this)this.style.display='none'">
+    <div class="popup-box">
+      <div class="popup-header">
+        <div class="popup-title">SOFTWARE</div>
+        <button class="popup-close" onclick="document.getElementById('popup-software').style.display='none'">✕ close</button>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">DAWs</div>
+        <div class="popup-row"><span class="popup-year">2022</span><span class="popup-artist">Presonus Studio One 5</span><span class="popup-album">DAW</span></div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Fruity Loops FL Studio 21</span><span class="popup-album">DAW</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Logic Pro 11</span><span class="popup-album">DAW</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Avid Pro Tools Studio</span><span class="popup-album">DAW</span></div>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">PLUGINS</div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Universal Audio</span><span class="popup-album">1176 FET Compressor</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Universal Audio</span><span class="popup-album">LA-2A Tube Compressor</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Universal Audio</span><span class="popup-album">Lexicon 224 Digital Reverb</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Universal Audio</span><span class="popup-album">Galaxy Tape Echo</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Universal Audio</span><span class="popup-album">Helios Type 69 Preamp</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Universal Audio</span><span class="popup-album">Century Tube Channel Strip</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Universal Audio</span><span class="popup-album">Verve Analogue Machines</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Universal Audio</span><span class="popup-album">Electra 88 Vintage Keys</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Universal Audio</span><span class="popup-album">Ravel Grand Piano</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Universal Audio</span><span class="popup-album">PolyMAX Synth</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Universal Audio</span><span class="popup-album">Minimoog</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Waves</span><span class="popup-album">Abbey Road RS124 Compressor</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Waves</span><span class="popup-album">Abbey Road J37 Tape</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">BABY Audio</span><span class="popup-album">Magic Dice / Magic Switch / Warp / TAIP</span></div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- HIFI & PLAYERS POPUP -->
+  <div class="popup" id="popup-hifi" onclick="if(event.target===this)this.style.display='none'">
+    <div class="popup-box">
+      <div class="popup-header">
+        <div class="popup-title">HIFI & PLAYERS</div>
+        <button class="popup-close" onclick="document.getElementById('popup-hifi').style.display='none'">✕ close</button>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">VINYL & TAPE PLAYERS</div>
+        <div class="popup-row"><span class="popup-year">2022</span><span class="popup-artist">Voksun S300</span><span class="popup-album">Vinyl Player</span></div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Audio Technica AT-LP60XUSB</span><span class="popup-album">Vinyl Player</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Thorens TD 150</span><span class="popup-album">Vinyl Player</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Revox A-77 Mark II</span><span class="popup-album">Reel to Reel</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Superscope CD-312</span><span class="popup-album">Cassette Player</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Technics RS-EH60</span><span class="popup-album">Cassette Player</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Toshiba PC-G27</span><span class="popup-album">Cassette Player</span></div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Panasonic RQ-V190</span><span class="popup-album">Walkman</span></div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Aiwa HS-J470</span><span class="popup-album">Walkman</span></div>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">CD & HIFI</div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Sony FH-100W</span><span class="popup-album">Boombox</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Technics SL-EH60</span><span class="popup-album">CD Player</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Technics SA-EH60</span><span class="popup-album">Amplifier</span></div>
+        <div class="popup-row"><span class="popup-year">2026</span><span class="popup-artist">Yamaha RX-497</span><span class="popup-album">Receiver</span></div>
+        <div class="popup-row"><span class="popup-year">2026</span><span class="popup-artist">Yamaha CDX-397MK2</span><span class="popup-album">CD Player</span></div>
+      </div>
+      <div class="popup-section">
+        <div class="popup-section-title">MONITORS & HEADPHONES</div>
+        <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Edifier R1280DB</span><span class="popup-album">Studio Monitors</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Yamaha HS 5</span><span class="popup-album">Studio Monitors</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Sony APM-157D</span><span class="popup-album">Monitors</span></div>
+        <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Audio Technica ATH M50xBT2</span><span class="popup-album">Studio Headphones</span></div>
+        <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">beyerdynamic DT-770 Pro</span><span class="popup-album">Studio Headphones</span></div>
+        <div class="popup-row"><span class="popup-year">2022</span><span class="popup-artist">Koss Porta Pro Classic</span><span class="popup-album">Headphones</span></div>
+        <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Pioneer SE-305</span><span class="popup-album">Headphones</span></div>
+        <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Defunc Mondo Freestyle</span><span class="popup-album">Bluetooth</span></div>
+      </div>
     </div>
   </div>
  
