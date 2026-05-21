@@ -14,36 +14,39 @@
  
     .bg-stars { position: absolute; inset: 0; background: url('images/STARS.jpg') center/cover no-repeat; opacity: 0.75; z-index: 0; }
  
-    .dune {
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%;
-      height: 60vh;
-      background: url('images/DUNE.webp') bottom center / 100% auto no-repeat;
-      z-index: 1;
-      pointer-events: none;
-    }
- 
+    /* Orb — z-index 1, painted before dune in HTML so dune overlaps it */
     @keyframes pulse {
       0%,100% { transform: translateX(-50%) scale(1); }
       50% { transform: translateX(-50%) scale(1.04); }
     }
     .orb {
       position: absolute;
-      top: -20px; left: 50%;
+      top: 0; left: 50%;
       transform: translateX(-50%);
-      width: clamp(340px, 50vw, 640px);
+      width: clamp(320px, 46vw, 580px);
       aspect-ratio: 1;
-      z-index: 2;
+      z-index: 1;
       animation: pulse 6s ease-in-out infinite;
     }
-    .orb img { width: 100%; height: 100%; object-fit: contain; }
+    .orb img { width: 100%; height: 100%; object-fit: contain; display: block; }
  
+    /* Dune — real img, full width, anchored bottom, painted after orb so it covers orb bottom */
+    .dune {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 2;
+      display: block;
+      pointer-events: none;
+    }
+ 
+    /* Hero text — above dune */
     .hero {
       position: absolute;
       left: 0; right: 0;
-      top: calc(-20px + clamp(340px, 50vw, 640px) - 20px);
-      z-index: 4;
+      bottom: 22vh;
+      z-index: 3;
       display: flex; flex-direction: column; align-items: center;
       gap: 10px; text-align: center; padding: 0 20px;
     }
@@ -62,7 +65,7 @@
     .card { padding: 18px 24px; background: var(--card-bg); border-right: 1px solid rgba(232,220,200,0.08); text-decoration: none; display: block; transition: background 0.2s; }
     .card:last-child { border-right: none; }
     .card:hover { background: rgba(20,10,30,0.96); }
-    .card-tag { font-family: 'Press Start 2P', monospace; font-size: clamp(11px, 1.2vw, 15px); color: var(--purple); margin-bottom: 10px; letter-spacing: 0.1em; text-shadow: 0 0 10px rgba(184,155,224,0.4); }
+    .card-tag { font-family: 'Press Start 2P', monospace; font-size: clamp(11px, 1.2vw, 15px); color: var(--purple); margin-bottom: 8px; letter-spacing: 0.1em; text-shadow: 0 0 10px rgba(184,155,224,0.4); }
     .card-title { font-family: 'VT323', monospace; font-size: clamp(34px, 4vw, 48px); color: var(--cream); line-height: 1.1; margin-bottom: 3px; }
     .card-desc { font-family: 'VT323', monospace; font-size: clamp(19px, 2.2vw, 27px); color: var(--muted); line-height: 1.3; }
  
@@ -71,9 +74,8 @@
       .logo { font-size: 9px; text-align: center; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 12px; }
       .nav-links a { font-size: 8px; }
-      .orb { top: 10vh; width: 65vw; }
-      .hero { top: calc(10vh + 65vw + 8px); }
-      .dune { height: 60vh; background-size: contain; }
+      .orb { width: 70vw; }
+      .hero { bottom: 30vh; }
       .hero h1 { font-size: 12px; }
       .sub { font-size: 17px; }
       .pill { font-size: 6px; padding: 7px 12px; }
@@ -89,8 +91,8 @@
 <body>
 <div class="scene">
   <div class="bg-stars"></div>
-  <div class="dune"></div>
   <div class="orb"><img src="images/HIMMEL.png" alt="sky window"></div>
+  <img class="dune" src="images/DUNE.webp" alt="">
   <div class="hero">
     <h1>MUSIC.<br><span class="accent">STORIES.</span><br>IN MOTION.</h1>
     <p class="sub">a corner of the internet that's mine.</p>
