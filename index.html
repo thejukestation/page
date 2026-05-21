@@ -1,7 +1,308 @@
-The Juke Station Official Website
-
-das verrückt
-
-was gehte
-
-geht das so? dankehhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh se se se se es 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Juke Station</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+ 
+  <style>
+    /* ─── Reset ─────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+    /* ─── Root variables — CHANGE COLORS HERE ─ */
+    :root {
+      --black:   #000000;
+      --cream:   #e8dcc8;
+      --purple:  #b89be0;
+      --muted:   rgba(232, 220, 200, 0.45);
+      --card-bg: rgba(0, 0, 0, 0.75);
+    }
+ 
+    /* ─── Base ───────────────────────────────── */
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Press Start 2P', monospace;
+      overflow-x: hidden;
+    }
+ 
+    /* ─── SCENE (full-height hero) ───────────── */
+    .scene {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 500px;
+      overflow: hidden;
+    }
+ 
+    /* Layer 1 — starfield background */
+    .bg-stars {
+      position: absolute;
+      inset: 0;
+      background: url('images/STARS.jpg') center center / cover no-repeat;
+      opacity: 0.75;
+      z-index: 0;
+    }
+ 
+    /* Layer 2 — sky-window orb */
+    .orb {
+      position: absolute;
+      top: 10%;           /* ← CHANGE: move orb up/down (% of screen height) */
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(180px, 28vw, 320px); /* scales with screen size */
+      aspect-ratio: 1;
+      z-index: 2;
+    }
+ 
+    .orb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+ 
+    /* Layer 3 — dune (sits in front of everything) */
+    .dune {
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 105%;
+      max-width: 1400px;
+      z-index: 3;
+      display: block;
+      pointer-events: none;
+    }
+ 
+    /* ─── NAV ────────────────────────────────── */
+    nav {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 24px 32px;
+    }
+ 
+    /* LOGO — CHANGE TEXT INSIDE <a class="logo"> in the HTML below */
+    .logo {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(10px, 1.4vw, 15px);
+      line-height: 2;
+      color: var(--cream);
+      text-decoration: none;
+      text-shadow: 0 0 18px rgba(180,155,224,0.6);
+      letter-spacing: 0.06em;
+    }
+ 
+    /* NAV LINKS — CHANGE link text/href below */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+ 
+    .nav-links a {
+      font-family: 'VT323', monospace;
+      font-size: clamp(18px, 2.2vw, 26px);
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+ 
+    .nav-links a:hover { color: var(--cream); }
+ 
+    /* ─── HERO TEXT ──────────────────────────── */
+    .hero {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      /* CHANGE: padding-bottom pushes text above the dune */
+      padding-bottom: clamp(120px, 22vh, 220px);
+      text-align: center;
+      gap: 14px;
+      pointer-events: none;
+    }
+ 
+    /* MAIN TITLE — CHANGE text below inside <h1> */
+    .hero h1 {
+      font-size: clamp(14px, 2.4vw, 28px);
+      line-height: 2.2;
+      color: var(--cream);
+      text-shadow:
+        0 2px 30px rgba(0,0,0,0.95),
+        0 0 60px rgba(140,100,255,0.25);
+      pointer-events: auto;
+    }
+ 
+    .hero h1 .accent { color: var(--purple); } /* ← accent colour on second line */
+ 
+    /* SUBTITLE — CHANGE text below inside <p class="sub"> */
+    .sub {
+      font-family: 'VT323', monospace;
+      font-size: clamp(18px, 2.2vw, 26px);
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      pointer-events: auto;
+    }
+ 
+    /* ALBUM PILL — CHANGE text inside the <div class="pill"> */
+    .pill {
+      border: 1px solid rgba(184,155,224,0.45);
+      border-radius: 3px;
+      padding: 9px 20px;
+      font-size: clamp(6px, 0.8vw, 9px);
+      color: var(--purple);
+      letter-spacing: 0.12em;
+      pointer-events: auto;
+    }
+ 
+    /* ─── CARDS (bottom bar) ─────────────────── */
+    .cards {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 10;
+      display: grid;
+      /* CHANGE: add/remove cards by adding/removing <article> blocks below
+         and updating grid-template-columns count */
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(232,220,200,0.1);
+    }
+ 
+    .card {
+      padding: 18px 22px;
+      background: var(--card-bg);
+      border-right: 1px solid rgba(232,220,200,0.07);
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      transition: background 0.2s;
+    }
+ 
+    .card:last-child { border-right: none; }
+    .card:hover { background: rgba(20,10,30,0.85); }
+ 
+    .card-tag {
+      font-size: clamp(5px, 0.65vw, 7px);
+      color: var(--purple);
+      margin-bottom: 8px;
+      letter-spacing: 0.12em;
+    }
+ 
+    .card-title {
+      font-family: 'VT323', monospace;
+      font-size: clamp(16px, 2vw, 22px);
+      color: var(--cream);
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+ 
+    .card-desc {
+      font-family: 'VT323', monospace;
+      font-size: clamp(13px, 1.6vw, 18px);
+      color: var(--muted);
+      line-height: 1.4;
+    }
+ 
+    /* ─── MOBILE (phones) ────────────────────── */
+    @media (max-width: 600px) {
+      nav { padding: 16px 18px; }
+ 
+      .nav-links { flex-direction: row; gap: 14px; }
+      .nav-links a { font-size: 18px; }
+ 
+      .logo { font-size: 9px; }
+ 
+      .orb { top: 12%; width: 55vw; }
+ 
+      .hero { padding-bottom: 160px; gap: 10px; }
+      .hero h1 { font-size: 13px; line-height: 2; }
+ 
+      .cards { grid-template-columns: 1fr; }
+      .card { border-right: none; border-bottom: 1px solid rgba(232,220,200,0.07); }
+      .card:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+ 
+<body>
+  <div class="scene">
+ 
+    <!-- Starfield -->
+    <div class="bg-stars"></div>
+ 
+    <!-- Sky-window orb -->
+    <div class="orb">
+      <img src="images/HIMMEL.png" alt="sky window">
+    </div>
+ 
+    <!-- Dune (foreground) -->
+    <img class="dune" src="images/DUNE.png" alt="">
+ 
+    <!-- ── NAV ───────────────────────────────────────────────
+         CHANGE: edit the logo text and each link's href & label
+         href="music.html" means clicking opens music.html
+    ─────────────────────────────────────────────────────── -->
+    <nav>
+      <a class="logo" href="index.html">THE<br>JUKE<br>STATION</a>
+      <ul class="nav-links">
+        <li><a href="music.html">music</a></li>
+        <li><a href="films.html">films</a></li>
+        <li><a href="games.html">games</a></li>
+        <li><a href="art.html">art</a></li>
+        <li><a href="about.html">about</a></li>
+      </ul>
+    </nav>
+ 
+    <!-- ── HERO TEXT ─────────────────────────────────────────
+         CHANGE: edit h1, .sub, and .pill text freely
+         The word inside <span class="accent"> gets the purple colour
+    ─────────────────────────────────────────────────────── -->
+    <div class="hero">
+      <h1>
+        MUSIC.<br>
+        <span class="accent">STORIES.</span><br>
+        EVERYTHING.
+      </h1>
+      <p class="sub">a corner of the internet that's mine.</p>
+      <div class="pill">★ STORIES IN MOTION — OUT NOW</div>
+    </div>
+ 
+    <!-- ── CARDS ─────────────────────────────────────────────
+         CHANGE: edit card-tag, card-title, card-desc freely
+         href links to the matching page file
+    ─────────────────────────────────────────────────────── -->
+    <div class="cards">
+      <a class="card" href="music.html">
+        <div class="card-tag">MUSIC</div>
+        <div class="card-title">Stories in Motion</div>
+        <div class="card-desc">Debut album, collections & shows.</div>
+      </a>
+      <a class="card" href="games.html">
+        <div class="card-tag">GAMES</div>
+        <div class="card-title">From N64 to Godot</div>
+        <div class="card-desc">A lifelong love for games.</div>
+      </a>
+      <a class="card" href="films.html">
+        <div class="card-tag">FILMS & ART</div>
+        <div class="card-title">What I watch & make</div>
+        <div class="card-desc">Photos, visuals & favourites.</div>
+      </a>
+    </div>
+ 
+  </div>
+</body>
+</html>
