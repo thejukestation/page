@@ -10,10 +10,10 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --cream: #f4ece8; --red: #b05060; --muted: rgba(244,236,232,0.55); --card-bg: rgba(0,0,0,0.35); }
     html, body { width: 100%; background: #000; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
-
+ 
     .bg { position: fixed; inset: 0; background: url('../images/HIMMEL4.jpg') center/cover no-repeat; z-index: 0; }
     .bg-overlay { position: fixed; inset: 0; background: rgba(5,0,0,0.38); z-index: 0; }
-
+ 
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; transition: transform 0.3s ease; }
     .back { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
     .back:hover { color: var(--cream); }
@@ -22,12 +22,12 @@
     .nav-links a { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; line-height: 2.2; transition: color 0.2s; }
     .nav-links a:hover { color: var(--cream); }
     .nav-links a.active { color: var(--red); text-shadow: 0 0 12px rgba(176,80,96,0.5); }
-
+ 
     .page { position: relative; z-index: 2; max-width: 1000px; margin: 0 auto; padding: 120px 40px 80px; display: flex; flex-direction: column; gap: 50px; }
-
+ 
     .page-title { font-size: clamp(18px, 3vw, 38px); color: var(--cream); letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(176,80,96,0.3); text-align: center; }
     .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--red); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(176,80,96,0.4); }
-
+ 
     .intro-block {
       background: var(--card-bg);
       border: 1px solid rgba(176,80,96,0.12);
@@ -36,14 +36,14 @@
     }
     .intro-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 25px); color: var(--cream); line-height: 1.75; }
     .intro-text span { color: var(--red); }
-
+ 
     /* Gallery grid */
     .gallery {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
     }
-
+ 
     .gallery-item {
       aspect-ratio: 1;
       background: rgba(176,80,96,0.05);
@@ -69,7 +69,7 @@
       transition: opacity 0.2s;
     }
     .gallery-item:hover .gallery-item-caption { opacity: 1; }
-
+ 
     /* Placeholder style */
     .gallery-placeholder {
       width: 100%; height: 100%;
@@ -80,11 +80,11 @@
       text-align: center;
       padding: 8px;
     }
-
+ 
     /* Lightbox */
     .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 200; align-items: center; justify-content: center; cursor: pointer; }
     .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 3px; cursor: default; }
-
+ 
     @media (max-width: 640px) {
       nav { padding: 12px 16px; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
@@ -97,7 +97,7 @@
 <body>
   <div class="bg"></div>
   <div class="bg-overlay"></div>
-
+ 
   <nav>
     <a class="back" href="/">back</a>
     <ul class="nav-links">
@@ -105,23 +105,24 @@
       <li><a href="/films/">films</a></li>
       <li><a href="/games/">games</a></li>
       <li><a href="/art/" class="active">art</a></li>
+      <li><a href="/photos/">photos</a></li>
       <li><a href="/about/">about</a></li>
     </ul>
   </nav>
-
+ 
   <div class="page">
     <h1 class="page-title">ART</h1>
-
+ 
     <div class="intro-block">
       <p class="intro-text">i really like art. these pictures are from different museums like the <span>MoMA</span> and <span>Guggenheim</span> in NYC, the <span>Albertina</span> and the <span>Art History Museum</span> in Vienna, the <span>Stedelijk</span> in Amsterdam and some more. or just my own art.</p>
     </div>
-
+ 
     <!-- CHANGE: replace placeholder divs with real images
          Example: <img src="../images/art1.jpg" alt="Van Gogh — Almond Blossom">
          Add a caption inside .gallery-item-caption -->
     <div class="section-label">PHOTOS & ART</div>
     <div class="gallery">
-
+ 
       <div class="gallery-item" onclick="openLight(this)">
         <div class="gallery-placeholder">IMAGE COMING SOON</div>
         <div class="gallery-item-caption">title</div>
@@ -170,15 +171,15 @@
         <div class="gallery-placeholder">IMAGE COMING SOON</div>
         <div class="gallery-item-caption">title</div>
       </div>
-
+ 
     </div>
   </div>
-
+ 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" onclick="this.style.display='none'">
     <img id="lightbox-img" src="" alt="">
   </div>
-
+ 
   <script>
     const nav = document.querySelector("nav");
     let lastY = 0;
@@ -189,7 +190,7 @@
       lastY = y;
     });
     window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
-
+ 
     function openLight(el) {
       const img = el.querySelector('img');
       if (!img) return;
