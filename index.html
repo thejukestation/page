@@ -8,14 +8,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
     :root {
       --cream: #e8dcc8;
       --purple: #b89be0;
       --muted: rgba(232,220,200,0.60);
       --card-bg: rgba(0,0,0,0.88);
+      --glow-cream: 0 0 20px rgba(232,220,200,0.3), 0 0 60px rgba(180,155,224,0.15);
+      --glow-purple: 0 0 20px rgba(184,155,224,0.5), 0 0 50px rgba(140,100,255,0.25);
     }
-
+ 
     html, body {
       width: 100%;
       height: 100%;
@@ -24,7 +26,7 @@
       font-family: 'Press Start 2P', monospace;
       overflow-x: hidden;
     }
-
+ 
     .scene {
       position: relative;
       width: 100%;
@@ -32,7 +34,7 @@
       min-height: 560px;
       overflow: hidden;
     }
-
+ 
     /* LAYER 0 — stars */
     .bg-stars {
       position: absolute;
@@ -41,8 +43,13 @@
       opacity: 0.75;
       z-index: 0;
     }
-
+ 
     /* LAYER 1 — orb (behind dune) */
+    @keyframes pulse {
+      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.95; }
+      50% { transform: translateX(-50%) scale(1.04); opacity: 1; }
+    }
+ 
     .orb {
       position: absolute;
       top: 4%;
@@ -51,6 +58,7 @@
       width: clamp(240px, 34vw, 420px);
       aspect-ratio: 1 / 1;
       z-index: 1;
+      animation: pulse 6s ease-in-out infinite;
     }
     .orb img {
       width: 100%;
@@ -58,53 +66,54 @@
       object-fit: contain;
       display: block;
     }
-
-    /* LAYER 2 — dune (in FRONT of orb so orb disappears behind it) */
+ 
+    /* LAYER 2 — dune as background-image div (more reliable than img tag) */
     .dune {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
       height: 40vh;
-      object-fit: cover;
-      object-position: top center;
+      background: url('images/DUNE.png') top center / cover no-repeat;
       z-index: 2;
-      display: block;
       pointer-events: none;
     }
-
-    /* LAYER 3 — hero text (above dune) */
+ 
+    /* LAYER 3 — hero text, anchored to top of dune */
     .hero {
       position: absolute;
       left: 0;
       right: 0;
-      /* sits exactly at the top edge of the dune */
       bottom: 40vh;
       z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-bottom: 24px;
+      padding-bottom: 28px;
       text-align: center;
-      gap: 12px;
+      gap: 14px;
     }
-
+ 
     .hero h1 {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(16px, 2.6vw, 32px);
       line-height: 2.2;
       color: var(--cream);
-      text-shadow: 0 2px 30px rgba(0,0,0,0.95), 0 0 60px rgba(140,100,255,0.25);
+      text-shadow: var(--glow-cream);
     }
-    .hero h1 .accent { color: var(--purple); }
-
+    .hero h1 .accent {
+      color: var(--purple);
+      text-shadow: var(--glow-purple);
+    }
+ 
     .sub {
       font-family: 'VT323', monospace;
       font-size: clamp(20px, 2.4vw, 30px);
       color: var(--muted);
       letter-spacing: 0.1em;
+      text-shadow: 0 0 16px rgba(232,220,200,0.2);
     }
-
+ 
     .pill {
       border: 1px solid rgba(184,155,224,0.45);
       border-radius: 3px;
@@ -113,9 +122,11 @@
       font-size: clamp(7px, 0.85vw, 10px);
       color: var(--purple);
       letter-spacing: 0.12em;
+      text-shadow: var(--glow-purple);
+      box-shadow: 0 0 14px rgba(184,155,224,0.15);
     }
-
-    /* LAYER 4 — nav (always on top) */
+ 
+    /* LAYER 4 — nav */
     nav {
       position: absolute;
       top: 0; left: 0; right: 0;
@@ -126,7 +137,7 @@
       padding: 28px 40px;
       gap: 20px;
     }
-
+ 
     .logo {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(12px, 1.6vw, 18px);
@@ -137,7 +148,7 @@
       letter-spacing: 0.06em;
       flex-shrink: 0;
     }
-
+ 
     .nav-links {
       list-style: none;
       display: flex;
@@ -152,11 +163,14 @@
       text-decoration: none;
       letter-spacing: 0.06em;
       line-height: 2.2;
-      transition: color 0.2s;
+      transition: color 0.2s, text-shadow 0.2s;
     }
-    .nav-links a:hover { color: var(--cream); }
-
-    /* LAYER 5 — cards (always on top) */
+    .nav-links a:hover {
+      color: var(--cream);
+      text-shadow: 0 0 12px rgba(232,220,200,0.4);
+    }
+ 
+    /* LAYER 5 — cards */
     .cards {
       position: absolute;
       bottom: 0; left: 0; right: 0;
@@ -165,7 +179,7 @@
       grid-template-columns: repeat(3, 1fr);
       border-top: 1px solid rgba(232,220,200,0.15);
     }
-
+ 
     .card {
       padding: 18px 24px;
       background: var(--card-bg);
@@ -176,7 +190,7 @@
     }
     .card:last-child { border-right: none; }
     .card:hover { background: rgba(20,10,30,0.96); }
-
+ 
     .card-tag {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(7px, 0.8vw, 9px);
@@ -184,7 +198,7 @@
       margin-bottom: 8px;
       letter-spacing: 0.1em;
     }
-
+ 
     .card-title {
       font-family: 'VT323', monospace;
       font-size: clamp(28px, 3.2vw, 38px);
@@ -192,14 +206,14 @@
       line-height: 1.1;
       margin-bottom: 3px;
     }
-
+ 
     .card-desc {
       font-family: 'VT323', monospace;
       font-size: clamp(18px, 2.1vw, 26px);
       color: var(--muted);
       line-height: 1.3;
     }
-
+ 
     /* ── MOBILE ── */
     @media (max-width: 640px) {
       nav {
@@ -212,19 +226,15 @@
       .logo { font-size: 10px; text-align: center; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 14px; }
       .nav-links a { font-size: 8px; line-height: 2; }
-
+ 
       .orb { top: 14%; width: 70vw; }
       .dune { height: 28vh; }
-
-      .hero {
-        bottom: 28vh;
-        padding-bottom: 16px;
-        gap: 8px;
-      }
+ 
+      .hero { bottom: 28vh; padding-bottom: 16px; gap: 8px; }
       .hero h1 { font-size: 13px; line-height: 2; }
       .sub { font-size: 18px; }
       .pill { font-size: 6px; padding: 8px 14px; }
-
+ 
       .cards { grid-template-columns: 1fr; }
       .card {
         border-right: none;
@@ -243,21 +253,22 @@
 </head>
 <body>
   <div class="scene">
-
+ 
     <div class="bg-stars"></div>
-
+ 
     <div class="orb">
       <img src="images/HIMMEL.png" alt="sky window">
     </div>
-
-    <img class="dune" src="images/DUNE.png" alt="">
-
+ 
+    <!-- Düne jetzt als div mit background-image statt img tag -->
+    <div class="dune"></div>
+ 
     <div class="hero">
-      <h1>MUSIC.<br><span class="accent">STORIES.</span><br>EVERYTHING.</h1>
+      <h1>MUSIC.<br><span class="accent">STORIES.</span><br>IN MOTION.</h1>
       <p class="sub">a corner of the internet that's mine.</p>
       <div class="pill">★ STORIES IN MOTION — OUT NOW</div>
     </div>
-
+ 
     <nav>
       <a class="logo" href="index.html">THE<br>JUKE<br>STATION</a>
       <ul class="nav-links">
@@ -268,7 +279,7 @@
         <li><a href="about.html">about</a></li>
       </ul>
     </nav>
-
+ 
     <div class="cards">
       <a class="card" href="music.html">
         <div class="card-tag">MUSIC</div>
@@ -286,7 +297,7 @@
         <div class="card-desc">Photos, visuals & favourites.</div>
       </a>
     </div>
-
+ 
   </div>
 </body>
 </html>
