@@ -130,7 +130,7 @@
     <div class="concert-list">
       <div class="concert-row"><div class="concert-year">2022</div><div class="concert-artist">Queen</div><div class="concert-city">Munich</div></div>
       <div class="concert-row"><div class="concert-year">2022</div><div class="concert-artist">Tame Impala</div><div class="concert-city">Milano</div></div>
-      <div class="concert-row"><div class="concert-year">2022</div><div class="concert-artist">Toto</div><div class="concert-city">Arbon</div></div>
+      <div class="concert-row"><div class="concert-year">2022</div><div class="concert-artist">TOTO</div><div class="concert-city">Arbon</div></div>
       <div class="concert-row"><div class="concert-year">2022</div><div class="concert-artist">Billy Talent</div><div class="concert-city">Vienna</div></div>
       <div class="concert-row"><div class="concert-year">2023</div><div class="concert-artist">Muse</div><div class="concert-city">Vienna</div></div>
       <div class="concert-row"><div class="concert-year">2023</div><div class="concert-artist">Bilderbuch</div><div class="concert-city">Lustenau</div></div>
@@ -163,8 +163,8 @@
       <!-- CHANGE: replace href with the real YouTube link -->
       <a class="best-concert-btn" href="https://www.youtube.com/watch?v=NcjpFlKs1-I&t=3760s" target="_blank">
         <div>
-          <div class="best-concert-label">THE BEST CONCERT I KNOW</div>
-          <div class="best-concert-title">Tame Impala — Live in Milano 2022 ►</div>
+          <div class="best-concert-label">THE BEST CONCERT I EVER WENT TO</div>
+          <div class="best-concert-title">Tame Impala — Live in Milano 2022</div>
         </div>
         <div class="best-concert-arrow">►</div>
       </a>
@@ -185,7 +185,7 @@
 <script>
   let lastY = 0;
   window.addEventListener("scroll", () => {
-    if (window.innerWidth > 640) return;
+    if (window.innerWidth > 640) { nav.style.transform = "translateY(0)"; return; }
     const nav = document.querySelector("nav");
     const y = window.scrollY;
     if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
