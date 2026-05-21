@@ -74,8 +74,11 @@
       .logo { font-size: 9px; text-align: center; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 12px; }
       .nav-links a { font-size: 8px; }
-      .orb { width: 80vw; top: 0; }
-      .hero { bottom: 30vh; }
+      /* Orb smaller and lower on mobile so it doesn't dominate */
+      .orb { width: 65vw; top: 80px; }
+      /* Dune: fixed height with cover so it zooms in nicely on narrow screens */
+      .dune { height: 45vw; object-fit: cover; object-position: center top; }
+      .hero { bottom: 32vw; }
       .hero h1 { font-size: 12px; }
       .sub { font-size: 17px; }
       .pill { font-size: 6px; padding: 7px 12px; }
