@@ -150,7 +150,7 @@
     .gear-btn-title { font-family: 'VT323', monospace; font-size: clamp(22px, 2.8vw, 34px); color: var(--cream); line-height: 1.1; }
  
     @media (max-width: 640px) {
-      nav { padding: 12px 16px; background: rgba(0,0,0,0.6); }
+      nav { padding: 12px 16px; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
       .nav-links a { font-size: 8px; line-height: 2; }
       nav { padding: 16px 20px; }
@@ -192,7 +192,7 @@
     <button class="list-btn" onclick="document.getElementById('list-popup').style.display='flex'">► view the complete list</button>
  
     <!-- Favourites -->
-    <div class="section-label">MY FAVOURITE ALBUMS OF ALL TIME</div>
+    <div class="section-label">MY FAVOURITE ALBUMS OF ALL TIME — AS OF MAY 21, 2026</div>
     <div class="fav-block">
       <p class="fav-text">
         <span>Tame Impala</span> — The Slow Rush & Currents<br>
@@ -202,7 +202,8 @@
         <span>Stevie Wonder</span> — Songs in the Key of Life<br>
         <span>Pink Floyd</span> — The Dark Side of the Moon<br>
         <span>Coldplay</span> — X&Y<br>
-        <span>Queen</span> — A Day at the Races
+        <span>Queen</span> — A Day at the Races<br>
+        <span>Bilderbuch</span> — Gelb ist das Feld
       </p>
     </div>
  
@@ -577,6 +578,17 @@
 <script>
   let lastY = 0;
   window.addEventListener("scroll", () => {
+    const nav = document.querySelector("nav");
+    const y = window.scrollY;
+    if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
+    else nav.style.transform = "translateY(0)";
+    lastY = y;
+  });
+</script>
+<script>
+  let lastY = 0;
+  window.addEventListener("scroll", () => {
+    if (window.innerWidth > 640) return;
     const nav = document.querySelector("nav");
     const y = window.scrollY;
     if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
