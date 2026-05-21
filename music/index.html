@@ -10,19 +10,10 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --cream: #e8dcc8; --purple: #b89be0; --muted: rgba(232,220,200,0.60); --card-bg: rgba(0,0,0,0.55); }
     html, body { width: 100%; height: 100%; background: #000; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
-
     .scene { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; }
-
     .bg-stars { position: fixed; inset: 0; background: url('../images/STARS.jpg') center/cover no-repeat; opacity: 0.75; z-index: 0; }
 
-    nav {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 24px 36px;
-    }
+    nav { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; }
 
     .back {
       font-family: 'Press Start 2P', monospace;
@@ -36,12 +27,7 @@
       gap: 10px;
     }
     .back:hover { color: var(--cream); }
-    /* real pixel arrow using characters */
-    .back::before {
-      content: '◄';
-      font-size: 0.8em;
-      image-rendering: pixelated;
-    }
+    .back::before { content: '◄'; font-size: 0.8em; }
 
     .nav-links { list-style: none; display: flex; flex-direction: column; align-items: flex-end; gap: 0; }
     .nav-links a {
@@ -81,7 +67,6 @@
       font-size: clamp(18px, 2.2vw, 26px);
       color: var(--muted);
       letter-spacing: 0.05em;
-      white-space: nowrap;
     }
     .quote cite {
       display: block;
@@ -114,33 +99,11 @@
       min-height: 160px;
       transition: border-color 0.25s, background 0.25s;
     }
-    .cat:hover {
-      border-color: rgba(184,155,224,0.4);
-      background: rgba(20,10,40,0.65);
-    }
+    .cat:hover { border-color: rgba(184,155,224,0.4); background: rgba(20,10,40,0.65); }
 
-    .cat-tag {
-      font-size: clamp(7px, 0.8vw, 9px);
-      color: var(--purple);
-      letter-spacing: 0.14em;
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px rgba(184,155,224,0.4);
-    }
-
-    .cat-title {
-      font-family: 'VT323', monospace;
-      font-size: clamp(26px, 3vw, 40px);
-      color: var(--cream);
-      line-height: 1.15;
-      margin-bottom: 6px;
-    }
-
-    .cat-desc {
-      font-family: 'VT323', monospace;
-      font-size: clamp(15px, 1.8vw, 21px);
-      color: var(--muted);
-      line-height: 1.4;
-    }
+    .cat-tag { font-size: clamp(7px, 0.8vw, 9px); color: var(--purple); letter-spacing: 0.14em; margin-bottom: 10px; text-shadow: 0 0 10px rgba(184,155,224,0.4); }
+    .cat-title { font-family: 'VT323', monospace; font-size: clamp(26px, 3vw, 40px); color: var(--cream); line-height: 1.15; margin-bottom: 6px; }
+    .cat-desc { font-family: 'VT323', monospace; font-size: clamp(15px, 1.8vw, 21px); color: var(--muted); line-height: 1.4; }
 
     .cat-arrow {
       margin-top: 12px;
@@ -151,14 +114,15 @@
       transition: opacity 0.2s, transform 0.2s;
       letter-spacing: 0.1em;
     }
+    /* pixel right arrow using ► */
+    .cat-arrow::after { content: ' ►'; font-size: 0.9em; }
     .cat:hover .cat-arrow { opacity: 1; transform: translateX(0); }
 
     @media (max-width: 640px) {
       nav { padding: 16px 20px; }
       .back { font-size: 10px; }
       .nav-links a { font-size: 10px; }
-      .content { padding: 0 20px 50px; gap: 24px; }
-      .quote p { white-space: normal; }
+      .content { padding: 16px 20px 50px; gap: 24px; }
       .cats { grid-template-columns: 1fr; gap: 10px; }
       .cat { min-height: 100px; padding: 16px 18px 14px; }
     }
@@ -167,44 +131,40 @@
 <body>
 <div class="scene">
   <div class="bg-stars"></div>
-
   <nav>
     <a class="back" href="../">back</a>
     <ul class="nav-links">
       <li><a href="./" class="active">music</a></li>
-      <li><a href="../films/>films</a></li>
-      <li><a href="../games/>games</a></li>
-      <li><a href="../art/>art</a></li>
-      <li><a href="../about/>about</a></li>
+      <li><a href="../films/">films</a></li>
+      <li><a href="../games/">games</a></li>
+      <li><a href="../art/">art</a></li>
+      <li><a href="../about/">about</a></li>
     </ul>
   </nav>
-
   <div class="content">
     <h1 class="page-title">MUSIC</h1>
-
     <div class="quote">
       <p>"music in itself is healing. it's an explosive expression of humanity."</p>
       <cite>— Billy Joel</cite>
     </div>
-
     <div class="cats">
-      <a class="cat" href="music-mymusic.html">
+      <a class="cat" href="mymusic/">
         <div class="cat-tag">MY MUSIC</div>
         <div class="cat-title">my music</div>
         <div class="cat-desc">stories in motion & everything i've made.</div>
-        <div class="cat-arrow">enter →</div>
+        <div class="cat-arrow">enter</div>
       </a>
-      <a class="cat" href="music-collections.html">
+      <a class="cat" href="collections/">
         <div class="cat-tag">COLLECTIONS</div>
         <div class="cat-title">my collections</div>
         <div class="cat-desc">vinyls, cds & everything i've collected.</div>
-        <div class="cat-arrow">enter →</div>
+        <div class="cat-arrow">enter</div>
       </a>
-      <a class="cat" href="music-concerts.html">
+      <a class="cat" href="concerts/">
         <div class="cat-tag">LIVE</div>
         <div class="cat-title">concerts</div>
         <div class="cat-desc">the most important ones i've been to.</div>
-        <div class="cat-arrow">enter →</div>
+        <div class="cat-arrow">enter</div>
       </a>
     </div>
   </div>
