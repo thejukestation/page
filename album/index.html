@@ -129,7 +129,7 @@
     .itunes-sub { font-family: 'VT323', monospace; font-size: clamp(15px, 1.7vw, 20px); color: var(--muted); margin-top: 4px; }
     .itunes-arrow { font-size: clamp(12px, 1.4vw, 16px); color: var(--purple); }
     .track audio { display: none; }
-    .cover { width: clamp(200px, 26vw, 300px); aspect-ratio: 1; flex-shrink: 0; border-radius: 4px; overflow: hidden; box-shadow: 0 0 60px rgba(184,155,224,0.2), 0 20px 60px rgba(0,0,0,0.6); }
+    .cover { width: clamp(200px, 26vw, 300px); align-self: stretch; flex-shrink: 0; border-radius: 4px; overflow: hidden; box-shadow: 0 0 60px rgba(184,155,224,0.2), 0 20px 60px rgba(0,0,0,0.6); }
     .track-right { display: flex; align-items: center; gap: 14px; }
     .track-vol { display: flex; align-items: center; gap: 6px; border-left: 1px solid rgba(232,220,200,0.1); padding-left: 14px; }
     .track-vol-icon { font-size: 7px; color: var(--muted); letter-spacing: 0.1em; }
@@ -254,6 +254,8 @@
     </div>
  
   </div>
+ 
+  <script>
     const nav = document.querySelector("nav");
     let lastY = 0;
     window.addEventListener("scroll", () => {
@@ -264,65 +266,82 @@
     });
     window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
  
-    const tracks = ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11'];
+    const trackIds = ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11'];
  
-    // iOS unlock
-    document.addEventListener('touchstart', function unlock() {
-      tracks.forEach(id => {
+    function stopAll(exceptId) {
+      trackIds.forEach(id => {
+        if (id === exceptId) return;
         const a = document.getElementById(id+'-audio');
-        if (!a) return;
-        const p = a.play(); if (p) p.then(() => a.pause()).catch(() => {});
+        const b = document.querySelector('#'+id+' .track-play');
+        const f = document.getElementById(id+'-fill');
+        const t = document.getElementById(id+'-time');
+        if (a) { a.pause(); a.currentTime = 0; }
+        if (b) b.textContent = '►';
+        if (f) f.style.width = '0%';
+        if (t) t.textContent = '0:30';
+      });
+    }
+ 
+    // iOS audio unlock on first touch
+    document.addEventListener('touchstart', function unlock() {
+      trackIds.forEach(id => {
+        try {
+          const a = document.getElementById(id+'-audio');
+          if (a) { const p = a.play(); if (p) p.then(() => a.pause()).catch(() => {}); }
+        } catch(e) {}
       });
       document.removeEventListener('touchstart', unlock);
     }, { once: true });
  
-    tracks.forEach(id => {
+    trackIds.forEach(id => {
       const audio = document.getElementById(id+'-audio');
-      if (!audio) return;
-      audio.volume = 0.8;
-      audio.ontimeupdate = () => {
-        const pct = (audio.currentTime / 30) * 100;
-        document.getElementById(id+'-fill').style.width = Math.min(pct, 100) + '%';
+      const btn   = document.querySelector('#'+id+' .track-play');
+      const bar   = document.querySelector('#'+id+' .track-bar');
+      const fill  = document.getElementById(id+'-fill');
+      const time  = document.getElementById(id+'-time');
+      const vol   = document.querySelector('#'+id+' .track-vol-slider');
+ 
+      if (!audio || !btn) return;
+ 
+      audio.volume = vol ? parseFloat(vol.value) : 0.2;
+      if (vol) vol.addEventListener('input', () => { audio.volume = parseFloat(vol.value); });
+ 
+      btn.addEventListener('click', () => {
+        if (audio.paused) {
+          stopAll(id);
+          try {
+            const p = audio.play();
+            if (p !== undefined) {
+              p.then(() => { btn.textContent = '▐▐'; }).catch(() => { btn.textContent = '►'; });
+            } else { btn.textContent = '▐▐'; }
+          } catch(e) { btn.textContent = '►'; }
+        } else {
+          audio.pause(); btn.textContent = '►';
+        }
+      });
+ 
+      if (bar) bar.addEventListener('click', (e) => {
+        const rect = bar.getBoundingClientRect();
+        audio.currentTime = ((e.clientX - rect.left) / rect.width) * 30;
+      });
+ 
+      audio.addEventListener('timeupdate', () => {
+        if (!fill || !time) return;
+        fill.style.width = Math.min((audio.currentTime / 30) * 100, 100) + '%';
         const rem = Math.max(0, 30 - Math.floor(audio.currentTime));
-        const s = rem % 60;
-        document.getElementById(id+'-time').textContent = '0:' + s.toString().padStart(2,'0');
+        time.textContent = '0:' + String(rem % 60).padStart(2, '0');
         if (audio.currentTime >= 30) {
           audio.pause(); audio.currentTime = 0;
-          document.querySelector('#'+id+' .track-play').textContent = '►';
-          document.getElementById(id+'-fill').style.width = '0%';
-          document.getElementById(id+'-time').textContent = '0:30';
+          btn.textContent = '►'; fill.style.width = '0%'; time.textContent = '0:30';
         }
-      };
-      audio.onended = () => {
-        document.querySelector('#'+id+' .track-play').textContent = '►';
-        document.getElementById(id+'-fill').style.width = '0%';
-        document.getElementById(id+'-time').textContent = '0:30';
-      };
+      });
+ 
+      audio.addEventListener('ended', () => {
+        btn.textContent = '►';
+        if (fill) fill.style.width = '0%';
+        if (time) time.textContent = '0:30';
+      });
     });
- 
-    function previewPlay(id) {
-      const audio = document.getElementById(id+'-audio');
-      const btn = document.querySelector('#'+id+' .track-play');
-      if (audio.paused) {
-        tracks.forEach(p => {
-          if (p !== id) {
-            const a = document.getElementById(p+'-audio');
-            if (a) { a.pause(); }
-            const b = document.querySelector('#'+p+' .track-play');
-            if (b) b.textContent = '►';
-          }
-        });
-        audio.play().then(() => { btn.textContent = '▐▐'; }).catch(() => { btn.textContent = '►'; });
-      } else {
-        audio.pause(); btn.textContent = '►';
-      }
-    }
- 
-    function previewSeek(e, id) {
-      const audio = document.getElementById(id+'-audio');
-      const rect = e.currentTarget.getBoundingClientRect();
-      audio.currentTime = ((e.clientX - rect.left) / rect.width) * 30;
-    }
   </script>
 </body>
 </html>
