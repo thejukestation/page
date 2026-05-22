@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
   <title>Photos — The Juke Station</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
@@ -32,21 +36,25 @@
     .intro-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 25px); color: var(--cream); line-height: 1.75; }
     .intro-text span { color: var(--accent); }
  
-    /* Clean 3-column grid — no masonry weirdness */
-    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    /* Masonry columns — handles mixed portrait/landscape naturally */
+    .gallery { columns: 3; column-gap: 8px; }
     .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 8px;
       border: 1px solid rgba(248,248,248,0.1);
       border-radius: 3px;
       overflow: hidden;
       cursor: pointer;
       position: relative;
       transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+      display: block;
     }
     .gallery-item:hover {
       transform: scale(1.03);
       border-color: rgba(184,204,224,0.5);
       box-shadow: 0 8px 30px rgba(0,0,0,0.5);
       z-index: 1;
+      position: relative;
     }
     .gallery-item img { width: 100%; height: auto; display: block; }
  
