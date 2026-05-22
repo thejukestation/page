@@ -103,6 +103,32 @@
     .track-name { font-family: 'VT323', monospace; font-size: clamp(19px, 2.2vw, 26px); color: var(--cream); }
     .track-dur { font-family: 'VT323', monospace; font-size: clamp(15px, 1.7vw, 20px); color: var(--muted); }
  
+    /* Mini preview player */
+    .track { grid-template-columns: 36px 1fr auto; }
+    .track-right { display: flex; align-items: center; gap: 10px; }
+    .track-play {
+      width: 26px; height: 26px; flex-shrink: 0;
+      background: none;
+      border: 1px solid rgba(184,155,224,0.4);
+      border-radius: 3px;
+      color: var(--purple);
+      cursor: pointer;
+      font-size: 9px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      font-family: monospace;
+    }
+    .track-play:hover { background: rgba(184,155,224,0.12); }
+    .track-bar {
+      width: 80px; height: 2px;
+      background: rgba(232,220,200,0.12);
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+    }
+    .track-fill { height: 100%; background: var(--purple); border-radius: 2px; width: 0%; transition: width 0.1s; }
+    .track-time { font-family: 'VT323', monospace; font-size: 14px; color: var(--muted); min-width: 32px; text-align: right; }
+ 
     @media (max-width: 640px) {
       nav { padding: 12px 16px; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
@@ -143,7 +169,7 @@
         <div class="album-title">Stories in Motion</div>
         <div class="album-artist">THE JUKE STATION</div>
         <div class="album-meta">out may 29, 2026<br>produced & written by julien keraudren</div>
-        <a class="presave-btn" href="#" target="_blank">★ presave now — out in one week</a>
+      <a class="presave-btn" href="https://distrokid.com/hyperfollow/thejukestation/stories-in-motion" target="_blank">★ presave now — out in one week</a>
       </div>
     </div>
  
@@ -172,21 +198,25 @@
         <div><div class="stream-label">STREAMING</div><div class="stream-name">Amazon Music</div></div>
       </a>
       <a class="stream-link" href="https://soundcloud.com/thejukestation" target="_blank">
-        <div><div class="stream-label">STREAMING</div><div class="stream-name">SoundCloud</div></div>
+        <div><div class="stream-label">STREAMING</div><div class="stream-name">Deezer</div></div>
       </a>
     </div>
  
-    <!-- TRACKLIST -->
+    <!-- TRACKLIST with 30s preview players -->
+    <!-- Add your 30s preview files to /audio/ as preview01.mp3, preview02.mp3 etc. -->
     <div class="section-label">TRACKLIST</div>
     <div class="tracklist">
-      <div class="track"><div class="track-num">01</div><div class="track-name">Track Title</div><div class="track-dur">0:00</div></div>
-      <div class="track"><div class="track-num">02</div><div class="track-name">Track Title</div><div class="track-dur">0:00</div></div>
-      <div class="track"><div class="track-num">03</div><div class="track-name">Track Title</div><div class="track-dur">0:00</div></div>
-      <div class="track"><div class="track-num">04</div><div class="track-name">Track Title</div><div class="track-dur">0:00</div></div>
-      <div class="track"><div class="track-num">05</div><div class="track-name">Track Title</div><div class="track-dur">0:00</div></div>
-      <div class="track"><div class="track-num">06</div><div class="track-name">Track Title</div><div class="track-dur">0:00</div></div>
-      <div class="track"><div class="track-num">07</div><div class="track-name">Track Title</div><div class="track-dur">0:00</div></div>
-      <div class="track"><div class="track-num">08</div><div class="track-name">Track Title</div><div class="track-dur">0:00</div></div>
+      <div class="track" id="t1"><div class="track-num">01</div><div class="track-name">In Motion</div><div class="track-right"><button class="track-play" onclick="previewPlay('t1')">►</button><div class="track-bar" onclick="previewSeek(event,'t1')"><div class="track-fill" id="t1-fill"></div></div><div class="track-time" id="t1-time">0:30</div></div><audio id="t1-audio" src="../audio/preview01.mp3"></audio></div>
+      <div class="track" id="t2"><div class="track-num">02</div><div class="track-name">Alive</div><div class="track-right"><button class="track-play" onclick="previewPlay('t2')">►</button><div class="track-bar" onclick="previewSeek(event,'t2')"><div class="track-fill" id="t2-fill"></div></div><div class="track-time" id="t2-time">0:30</div></div><audio id="t2-audio" src="../audio/preview02.mp3"></audio></div>
+      <div class="track" id="t3"><div class="track-num">03</div><div class="track-name">I'll Be There</div><div class="track-right"><button class="track-play" onclick="previewPlay('t3')">►</button><div class="track-bar" onclick="previewSeek(event,'t3')"><div class="track-fill" id="t3-fill"></div></div><div class="track-time" id="t3-time">0:30</div></div><audio id="t3-audio" src="../audio/preview03.mp3"></audio></div>
+      <div class="track" id="t4"><div class="track-num">04</div><div class="track-name">I've Seen the End</div><div class="track-right"><button class="track-play" onclick="previewPlay('t4')">►</button><div class="track-bar" onclick="previewSeek(event,'t4')"><div class="track-fill" id="t4-fill"></div></div><div class="track-time" id="t4-time">0:30</div></div><audio id="t4-audio" src="../audio/preview04.mp3"></audio></div>
+      <div class="track" id="t5"><div class="track-num">05</div><div class="track-name">It's You</div><div class="track-right"><button class="track-play" onclick="previewPlay('t5')">►</button><div class="track-bar" onclick="previewSeek(event,'t5')"><div class="track-fill" id="t5-fill"></div></div><div class="track-time" id="t5-time">0:30</div></div><audio id="t5-audio" src="../audio/preview05.mp3"></audio></div>
+      <div class="track" id="t6"><div class="track-num">06</div><div class="track-name">Once More</div><div class="track-right"><button class="track-play" onclick="previewPlay('t6')">►</button><div class="track-bar" onclick="previewSeek(event,'t6')"><div class="track-fill" id="t6-fill"></div></div><div class="track-time" id="t6-time">0:30</div></div><audio id="t6-audio" src="../audio/preview06.mp3"></audio></div>
+      <div class="track" id="t7"><div class="track-num">07</div><div class="track-name">Une Chance (The Wind Song)</div><div class="track-right"><button class="track-play" onclick="previewPlay('t7')">►</button><div class="track-bar" onclick="previewSeek(event,'t7')"><div class="track-fill" id="t7-fill"></div></div><div class="track-time" id="t7-time">0:30</div></div><audio id="t7-audio" src="../audio/preview07.mp3"></audio></div>
+      <div class="track" id="t8"><div class="track-num">08</div><div class="track-name">Waiting for Your Sign</div><div class="track-right"><button class="track-play" onclick="previewPlay('t8')">►</button><div class="track-bar" onclick="previewSeek(event,'t8')"><div class="track-fill" id="t8-fill"></div></div><div class="track-time" id="t8-time">0:30</div></div><audio id="t8-audio" src="../audio/preview08.mp3"></audio></div>
+      <div class="track" id="t9"><div class="track-num">09</div><div class="track-name">Show Me</div><div class="track-right"><button class="track-play" onclick="previewPlay('t9')">►</button><div class="track-bar" onclick="previewSeek(event,'t9')"><div class="track-fill" id="t9-fill"></div></div><div class="track-time" id="t9-time">0:30</div></div><audio id="t9-audio" src="../audio/preview09.mp3"></audio></div>
+      <div class="track" id="t10"><div class="track-num">10</div><div class="track-name">My Way</div><div class="track-right"><button class="track-play" onclick="previewPlay('t10')">►</button><div class="track-bar" onclick="previewSeek(event,'t10')"><div class="track-fill" id="t10-fill"></div></div><div class="track-time" id="t10-time">0:30</div></div><audio id="t10-audio" src="../audio/preview10.mp3"></audio></div>
+      <div class="track" id="t11"><div class="track-num">11</div><div class="track-name">The Motion Coda</div><div class="track-right"><button class="track-play" onclick="previewPlay('t11')">►</button><div class="track-bar" onclick="previewSeek(event,'t11')"><div class="track-fill" id="t11-fill"></div></div><div class="track-time" id="t11-time">0:30</div></div><audio id="t11-audio" src="../audio/preview11.mp3"></audio></div>
     </div>
  
   </div>
@@ -201,6 +231,66 @@
       lastY = y;
     });
     window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
+ 
+    const tracks = ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11'];
+ 
+    // iOS unlock
+    document.addEventListener('touchstart', function unlock() {
+      tracks.forEach(id => {
+        const a = document.getElementById(id+'-audio');
+        if (!a) return;
+        const p = a.play(); if (p) p.then(() => a.pause()).catch(() => {});
+      });
+      document.removeEventListener('touchstart', unlock);
+    }, { once: true });
+ 
+    tracks.forEach(id => {
+      const audio = document.getElementById(id+'-audio');
+      if (!audio) return;
+      audio.volume = 0.8;
+      audio.ontimeupdate = () => {
+        const pct = (audio.currentTime / 30) * 100;
+        document.getElementById(id+'-fill').style.width = Math.min(pct, 100) + '%';
+        const rem = Math.max(0, 30 - Math.floor(audio.currentTime));
+        const s = rem % 60;
+        document.getElementById(id+'-time').textContent = '0:' + s.toString().padStart(2,'0');
+        if (audio.currentTime >= 30) {
+          audio.pause(); audio.currentTime = 0;
+          document.querySelector('#'+id+' .track-play').textContent = '►';
+          document.getElementById(id+'-fill').style.width = '0%';
+          document.getElementById(id+'-time').textContent = '0:30';
+        }
+      };
+      audio.onended = () => {
+        document.querySelector('#'+id+' .track-play').textContent = '►';
+        document.getElementById(id+'-fill').style.width = '0%';
+        document.getElementById(id+'-time').textContent = '0:30';
+      };
+    });
+ 
+    function previewPlay(id) {
+      const audio = document.getElementById(id+'-audio');
+      const btn = document.querySelector('#'+id+' .track-play');
+      if (audio.paused) {
+        tracks.forEach(p => {
+          if (p !== id) {
+            const a = document.getElementById(p+'-audio');
+            if (a) { a.pause(); }
+            const b = document.querySelector('#'+p+' .track-play');
+            if (b) b.textContent = '►';
+          }
+        });
+        audio.play().then(() => { btn.textContent = '▐▐'; }).catch(() => { btn.textContent = '►'; });
+      } else {
+        audio.pause(); btn.textContent = '►';
+      }
+    }
+ 
+    function previewSeek(e, id) {
+      const audio = document.getElementById(id+'-audio');
+      const rect = e.currentTarget.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - rect.left) / rect.width) * 30;
+    }
   </script>
 </body>
 </html>
