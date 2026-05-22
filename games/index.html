@@ -33,7 +33,6 @@
     .story-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 24px); color: var(--cream); line-height: 1.75; }
     .story-text span { color: var(--orange); }
  
-    /* Audio players */
     .players-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--orange); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(212,132,90,0.4); }
     .players { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
  
@@ -49,7 +48,6 @@
     .player-title { font-size: clamp(6px, 0.7vw, 8px); color: var(--orange); letter-spacing: 0.1em; }
     .player-name { font-family: 'VT323', monospace; font-size: clamp(18px, 2vw, 24px); color: var(--cream); line-height: 1; }
  
-    /* Custom audio player controls */
     .player-controls { display: flex; align-items: center; gap: 8px; }
     .play-btn {
       width: 28px; height: 28px; flex-shrink: 0;
@@ -84,11 +82,9 @@
       border-radius: 50%; background: var(--orange); cursor: pointer;
     }
  
-    /* N64 section */
     .n64-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 24px); color: var(--cream); line-height: 1.75; }
     .n64-text span { color: var(--orange); }
  
-    /* Photos grid */
     .photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
     .photo-slot {
       aspect-ratio: 1;
@@ -99,9 +95,7 @@
       display: flex; align-items: center; justify-content: center;
     }
     .photo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .photo-placeholder { font-size: clamp(5px, 0.6vw, 7px); color: rgba(212,132,90,0.3); letter-spacing: 0.1em; text-align: center; padding: 8px; }
  
-    /* Video slot */
     .video-slot {
       width: 100%;
       aspect-ratio: 16/9;
@@ -111,10 +105,7 @@
       overflow: hidden;
       position: relative;
     }
-    .video-slot video { width: 100%; height: 100%; object-fit: cover; }
-    .video-placeholder { font-size: clamp(6px, 0.7vw, 8px); color: rgba(212,132,90,0.3); letter-spacing: 0.1em; }
  
-    /* Console collection */
     .console-btn {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(7px, 0.85vw, 10px);
@@ -178,7 +169,7 @@
  
     <div class="story-block">
       <div class="story-year">2020 — THE PC ERA</div>
-      <p class="story-text">in 2020, when the pandemic started, i bought his old PC. for the first time i could play all the <span>ASSASSIN'S CREEDS</span>, the <span>GTAs</span>, and of course <span>MINECRAFT</span> with my friends. MINECRAFT is a magical game. and if you ask me, it's the best ever made.</p>
+      <p class="story-text">in 2020, when the pandemic started, i bought his old PC. for the first time i could play all the <span>ASSASSIN'S CREEDS</span>, the <span>GTAs</span>, and of course <span>MINECRAFT</span> with my friends. <span>MINECRAFT</span> is a magical game. and if you ask me, it's the best ever made.</p>
     </div>
  
     <div class="story-block">
@@ -188,10 +179,9 @@
  
     <div class="story-block">
       <div class="story-year">2024 → NOW</div>
-      <p class="story-text">since 2024, i am playing new games regularly. some of the best were <span>GOD OF WAR 2018</span>, <span>RAGNAROK</span>, <span>GHOST OF TSUSHIMA</span>, <span>OUTER WILDS</span>, <span>RED DEAD REDEMPTION</span>, <span>THE LAST OF US PART I</span>, <span>MAFIA I&II</span>, <span>UNDERTALE</span>, <span>THE WITCHER 3</span> and recently <span>KINGDOM COME DELIVERANCE II</span>.<br><br>also a couple of games that i enjoy playing with friends are <span>PEAK</span>, <span>RV THERE YET</span>, <span>LETHAL COMPANY</span>, <span>R.E.P.O.</span>, <span>HOLDFAST</span>, <span>LIAR'S BAR</span>, <span>ONCE HUMAN</span>, <span>ASTRONEER</span> and <span>RED DEAD ONLINE</span>.</p>
+      <p class="story-text">since 2024, i am playing new games regularly. some of the best were <span>GOD OF WAR 2018</span>, <span>RAGNAROK</span>, <span>GHOST OF TSUSHIMA</span>, <span>OUTER WILDS</span>, <span>RED DEAD REDEMPTION</span>, <span>THE LAST OF US PART I</span>, <span>MAFIA I&amp;II</span>, <span>UNDERTALE</span>, <span>THE WITCHER 3</span> and recently <span>KINGDOM COME DELIVERANCE II</span>.<br>also a couple of games that i enjoy playing with friends are <span>PEAK</span>, <span>RV THERE YET</span>, <span>LETHAL COMPANY</span>, <span>R.E.P.O.</span>, <span>HOLDFAST</span>, <span>LIAR'S BAR</span>, <span>ONCE HUMAN</span>, <span>ASTRONEER</span> and <span>RED DEAD ONLINE</span>.</p>
     </div>
  
-    <!-- GODOT section -->
     <div class="story-block">
       <div class="story-year">2025 — MY OWN GAME</div>
       <p class="story-text">in 2025 i almost made a dream come true. i started making my own video game in <span>GODOT</span> engine. i composed half the soundtrack and started creating the hubworld and lots of textures. then, due to work and university i shelved the project FOR NOW!! i'd really like to finish the game one day.</p>
@@ -199,7 +189,6 @@
  
     <div class="section-label">HERE SOME SNEAK PEEKS</div>
     <div class="players">
-      <!-- CHANGE: replace src with your real MP3 files in /images/ or a subfolder -->
       <div class="player" id="p1">
         <div class="player-title">GAMING THEME 06</div>
         <div class="player-name">gaming theme 6</div>
@@ -244,21 +233,18 @@
       </div>
     </div>
  
-    <!-- N64 section -->
     <div class="story-block">
       <div class="story-year">2025 — NINTENDO 64</div>
-      <p class="n64-text">but a dream that i made come true was buying a <span>NINTENDO 64</span> in 2025. with that, i bought <span>SUPER MARIO 64</span>, <span>ZELDA OCARINA OF TIME</span>, <span>BANJO KAZOOIE</span> and <span>DONKEY KONG 64</span>. i finished SUPER MARIO 64 100% in a few days and loved it so much. now i'm playing OCARINA OF TIME and finishing BANJO KAZOOIE.</p>
+      <p class="n64-text">but a dream that i made come true was buying a <span>NINTENDO 64</span> in 2025. with that, i bought <span>SUPER MARIO 64</span>, <span>ZELDA OCARINA OF TIME</span>, <span>BANJO KAZOOIE</span> and <span>DONKEY KONG 64</span>. i finished <span>SUPER MARIO 64</span> 100% in a few days and loved it so much. now i'm playing <span>OCARINA OF TIME</span> and finishing <span>BANJO KAZOOIE</span>.</p>
     </div>
  
-    <!-- N64 Photos — CHANGE: replace with real images -->
     <div class="section-label">N64</div>
     <div class="photos">
-      <div class="photo-slot"><img src="../images/GAMEPIC1.jpg" alt="Zelda Ocarina of Time N64" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-      <div class="photo-slot"><img src="../images/GAMEPIC2.jpg" alt="Nintendo 64 console" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
-      <div class="photo-slot"><img src="../images/GAMEPIC3.jpg" alt="Super Mario 64 100%" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+      <div class="photo-slot"><img src="../images/GAMEPIC1.jpg" alt="Zelda Ocarina of Time N64"></div>
+      <div class="photo-slot"><img src="../images/GAMEPIC2.jpg" alt="Nintendo 64 console"></div>
+      <div class="photo-slot"><img src="../images/GAMEPIC3.jpg" alt="Super Mario 64 100%"></div>
     </div>
  
-    <!-- Video -->
     <div class="section-label">OCARINA OF TIME — OPENING</div>
     <div class="video-slot">
       <iframe
@@ -266,15 +252,11 @@
         style="width:100%;height:100%;border:none;pointer-events:none;position:absolute;top:0;left:0;"
         allow="autoplay; encrypted-media">
       </iframe>
-      <!-- top bar covers YouTube branding/title -->
       <div style="position:absolute;top:0;left:0;right:0;height:52px;background:#000;z-index:2;pointer-events:none;"></div>
-      <!-- bottom bar covers controls -->
       <div style="position:absolute;bottom:0;left:0;right:0;height:46px;background:#000;z-index:2;pointer-events:none;"></div>
-      <!-- left/right subtle fade -->
       <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.15) 0%,transparent 8%,transparent 92%,rgba(0,0,0,0.15) 100%);z-index:1;pointer-events:none;"></div>
     </div>
  
-    <!-- Console collection -->
     <div class="section-label">MY CONSOLES</div>
     <button class="console-btn" onclick="document.getElementById('console-popup').style.display='flex'">► view my console collection</button>
  
@@ -314,7 +296,16 @@
     });
     window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
  
-    // Set up each player
+    // iOS/Mobile audio unlock
+    document.addEventListener('touchstart', function unlock() {
+      ['p1','p2','p3'].forEach(id => {
+        const a = document.getElementById(id+'-audio');
+        const p = a.play();
+        if (p) p.then(() => a.pause()).catch(() => {});
+      });
+      document.removeEventListener('touchstart', unlock);
+    }, { once: true });
+ 
     ['p1','p2','p3'].forEach(id => {
       const audio = document.getElementById(id+'-audio');
       audio.volume = 0.35;
@@ -341,8 +332,11 @@
             document.querySelector('#'+p+' .play-btn').textContent = '►';
           }
         });
-        audio.play().catch(()=>{});
-        btn.textContent = '▐▐';
+        audio.play().then(() => {
+          btn.textContent = '▐▐';
+        }).catch(() => {
+          btn.textContent = '►';
+        });
       } else {
         audio.pause();
         btn.textContent = '►';
