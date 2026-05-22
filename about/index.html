@@ -39,14 +39,16 @@
       background: var(--card-bg);
       border: 1px solid rgba(196,160,216,0.12);
       border-radius: 4px;
-      padding: 18px 20px;
+      padding: 14px 18px;
       text-decoration: none;
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      align-items: center;
+      gap: 12px;
       transition: border-color 0.2s, background 0.2s;
     }
     .social-link:hover { border-color: rgba(196,160,216,0.4); background: rgba(196,160,216,0.06); }
+    .social-icon { width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0; opacity: 0.85; }
+    .social-text { display: flex; flex-direction: column; gap: 3px; }
     .social-platform { font-size: clamp(6px, 0.7vw, 8px); color: var(--purple); letter-spacing: 0.15em; }
     .social-handle { font-family: 'VT323', monospace; font-size: clamp(18px, 2vw, 24px); color: var(--cream); line-height: 1.1; }
  
@@ -88,41 +90,53 @@
  
     <div class="section-label">FIND ME HERE</div>
     <div class="socials">
-      <a class="social-link" href="https://www.youtube.com/@thejukestation" target="_blank">
-        <div class="social-platform">YOUTUBE</div>
-        <div class="social-handle">@thejukestation</div>
-      </a>
-      <a class="social-link" href="https://www.tiktok.com/@julien_keraudren" target="_blank">
-        <div class="social-platform">TIKTOK</div>
-        <div class="social-handle">@julien_keraudren</div>
-      </a>
-      <a class="social-link" href="https://www.instagram.com/julienkeraudren/" target="_blank">
-        <div class="social-platform">INSTAGRAM</div>
-        <div class="social-handle">@julienkeraudren</div>
-      </a>
       <a class="social-link" href="https://open.spotify.com/user/31pp2mdrylbejuiri2lobzzbhswu?si=58ffdf5587924035" target="_blank">
-        <div class="social-platform">SPOTIFY</div>
-        <div class="social-handle">the juke station</div>
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=spotify.com&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">SPOTIFY</div><div class="social-handle">the juke station</div></div>
+      </a>
+      <a class="social-link" href="https://www.youtube.com/@thejukestation" target="_blank">
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=youtube.com&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">YOUTUBE</div><div class="social-handle">@thejukestation</div></div>
+      </a>
+      <a class="social-link" href="https://thejukestation.bandcamp.com/" target="_blank">
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=bandcamp.com&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">BANDCAMP</div><div class="social-handle">thejukestation</div></div>
       </a>
       <a class="social-link" href="https://soundcloud.com/thejukestation" target="_blank">
-        <div class="social-platform">SOUNDCLOUD</div>
-        <div class="social-handle">thejukestation</div>
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=soundcloud.com&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">SOUNDCLOUD</div><div class="social-handle">thejukestation</div></div>
       </a>
-      <a class="social-link" href="https://stats.fm/jukestation" target="_blank">
-        <div class="social-platform">STATS.FM</div>
-        <div class="social-handle">jukestation</div>
+      <a class="social-link" href="https://vampr.me/artist/thejukestation" target="_blank">
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=vampr.me&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">VAMPR</div><div class="social-handle">thejukestation</div></div>
+      </a>
+      <a class="social-link" href="https://www.instagram.com/julienkeraudren/" target="_blank">
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=instagram.com&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">INSTAGRAM</div><div class="social-handle">@julienkeraudren</div></div>
+      </a>
+      <a class="social-link" href="https://www.tiktok.com/@julien_keraudren" target="_blank">
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=tiktok.com&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">TIKTOK</div><div class="social-handle">@julien_keraudren</div></div>
       </a>
       <a class="social-link" href="https://de.pinterest.com/thejukestation/" target="_blank">
-        <div class="social-platform">PINTEREST</div>
-        <div class="social-handle">thejukestation</div>
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=pinterest.com&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">PINTEREST</div><div class="social-handle">thejukestation</div></div>
+      </a>
+      <a class="social-link" href="https://stats.fm/jukestation" target="_blank">
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=stats.fm&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">STATS.FM</div><div class="social-handle">jukestation</div></div>
       </a>
       <a class="social-link" href="https://www.discogs.com/user/thejukestation" target="_blank">
-        <div class="social-platform">DISCOGS</div>
-        <div class="social-handle">thejukestation</div>
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=discogs.com&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">DISCOGS</div><div class="social-handle">thejukestation</div></div>
+      </a>
+      <a class="social-link" href="https://steamcommunity.com/profiles/76561198377579911/" target="_blank">
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=steampowered.com&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">STEAM</div><div class="social-handle">thejukestation</div></div>
       </a>
       <a class="social-link" href="mailto:thejukestation@gmail.com">
-        <div class="social-platform">EMAIL</div>
-        <div class="social-handle">thejukestation@gmail.com</div>
+        <img class="social-icon" src="https://www.google.com/s2/favicons?domain=gmail.com&sz=32" alt="">
+        <div class="social-text"><div class="social-platform">EMAIL</div><div class="social-handle">thejukestation@gmail.com</div></div>
       </a>
     </div>
   </div>
