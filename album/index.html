@@ -39,7 +39,7 @@
     .hero-info { display: flex; flex-direction: column; gap: 16px; padding-top: 8px; }
     .album-label { font-size: clamp(6px, 0.7vw, 8px); color: var(--purple); letter-spacing: 0.25em; text-shadow: 0 0 10px rgba(184,155,224,0.5); }
     .album-title { font-family: 'VT323', monospace; font-size: clamp(42px, 6vw, 80px); color: var(--cream); line-height: 1; letter-spacing: 0.04em; text-shadow: 0 0 30px rgba(184,155,224,0.2); }
-    .album-artist { font-size: clamp(7px, 0.85vw, 10px); color: var(--muted); letter-spacing: 0.15em; }
+ 
     .album-meta { font-family: 'VT323', monospace; font-size: clamp(16px, 1.8vw, 22px); color: var(--muted); line-height: 1.6; margin-top: 4px; }
  
     /* PRESAVE PILL */
@@ -136,6 +136,9 @@
     .itunes-arrow { font-size: clamp(12px, 1.4vw, 16px); color: var(--purple); }
     .track-right { display: flex; align-items: center; gap: 14px; }
     .track-vol { display: flex; align-items: center; gap: 6px; border-left: 1px solid rgba(232,220,200,0.1); padding-left: 14px; }
+    .track-vol-icon { font-size: 7px; color: var(--muted); letter-spacing: 0.1em; }
+    .album-artist { font-size: clamp(7px, 0.85vw, 10px); color: var(--purple) !important; letter-spacing: 0.15em; text-decoration: none; transition: opacity 0.2s; }
+    .album-artist:hover { opacity: 0.7; }
     input[type=range].track-vol-slider { width: 55px; height: 2px; cursor: pointer; accent-color: var(--purple); background: rgba(232,220,200,0.15); border-radius: 2px; appearance: none; -webkit-appearance: none; }
     input[type=range].track-vol-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 9px; height: 9px; border-radius: 50%; background: var(--purple); cursor: pointer; }
  
@@ -177,7 +180,7 @@
       <div class="hero-info">
         <div class="album-label">DEBUT ALBUM — 2026</div>
         <div class="album-title">Stories in Motion</div>
-        <a class="album-artist" href="/about/" style="color:var(--purple);text-decoration:none;letter-spacing:0.15em;font-size:clamp(7px,0.85vw,10px);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">THE JUKE STATION</a>
+        <a class="album-artist" href="/about/">THE JUKE STATION</a>
         <div class="album-meta">out may 29, 2026<br>produced & written by julien keraudren</div>
       <a class="presave-btn" href="https://distrokid.com/hyperfollow/thejukestation/stories-in-motion" target="_blank">★ presave now — out in one week</a>
       </div>
