@@ -32,21 +32,23 @@
     .intro-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 25px); color: var(--cream); line-height: 1.75; }
     .intro-text span { color: var(--accent); }
  
-    /* Masonry — 3 columns for film roll format */
-    .gallery { columns: 3; column-gap: 8px; }
+    /* Clean 3-column grid — no masonry weirdness */
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .gallery-item {
-      break-inside: avoid;
-      margin-bottom: 8px;
       border: 1px solid rgba(248,248,248,0.1);
       border-radius: 3px;
       overflow: hidden;
       cursor: pointer;
       position: relative;
-      transition: border-color 0.2s;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
     }
-    .gallery-item:hover { border-color: rgba(184,204,224,0.4); }
-    .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.3s; }
-    .gallery-item:hover img { transform: scale(1.03); }
+    .gallery-item:hover {
+      transform: scale(1.03);
+      border-color: rgba(184,204,224,0.5);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+    .gallery-item img { width: 100%; height: auto; display: block; }
  
     /* Lightbox */
     .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 200; align-items: center; justify-content: center; cursor: pointer; padding: 20px; }
