@@ -199,7 +199,7 @@
         </div>
         <div class="vol-row">
           <span class="vol-icon">VOL</span>
-          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.35" oninput="document.getElementById('p1-audio').volume=this.value">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.20" oninput="document.getElementById('p1-audio').volume=this.value">
         </div>
         <audio id="p1-audio" src="../audio/Gaming%20Theme%206.mp3"></audio>
       </div>
@@ -213,7 +213,7 @@
         </div>
         <div class="vol-row">
           <span class="vol-icon">VOL</span>
-          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.35" oninput="document.getElementById('p2-audio').volume=this.value">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.20" oninput="document.getElementById('p2-audio').volume=this.value">
         </div>
         <audio id="p2-audio" src="../audio/Gaming%20Theme%2010.mp3"></audio>
       </div>
@@ -227,7 +227,7 @@
         </div>
         <div class="vol-row">
           <span class="vol-icon">VOL</span>
-          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.35" oninput="document.getElementById('p3-audio').volume=this.value">
+          <input type="range" class="vol-slider" min="0" max="1" step="0.01" value="0.20" oninput="document.getElementById('p3-audio').volume=this.value">
         </div>
         <audio id="p3-audio" src="../audio/Gaming%20Theme%2012.mp3"></audio>
       </div>
@@ -308,7 +308,7 @@
  
     ['p1','p2','p3'].forEach(id => {
       const audio = document.getElementById(id+'-audio');
-      audio.volume = 0.35;
+      audio.volume = 0.20;
       audio.ontimeupdate = () => {
         if (!audio.duration) return;
         document.getElementById(id+'-fill').style.width = (audio.currentTime/audio.duration*100)+'%';
