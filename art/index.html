@@ -33,26 +33,59 @@
     .intro-text span { color: var(--red); }
  
     /* Masonry gallery */
-    .gallery { columns: 4; column-gap: 8px; }
+    .gallery { columns: 4; column-gap: 10px; }
     .gallery-item {
       break-inside: avoid;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       border: 1px solid rgba(176,80,96,0.12);
       border-radius: 3px;
       overflow: hidden;
       cursor: pointer;
       position: relative;
-      transition: border-color 0.2s;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      display: block;
     }
-    .gallery-item:hover { border-color: rgba(176,80,96,0.4); }
-    .gallery-item img { width: 100%; height: auto; display: block; transition: transform 0.3s; }
-    .gallery-item:hover img { transform: scale(1.03); }
+    .gallery-item:hover {
+      transform: scale(1.04);
+      border-color: rgba(176,80,96,0.5);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      z-index: 1;
+      position: relative;
+    }
+    .gallery-item img { width: 100%; height: auto; display: block; }
  
     /* Lightbox */
-    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 200; align-items: center; justify-content: center; cursor: pointer; padding: 20px; }
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 20px;
+      gap: 32px;
+    }
     .lightbox.open { display: flex; }
-    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 3px; cursor: default; }
+    .lightbox-img-wrap { flex-shrink: 0; cursor: default; }
+    .lightbox-img-wrap img { max-width: 70vw; max-height: 85vh; object-fit: contain; border-radius: 3px; display: block; }
+    .lightbox-info {
+      cursor: default;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 200px;
+    }
+    .lightbox-info.hidden { display: none; }
+    .lightbox-title { font-family: 'VT323', monospace; font-size: clamp(20px, 2.4vw, 28px); color: var(--cream); line-height: 1.2; }
+    .lightbox-artist { font-size: clamp(6px, 0.7vw, 8px); color: var(--red); letter-spacing: 0.15em; }
+    .lightbox-close { font-size: clamp(6px, 0.7vw, 8px); color: rgba(244,236,232,0.4); letter-spacing: 0.1em; margin-top: 16px; }
  
+    @media (max-width: 900px) {
+      .lightbox { flex-direction: column; }
+      .lightbox-img-wrap img { max-width: 90vw; max-height: 65vh; }
+      .lightbox-info { max-width: 90vw; }
+    }
     @media (max-width: 640px) {
       nav { padding: 12px 16px; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
@@ -86,28 +119,37 @@
     </div>
  
     <div class="section-label">PHOTOS & ART</div>
+ 
+    <!-- Add data-title and data-artist to each item you want info shown for -->
     <div class="gallery">
-      <div class="gallery-item" onclick="openLight('../images/photo1.jpg')"><img src="../images/photo1.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo2.jpg')"><img src="../images/photo2.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo3.jpg')"><img src="../images/photo3.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo4.jpg')"><img src="../images/photo4.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo5.jpg')"><img src="../images/photo5.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo6.jpg')"><img src="../images/photo6.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo7.jpg')"><img src="../images/photo7.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo8.jpg')"><img src="../images/photo8.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo9.jpg')"><img src="../images/photo9.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo10.jpg')"><img src="../images/photo10.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo11.jpg')"><img src="../images/photo11.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo12.jpg')"><img src="../images/photo12.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo13.jpg')"><img src="../images/photo13.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo14.jpg')"><img src="../images/photo14.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo15.jpg')"><img src="../images/photo15.jpg" alt=""></div>
-      <div class="gallery-item" onclick="openLight('../images/photo16.jpg')"><img src="../images/photo16.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo1.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo2.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo3.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo4.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo5.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo6.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo7.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo8.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo9.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo10.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo11.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo12.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo13.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo14.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo15.jpg" alt=""></div>
+      <div class="gallery-item" data-title="" data-artist="" onclick="openLight(this)"><img src="../images/photo16.jpg" alt=""></div>
     </div>
   </div>
  
-  <div class="lightbox" id="lightbox" onclick="closeLight()">
-    <img id="lightbox-img" src="" alt="">
+  <div class="lightbox" id="lightbox" onclick="closeLight(event)">
+    <div class="lightbox-img-wrap">
+      <img id="lightbox-img" src="" alt="">
+    </div>
+    <div class="lightbox-info" id="lightbox-info">
+      <div class="lightbox-title" id="lightbox-title"></div>
+      <div class="lightbox-artist" id="lightbox-artist"></div>
+      <div class="lightbox-close">click anywhere to close</div>
+    </div>
   </div>
  
   <script>
@@ -121,13 +163,23 @@
     });
     window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
  
-    function openLight(src) {
-      document.getElementById('lightbox-img').src = src;
+    function openLight(el) {
+      const img = el.querySelector('img');
+      const title = el.dataset.title || '';
+      const artist = el.dataset.artist || '';
+      document.getElementById('lightbox-img').src = img.src;
+      document.getElementById('lightbox-title').textContent = title;
+      document.getElementById('lightbox-artist').textContent = artist;
+      const info = document.getElementById('lightbox-info');
+      info.classList.toggle('hidden', !title && !artist);
       document.getElementById('lightbox').classList.add('open');
     }
-    function closeLight() {
+ 
+    function closeLight(e) {
+      if (e && e.target.closest('.lightbox-img-wrap')) return;
       document.getElementById('lightbox').classList.remove('open');
     }
+ 
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLight(); });
   </script>
 </body>
