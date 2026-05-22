@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — The Juke Station</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --cream: #f0eaf8; --purple: #c4a0d8; --muted: rgba(240,234,248,0.60); --card-bg: rgba(0,0,0,0.35); }
+    html, body { width: 100%; background: #000; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
+ 
+    .bg { position: fixed; inset: 0; background: url('../images/HIMMEL6.jpg') center/cover no-repeat; z-index: 0; }
+    .bg-overlay { position: fixed; inset: 0; background: rgba(10,0,20,0.58); z-index: 0; }
+ 
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; transition: transform 0.3s ease; }
+    .back { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
+    .back:hover { color: var(--cream); }
+    .back::before { content: '◄'; font-size: 0.8em; }
+    .nav-links { list-style: none; display: flex; flex-direction: column; align-items: flex-end; }
+    .nav-links a { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; line-height: 2.2; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a.active { color: var(--purple); text-shadow: 0 0 12px rgba(196,160,216,0.5); }
+ 
+    .page { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; padding: 120px 40px 80px; display: flex; flex-direction: column; gap: 40px; }
+ 
+    .page-title { font-size: clamp(18px, 3vw, 38px); color: var(--cream); letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(196,160,216,0.4); text-align: center; }
+ 
+    .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--purple); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(196,160,216,0.4); }
+ 
+    .story-block { background: var(--card-bg); border: 1px solid rgba(196,160,216,0.12); border-radius: 4px; padding: 24px 28px; }
+    .story-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 24px); color: var(--cream); line-height: 1.75; }
+    .story-text span { color: var(--purple); }
+ 
+    /* Social links grid */
+    .socials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .social-link {
+      background: var(--card-bg);
+      border: 1px solid rgba(196,160,216,0.12);
+      border-radius: 4px;
+      padding: 18px 20px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .social-link:hover { border-color: rgba(196,160,216,0.4); background: rgba(196,160,216,0.06); }
+    .social-platform { font-size: clamp(6px, 0.7vw, 8px); color: var(--purple); letter-spacing: 0.15em; }
+    .social-handle { font-family: 'VT323', monospace; font-size: clamp(18px, 2vw, 24px); color: var(--cream); line-height: 1.1; }
+ 
+    @media (max-width: 640px) {
+      nav { padding: 12px 16px; }
+      .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
+      .nav-links a { font-size: 8px; line-height: 2; }
+      .page { padding: 100px 20px 60px; gap: 30px; }
+      .socials { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="bg-overlay"></div>
+ 
+  <nav>
+    <a class="back" href="/">back</a>
+    <ul class="nav-links">
+      <li><a href="/music/">music</a></li>
+      <li><a href="/films/">films</a></li>
+      <li><a href="/games/">games</a></li>
+      <li><a href="/art/">art</a></li>
+      <li><a href="/photos/">photos</a></li>
+      <li><a href="/about/" class="active">about</a></li>
+    </ul>
+  </nav>
+ 
+  <div class="page">
+    <h1 class="page-title">ABOUT</h1>
+ 
+    <div class="story-block">
+      <p class="story-text">i will tell you a couple of things about me. i'm <span>20 years old</span> and right now studying in <span>vienna</span> at the <span>SAE</span>. i'm studying <span>AUDIO ENGINEERING</span> since 2025. i love it and i use my new skills all the time for my own projects.</p>
+    </div>
+ 
+    <div class="story-block">
+      <p class="story-text">for the new album i started posting reels and tiktoks on my socials. i got all the links to all my socials down below. don't hesitate to contact me, if you like.</p>
+    </div>
+ 
+    <div class="section-label">FIND ME HERE</div>
+    <div class="socials">
+      <a class="social-link" href="https://www.youtube.com/@thejukestation" target="_blank">
+        <div class="social-platform">YOUTUBE</div>
+        <div class="social-handle">@thejukestation</div>
+      </a>
+      <a class="social-link" href="https://www.tiktok.com/@julien_keraudren" target="_blank">
+        <div class="social-platform">TIKTOK</div>
+        <div class="social-handle">@julien_keraudren</div>
+      </a>
+      <a class="social-link" href="https://www.instagram.com/julienkeraudren/" target="_blank">
+        <div class="social-platform">INSTAGRAM</div>
+        <div class="social-handle">@julienkeraudren</div>
+      </a>
+      <a class="social-link" href="https://open.spotify.com/user/31pp2mdrylbejuiri2lobzzbhswu?si=58ffdf5587924035" target="_blank">
+        <div class="social-platform">SPOTIFY</div>
+        <div class="social-handle">the juke station</div>
+      </a>
+      <a class="social-link" href="https://soundcloud.com/thejukestation" target="_blank">
+        <div class="social-platform">SOUNDCLOUD</div>
+        <div class="social-handle">thejukestation</div>
+      </a>
+      <a class="social-link" href="https://stats.fm/jukestation" target="_blank">
+        <div class="social-platform">STATS.FM</div>
+        <div class="social-handle">jukestation</div>
+      </a>
+      <a class="social-link" href="https://de.pinterest.com/thejukestation/" target="_blank">
+        <div class="social-platform">PINTEREST</div>
+        <div class="social-handle">thejukestation</div>
+      </a>
+      <a class="social-link" href="https://www.discogs.com/user/thejukestation" target="_blank">
+        <div class="social-platform">DISCOGS</div>
+        <div class="social-handle">thejukestation</div>
+      </a>
+      <a class="social-link" href="mailto:thejukestation@gmail.com">
+        <div class="social-platform">EMAIL</div>
+        <div class="social-handle">thejukestation@gmail.com</div>
+      </a>
+    </div>
+  </div>
+ 
+  <script>
+    const nav = document.querySelector("nav");
+    let lastY = 0;
+    window.addEventListener("scroll", () => {
+      if (window.innerWidth > 640) { nav.style.transform = "translateY(0)"; return; }
+      const y = window.scrollY;
+      nav.style.transform = (y > lastY && y > 80) ? "translateY(-100%)" : "translateY(0)";
+      lastY = y;
+    });
+    window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
+  </script>
+</body>
+</html>
