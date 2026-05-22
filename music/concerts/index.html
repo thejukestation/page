@@ -9,7 +9,7 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --cream: #f0e8d8; --gold: #c8a96e; --muted: rgba(240,232,216,0.65); --card-bg: rgba(0,0,0,0.35); }
-    html, body { width: 100%; background: #000; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
+    html, body { width: 100%; background: #1a0a04; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
  
     .bg { position: fixed; inset: 0; background: url('../../images/HIMMEL1.jpg') center/cover no-repeat; z-index: 0; }
     .bg-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 0; }
@@ -24,75 +24,27 @@
     .nav-links a.active { color: var(--gold); text-shadow: 0 0 12px rgba(200,169,110,0.5); }
  
     .page { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; padding: 120px 40px 80px; display: flex; flex-direction: column; gap: 50px; }
- 
     .page-title { font-size: clamp(18px, 3vw, 38px); color: var(--cream); letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(240,232,216,0.3); text-align: center; }
- 
     .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--gold); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(200,169,110,0.4); }
  
-    /* Concert list */
     .concert-list { display: flex; flex-direction: column; gap: 8px; }
- 
-    .concert-row {
-      display: grid;
-      grid-template-columns: 60px 1fr auto;
-      align-items: center;
-      gap: 16px;
-      padding: 14px 20px;
-      background: var(--card-bg);
-      border: 1px solid rgba(240,232,216,0.08);
-      border-radius: 4px;
-      transition: border-color 0.2s;
-    }
+    .concert-row { display: grid; grid-template-columns: 60px 1fr auto; align-items: center; gap: 16px; padding: 14px 20px; background: var(--card-bg); border: 1px solid rgba(240,232,216,0.08); border-radius: 4px; transition: border-color 0.2s; }
     .concert-row:hover { border-color: rgba(240,220,160,0.2); }
- 
     .concert-year { font-size: clamp(7px, 0.8vw, 9px); color: var(--gold); letter-spacing: 0.1em; }
     .concert-artist { font-family: 'VT323', monospace; font-size: clamp(20px, 2.4vw, 28px); color: var(--cream); line-height: 1; }
     .concert-city { font-family: 'VT323', monospace; font-size: clamp(16px, 1.9vw, 22px); color: var(--muted); letter-spacing: 0.05em; text-align: right; }
  
-    /* Wishlist */
-    .wish-block {
-      background: var(--card-bg);
-      border: 1px solid rgba(240,232,216,0.08);
-      border-radius: 4px;
-      padding: 24px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+    .wish-block { background: var(--card-bg); border: 1px solid rgba(240,232,216,0.08); border-radius: 4px; padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; }
     .wish-title { font-size: clamp(7px, 0.8vw, 9px); color: var(--gold); letter-spacing: 0.2em; margin-bottom: 4px; }
     .wish-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.2vw, 26px); color: var(--cream); line-height: 1.7; }
     .wish-text span { color: var(--muted); }
     .wish-divider { border: none; border-top: 1px solid rgba(240,232,216,0.08); }
  
-    /* Photo + best concert */
     .photo-section { display: flex; flex-direction: column; gap: 16px; }
- 
-    .concert-photo {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: rgba(240,232,216,0.05);
-      border: 1px dashed rgba(240,232,216,0.2);
-      border-radius: 4px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    .concert-photo { width: 100%; aspect-ratio: 16/9; background: rgba(240,232,216,0.05); border: 1px dashed rgba(240,232,216,0.2); border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
     .concert-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .concert-photo-placeholder { font-size: clamp(6px, 0.7vw, 8px); color: rgba(240,232,216,0.3); letter-spacing: 0.12em; }
  
-    .best-concert-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 22px;
-      background: var(--card-bg);
-      border: 1px solid rgba(200,169,110,0.25);
-      border-radius: 4px;
-      text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
-      cursor: pointer;
-    }
+    .best-concert-btn { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; background: var(--card-bg); border: 1px solid rgba(200,169,110,0.25); border-radius: 4px; text-decoration: none; transition: border-color 0.2s, background 0.2s; cursor: pointer; }
     .best-concert-btn:hover { border-color: rgba(200,169,110,0.5); background: rgba(30,22,8,0.55); }
     .best-concert-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--gold); letter-spacing: 0.15em; }
     .best-concert-title { font-family: 'VT323', monospace; font-size: clamp(20px, 2.5vw, 30px); color: var(--cream); margin-top: 4px; }
@@ -152,14 +104,11 @@
       <p class="wish-text"><span>Daft Punk · Wings · The Beatles · Led Zeppelin · Queen · Michael Jackson · Genesis · Fleetwood Mac</span></p>
     </div>
  
-    <!-- Photo + best concert link -->
     <div class="photo-section">
       <div class="section-label">TAME IMPALA — MILANO 2022</div>
       <div class="concert-photo">
         <img src="../../images/tame_impala_milano_2022.jpg" alt="Tame Impala Milano 2022">
       </div>
- 
-      <!-- CHANGE: replace href with the real YouTube link -->
       <a class="best-concert-btn" href="https://www.youtube.com/watch?v=NcjpFlKs1-I&t=3760s" target="_blank">
         <div>
           <div class="best-concert-label">THE BEST CONCERT I EVER WENT TO</div>
@@ -168,29 +117,18 @@
         <div class="best-concert-arrow">►</div>
       </a>
     </div>
- 
   </div>
  
   <script>
+    const nav = document.querySelector("nav");
     let lastY = 0;
     window.addEventListener("scroll", () => {
-      const nav = document.querySelector("nav");
+      if (window.innerWidth > 640) { nav.style.transform = "translateY(0)"; return; }
       const y = window.scrollY;
-      if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
-      else nav.style.transform = "translateY(0)";
+      nav.style.transform = (y > lastY && y > 80) ? "translateY(-100%)" : "translateY(0)";
       lastY = y;
     });
+    window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
   </script>
-<script>
-  let lastY = 0;
-  window.addEventListener("scroll", () => {
-    if (window.innerWidth > 640) { nav.style.transform = "translateY(0)"; return; }
-    const nav = document.querySelector("nav");
-    const y = window.scrollY;
-    if (y > lastY && y > 80) nav.style.transform = "translateY(-100%)";
-    else nav.style.transform = "translateY(0)";
-    lastY = y;
-  });
-</script>
 </body>
 </html>
