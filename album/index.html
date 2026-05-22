@@ -105,7 +105,7 @@
  
     /* Mini preview player */
     .track { grid-template-columns: 36px 1fr auto; }
-    .track-right { display: flex; align-items: center; gap: 10px; }
+ 
     .track-play {
       width: 26px; height: 26px; flex-shrink: 0;
       background: none;
@@ -134,7 +134,8 @@
     .itunes-title { font-family: 'VT323', monospace; font-size: clamp(22px, 2.6vw, 32px); color: var(--cream); line-height: 1.1; }
     .itunes-sub { font-family: 'VT323', monospace; font-size: clamp(15px, 1.7vw, 20px); color: var(--muted); margin-top: 4px; }
     .itunes-arrow { font-size: clamp(12px, 1.4vw, 16px); color: var(--purple); }
-    .track-vol-icon { font-family: 'VT323', monospace; font-size: 13px; color: var(--muted); }
+    .track-right { display: flex; align-items: center; gap: 14px; }
+    .track-vol { display: flex; align-items: center; gap: 6px; border-left: 1px solid rgba(232,220,200,0.1); padding-left: 14px; }
     input[type=range].track-vol-slider { width: 55px; height: 2px; cursor: pointer; accent-color: var(--purple); background: rgba(232,220,200,0.15); border-radius: 2px; appearance: none; -webkit-appearance: none; }
     input[type=range].track-vol-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 9px; height: 9px; border-radius: 50%; background: var(--purple); cursor: pointer; }
  
@@ -176,7 +177,7 @@
       <div class="hero-info">
         <div class="album-label">DEBUT ALBUM — 2026</div>
         <div class="album-title">Stories in Motion</div>
-        <div class="album-artist">THE JUKE STATION</div>
+        <a class="album-artist" href="/about/" style="color:var(--purple);text-decoration:none;letter-spacing:0.15em;font-size:clamp(7px,0.85vw,10px);transition:opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">THE JUKE STATION</a>
         <div class="album-meta">out may 29, 2026<br>produced & written by julien keraudren</div>
       <a class="presave-btn" href="https://distrokid.com/hyperfollow/thejukestation/stories-in-motion" target="_blank">★ presave now — out in one week</a>
       </div>
