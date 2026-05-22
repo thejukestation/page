@@ -27,14 +27,6 @@
  
     /* HERO */
     .hero { display: flex; gap: 48px; align-items: flex-start; }
-    .cover {
-      width: clamp(200px, 30vw, 340px);
-      aspect-ratio: 1;
-      flex-shrink: 0;
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow: 0 0 60px rgba(184,155,224,0.2), 0 20px 60px rgba(0,0,0,0.6);
-    }
     .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .hero-info { display: flex; flex-direction: column; gap: 16px; padding-top: 8px; }
     .album-label { font-size: clamp(6px, 0.7vw, 8px); color: var(--purple); letter-spacing: 0.25em; text-shadow: 0 0 10px rgba(184,155,224,0.5); }
@@ -136,6 +128,8 @@
     .itunes-title { font-family: 'VT323', monospace; font-size: clamp(22px, 2.6vw, 32px); color: var(--cream); line-height: 1.1; }
     .itunes-sub { font-family: 'VT323', monospace; font-size: clamp(15px, 1.7vw, 20px); color: var(--muted); margin-top: 4px; }
     .itunes-arrow { font-size: clamp(12px, 1.4vw, 16px); color: var(--purple); }
+    .track audio { display: none; }
+    .cover { width: clamp(260px, 38vw, 460px); aspect-ratio: 1; flex-shrink: 0; border-radius: 4px; overflow: hidden; box-shadow: 0 0 60px rgba(184,155,224,0.2), 0 20px 60px rgba(0,0,0,0.6); }
     .track-right { display: flex; align-items: center; gap: 14px; }
     .track-vol { display: flex; align-items: center; gap: 6px; border-left: 1px solid rgba(232,220,200,0.1); padding-left: 14px; }
     .track-vol-icon { font-size: 7px; color: var(--muted); letter-spacing: 0.1em; }
@@ -191,7 +185,7 @@
     <!-- ABOUT TEXT -->
     <div class="section-label">ABOUT THE ALBUM</div>
     <div class="text-block">
-      <p>this is my first album for the juke station. it's a <span>psychedelic pop/rock</span> album with <span>funk influences</span>. it's about <span>love and loss</span>. i started making it in november 2025, writing, arranging and making all the music on my own in my bedroom. make sure to give it a listen.</p>
+      <p>this is my first album for <a href="/about/" style="color:var(--purple);text-decoration:none;font-size:inherit;">the juke station</a>. it's a <span>psychedelic pop/rock</span> album with <span>funk influences</span>. it's about <span>love and loss</span>. i started making it in november 2025, writing, arranging and making all the music on my own in my bedroom. make sure to give it a listen.</p>
     </div>
  
     <!-- STREAMING — swap href="#" to real links when album drops -->
