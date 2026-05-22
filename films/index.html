@@ -28,10 +28,8 @@
     .nav-links a:hover { color: var(--cream); }
     .nav-links a.active { color: var(--blue); text-shadow: 0 0 12px rgba(126,200,216,0.5); }
  
-    /* PAGE — full width for film strips, centered content otherwise */
     .page { position: relative; z-index: 2; padding-top: 110px; padding-bottom: 0; display: flex; flex-direction: column; gap: 0; }
  
-    /* Centered content wrapper */
     .inner { max-width: 900px; margin: 0 auto; padding: 0 40px; }
  
     .page-title {
@@ -45,7 +43,6 @@
  
     .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--blue); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(126,200,216,0.4); margin-bottom: 16px; }
  
-    /* Intro */
     .intro-block {
       background: var(--card-bg);
       border: 1px solid rgba(126,200,216,0.12);
@@ -79,7 +76,6 @@
     .dot-b { background: #40bcf4; }
     .letterboxd-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--blue); letter-spacing: 0.1em; }
  
-    /* Favourites grid */
     .films-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 50px; }
     .film-row {
       background: var(--card-bg);
@@ -92,7 +88,6 @@
     .film-director { font-size: clamp(6px, 0.7vw, 8px); color: var(--blue); letter-spacing: 0.12em; margin-bottom: 6px; }
     .film-title { font-family: 'VT323', monospace; font-size: clamp(20px, 2.4vw, 28px); color: var(--cream); line-height: 1.1; }
  
-    /* FILM STRIPS — full width */
     .strips-section { width: 100%; margin-bottom: 50px; }
     .strips-label { max-width: 900px; margin: 0 auto; padding: 0 40px 16px; font-size: clamp(7px, 0.8vw, 9px); color: var(--blue); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(126,200,216,0.4); }
  
@@ -119,15 +114,7 @@
       letter-spacing: 0.1em;
       text-shadow: 0 1px 6px rgba(0,0,0,0.8);
     }
-    .film-strip-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-    .film-strip-placeholder-text { font-size: clamp(6px, 0.7vw, 8px); color: rgba(126,200,216,0.3); letter-spacing: 0.12em; }
  
-    /* Childhood */
     .childhood-block {
       background: var(--card-bg);
       border: 1px solid rgba(126,200,216,0.08);
@@ -138,7 +125,6 @@
     .childhood-text { font-family: 'VT323', monospace; font-size: clamp(17px, 2vw, 23px); color: var(--muted); line-height: 1.75; }
     .childhood-text span { color: var(--cream); }
  
-    /* SAMWISE QUOTE — full width, cinematic */
     .quote-section {
       width: 100%;
       background: rgba(0,0,0,0.65);
@@ -212,14 +198,14 @@
  
       <div class="section-label">MY FAVOURITE FILMS</div>
       <div class="films-grid">
-        <div class="film-row"><div class="film-director">Peter Jackson</div><div class="film-title">The Lord of the Rings Trilogy</div></div>
-        <div class="film-row"><div class="film-director">Rob Reiner</div><div class="film-title">Stand by Me</div></div>
-        <div class="film-row"><div class="film-director">Sidney Lumet</div><div class="film-title">12 Angry Men</div></div>
-        <div class="film-row"><div class="film-director">Giuseppe Tornatore</div><div class="film-title">Nuovo Cinema Paradiso</div></div>
-        <div class="film-row"><div class="film-director">Martin Scorsese</div><div class="film-title">The King of Comedy</div></div>
-        <div class="film-row"><div class="film-director">Martin Scorsese</div><div class="film-title">Taxi Driver</div></div>
-        <div class="film-row"><div class="film-director">Barry Levinson</div><div class="film-title">Rain Man</div></div>
-        <div class="film-row"><div class="film-director">Christopher Nolan</div><div class="film-title">Interstellar</div></div>
+        <div class="film-row"><div class="film-director">Peter Jackson · 2001–2003</div><div class="film-title">The Lord of the Rings Trilogy</div></div>
+        <div class="film-row"><div class="film-director">Rob Reiner · 1986</div><div class="film-title">Stand by Me</div></div>
+        <div class="film-row"><div class="film-director">Sidney Lumet · 1957</div><div class="film-title">12 Angry Men</div></div>
+        <div class="film-row"><div class="film-director">Giuseppe Tornatore · 1988</div><div class="film-title">Nuovo Cinema Paradiso</div></div>
+        <div class="film-row"><div class="film-director">Martin Scorsese · 1982</div><div class="film-title">The King of Comedy</div></div>
+        <div class="film-row"><div class="film-director">Martin Scorsese · 1976</div><div class="film-title">Taxi Driver</div></div>
+        <div class="film-row"><div class="film-director">Barry Levinson · 1988</div><div class="film-title">Rain Man</div></div>
+        <div class="film-row"><div class="film-director">Christopher Nolan · 2014</div><div class="film-title">Interstellar</div></div>
       </div>
  
       <div class="section-label">AS A KID</div>
@@ -232,22 +218,21 @@
     <div class="strips-section">
       <div class="strips-label">SOME FRAMES</div>
  
-      <!-- CHANGE: replace src with your real images, e.g. src="../images/film1.jpg" -->
       <div class="film-strip">
-        <div class="film-strip-placeholder"><div class="film-strip-placeholder-text">IMAGE COMING SOON</div></div>
-        <div class="film-strip-label">FILM TITLE HERE</div>
+        <img src="../images/BARRYLYNDON.jpg" alt="Barry Lyndon">
+        <div class="film-strip-label">STANLEY KUBRICK · BARRY LYNDON · 1975</div>
       </div>
       <div class="film-strip">
-        <div class="film-strip-placeholder"><div class="film-strip-placeholder-text">IMAGE COMING SOON</div></div>
-        <div class="film-strip-label">FILM TITLE HERE</div>
+        <img src="../images/INTERSTELLAR.jpg" alt="Interstellar">
+        <div class="film-strip-label">CHRISTOPHER NOLAN · INTERSTELLAR · 2014</div>
       </div>
       <div class="film-strip">
-        <div class="film-strip-placeholder"><div class="film-strip-placeholder-text">IMAGE COMING SOON</div></div>
-        <div class="film-strip-label">FILM TITLE HERE</div>
+        <img src="../images/12ANGRYMEN.jpg" alt="12 Angry Men">
+        <div class="film-strip-label">SIDNEY LUMET · 12 ANGRY MEN · 1957</div>
       </div>
       <div class="film-strip">
-        <div class="film-strip-placeholder"><div class="film-strip-placeholder-text">IMAGE COMING SOON</div></div>
-        <div class="film-strip-label">FILM TITLE HERE</div>
+        <img src="../images/TAXIDRIVER.jpg" alt="Taxi Driver">
+        <div class="film-strip-label">MARTIN SCORSESE · TAXI DRIVER · 1976</div>
       </div>
     </div>
  
@@ -265,17 +250,12 @@
     const nav = document.querySelector("nav");
     let lastY = 0;
     window.addEventListener("scroll", () => {
-      if (window.innerWidth > 640) {
-        nav.style.transform = "translateY(0)";
-        return;
-      }
+      if (window.innerWidth > 640) { nav.style.transform = "translateY(0)"; return; }
       const y = window.scrollY;
       nav.style.transform = (y > lastY && y > 80) ? "translateY(-100%)" : "translateY(0)";
       lastY = y;
     });
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 640) nav.style.transform = "translateY(0)";
-    });
+    window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
   </script>
 </body>
 </html>
