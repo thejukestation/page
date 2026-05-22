@@ -119,8 +119,10 @@
       border-radius: 2px;
       cursor: pointer;
       position: relative;
+      overflow: visible;
     }
-    .track-fill { height: 100%; background: var(--purple); border-radius: 2px; width: 0%; transition: width 0.1s; }
+    .track-fill { height: 100%; background: var(--purple); border-radius: 2px; width: 0%; transition: width 0.1s; position: relative; }
+    .track-fill::after { content: ''; position: absolute; right: -5px; top: 50%; transform: translateY(-50%); width: 9px; height: 9px; border-radius: 50%; background: var(--purple); pointer-events: none; }
     .track-time { font-family: 'VT323', monospace; font-size: 14px; color: var(--muted); min-width: 32px; text-align: right; }
     .itunes-btn { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; background: var(--card-bg); border: 1px solid rgba(184,155,224,0.25); border-radius: 4px; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
     .itunes-btn:hover { border-color: rgba(184,155,224,0.5); background: rgba(184,155,224,0.06); }
@@ -129,7 +131,7 @@
     .itunes-sub { font-family: 'VT323', monospace; font-size: clamp(15px, 1.7vw, 20px); color: var(--muted); margin-top: 4px; }
     .itunes-arrow { font-size: clamp(12px, 1.4vw, 16px); color: var(--purple); }
     .track audio { display: none; }
-    .cover { width: clamp(200px, 26vw, 300px); align-self: stretch; flex-shrink: 0; border-radius: 4px; overflow: hidden; box-shadow: 0 0 60px rgba(184,155,224,0.2), 0 20px 60px rgba(0,0,0,0.6); }
+    .cover { width: clamp(220px, 30vw, 340px); aspect-ratio: 1; flex-shrink: 0; border-radius: 4px; overflow: hidden; box-shadow: 0 0 60px rgba(184,155,224,0.2), 0 20px 60px rgba(0,0,0,0.6); }
     .track-right { display: flex; align-items: center; gap: 14px; }
     .track-vol { display: flex; align-items: center; gap: 6px; border-left: 1px solid rgba(232,220,200,0.1); padding-left: 14px; }
     .track-vol-icon { font-size: 7px; color: var(--muted); letter-spacing: 0.1em; }
