@@ -52,7 +52,8 @@
     .hero h1 { font-size: clamp(15px, 2.3vw, 28px); line-height: 2.2; color: var(--cream); text-shadow: 0 0 20px rgba(232,220,200,0.4), 0 0 60px rgba(180,155,224,0.2); }
     .hero h1 .accent { color: var(--purple); text-shadow: 0 0 20px rgba(184,155,224,0.6), 0 0 50px rgba(140,100,255,0.3); }
     .sub { font-family: 'VT323', monospace; font-size: clamp(18px, 2.2vw, 28px); color: var(--muted); letter-spacing: 0.1em; }
-    .pill { border: 1px solid rgba(184,155,224,0.5); border-radius: 3px; padding: 9px 20px; font-size: clamp(6px, 0.8vw, 9px); color: var(--purple); letter-spacing: 0.12em; }
+    .pill { border: 1px solid rgba(184,155,224,0.5); border-radius: 3px; padding: 9px 20px; font-size: clamp(6px, 0.8vw, 9px); color: var(--purple); letter-spacing: 0.12em; text-decoration: none; transition: background 0.2s, border-color 0.2s; }
+    .pill:hover { background: rgba(184,155,224,0.1); border-color: var(--purple); }
  
     nav { position: absolute; top: 0; left: 0; right: 0; z-index: 4; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; }
     .logo { font-size: clamp(14px, 1.8vw, 22px); line-height: 2; color: var(--cream); text-decoration: none; text-shadow: 0 0 18px rgba(232,220,200,0.7); letter-spacing: 0.06em; }
@@ -96,7 +97,7 @@
   <div class="hero">
     <h1>MUSIC.<br><span class="accent">STORIES.</span><br>IN MOTION.</h1>
     <p class="sub">a corner of the internet that's mine.</p>
-    <div class="pill">★ STORIES IN MOTION — OUT NOW</div>
+    <a class="pill" href="album/">★ STORIES IN MOTION — OUT NOW</a>
   </div>
   <nav>
     <a class="logo" href="/">THE<br>JUKE<br>STATION</a>
