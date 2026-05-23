@@ -92,7 +92,7 @@
     <div class="story">
       <div class="story-block">
         <div class="story-year">2020 — THE BEGINNING</div>
-        <p class="story-text">in 2020 my music teacher taught our class to use a simple DAW. it was called SOUNDTRAP, a free software by SPOTIFY themselves. it was very easy to use and i immediately started making my first beats.</p>
+        <p class="story-text">in 2020 my music teacher taught our class to use a simple DAW. it was called SOUNDTRAP, a free website that was owned by <span>SPOTIFY</span> at the time. it was very easy to use and i immediately started making my first beats.</p>
       </div>
       <div class="story-block">
         <div class="story-year">2021 — GOING DEEPER</div>
@@ -100,7 +100,7 @@
       </div>
       <div class="story-block">
         <div class="story-year">2022 — FIRST ALBUM</div>
-        <p class="story-text">in 2022 i made my first album — not on spotify, but only for friends and family. it was called MELTING. after that, i was hungry for more and so i started the next one.</p>
+        <p class="story-text">in 2022 i made my first album — not on spotify, but only for friends and family. it was called <span style="cursor:pointer;text-decoration:underline;text-underline-offset:3px;" onclick="document.getElementById('melting-popup').style.display='flex'">MELTING</span>. after that, i was hungry for more and so i started the next one.</p>
       </div>
       <div class="story-block">
         <div class="story-year">2023 — GOING ONLINE</div>
@@ -122,6 +122,18 @@
           <div class="album-cta">listen now ►</div>
         </div>
       </a>
+    </div>
+  </div>
+ 
+  <!-- MELTING POPUP -->
+  <div class="popup" id="melting-popup" onclick="if(event.target===this)this.style.display='none'">
+    <div class="popup-box">
+      <div class="popup-header">
+        <div class="popup-title">MELTING — 2022</div>
+        <button class="popup-close" onclick="document.getElementById('melting-popup').style.display='none'">✕ close</button>
+      </div>
+      <p style="font-family:'VT323',monospace;font-size:clamp(17px,2vw,22px);color:rgba(240,232,216,0.75);line-height:1.6;">my first album, made for friends and family only. never officially released — but you can listen to it on youtube.</p>
+      <a class="popup-link" href="https://www.youtube.com/playlist?list=PLQQhdH1bhSNVDkGlTQEjjCrYJ_rN2JpRb" target="_blank">► listen on youtube</a>
     </div>
   </div>
  
