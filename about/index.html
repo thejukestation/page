@@ -31,6 +31,7 @@
  
     .page-title { font-size: clamp(18px, 3vw, 38px); color: var(--cream); letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(196,160,216,0.4); text-align: center; }
  
+    .tagline { font-family: 'VT323', monospace; font-size: clamp(22px, 2.8vw, 34px); color: var(--cream); text-align: center; line-height: 1.5; text-shadow: 0 0 20px rgba(196,160,216,0.3); }
     .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--purple); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(196,160,216,0.4); }
  
     .story-block { background: var(--card-bg); border: 1px solid rgba(196,160,216,0.12); border-radius: 4px; padding: 24px 28px; }
@@ -84,12 +85,30 @@
   <div class="page">
     <h1 class="page-title">ABOUT</h1>
  
+    <p class="tagline">i write, record and mix my own music from scratch.<br>bass is my instrument. logic pro is my studio.</p>
+ 
     <div class="story-block">
-      <p class="story-text">i will tell you a couple of things about me. i'm <span>20 years old</span> and right now studying in <span>vienna</span> at the <span>SAE</span>. i'm studying <span>AUDIO ENGINEERING</span> since 2025. i love it and i use my new skills all the time for my own projects.</p>
+      <p class="story-text">i'm <span>20 years old</span>, studying <span>audio engineering</span> at the <span>SAE in vienna</span> since 2025. i love it and i use everything i learn directly on my own projects.</p>
     </div>
  
     <div class="story-block">
-      <p class="story-text">for the new album <a href="/album/" style="color:var(--purple);text-decoration:none;border-bottom:1px solid rgba(196,160,216,0.4);transition:border-color 0.2s;" onmouseover="this.style.borderColor='var(--purple)'" onmouseout="this.style.borderColor='rgba(196,160,216,0.4)'">(Stories in Motion ►)</a> i started posting reels and tiktoks on my socials. i got all the links to all my socials down below. don't hesitate to contact me, if you like.</p>
+      <p class="story-text">for the new album <a href="/album/" style="color:var(--purple);text-decoration:none;border-bottom:1px solid rgba(196,160,216,0.4);">(stories in motion ►)</a> i started posting reels and tiktoks on my socials. all the links are down below — don't hesitate to reach out.</p>
+    </div>
+ 
+    <div class="section-label">WHAT I DO</div>
+ 
+    <div class="story-block">
+      <p class="story-text">
+        i'm a <span>bassist</span> mainly — that's what i play best. but over the years i also picked up <span>guitar</span>, <span>drums</span>, <span>piano</span> and <span>vocals</span>, and all of them end up on my records at some point.<br><br>
+        on the audio side, <span>mixing</span>, <span>production</span>, <span>recording</span> and <span>songwriting</span> are where i feel strongest. i track instruments, set up mics, do the whole thing myself from start to finish. software-wise i live in <span>logic pro</span>, but i've got solid experience in <span>pro tools</span>, <span>fl studio</span> and <span>ableton</span> too.<br><br>
+        i speak <span>german</span>, <span>french</span> and <span>english</span>. and if you want to <span>jam</span> or need someone to <span>record</span> you — i'm open, just keep it small and personal.
+      </p>
+    </div>
+ 
+    <div class="section-label">WHY THIS WEBSITE</div>
+ 
+    <div class="story-block">
+      <p class="story-text">i made this to introduce myself — not just as a musician, but as a person. every section is a different part of me: the music i make, the films i love, the games i grew up with, the art i photograph. the idea is that all of it together gives you a better picture than any one thing alone could. i wanted to build something you could actually spend time on and still find something new.</p>
     </div>
  
     <div class="section-label">FIND ME HERE</div>
@@ -157,4 +176,3 @@
     window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
   </script>
 </body>
-</html>
