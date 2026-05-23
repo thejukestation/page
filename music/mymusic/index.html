@@ -55,6 +55,7 @@
     .popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100; align-items: center; justify-content: center; padding: 20px; }
     .popup-box { background: #0a0806; border: 1px solid rgba(200,169,110,0.3); border-radius: 6px; padding: 32px; max-width: 500px; width: 100%; display: flex; flex-direction: column; gap: 20px; }
     .popup-title { font-size: clamp(9px, 1vw, 12px); color: var(--gold); letter-spacing: 0.15em; }
+    .popup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
     .popup-links { display: flex; flex-direction: column; gap: 12px; }
     .popup-link { font-family: 'VT323', monospace; font-size: clamp(18px, 2vw, 24px); color: var(--cream); text-decoration: none; letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
     .popup-link:hover { color: var(--gold); }
@@ -92,19 +93,19 @@
     <div class="story">
       <div class="story-block">
         <div class="story-year">2020 — THE BEGINNING</div>
-        <p class="story-text">in 2020 my music teacher taught our class to use a simple DAW. it was called SOUNDTRAP, a free website that was owned by <span>SPOTIFY</span> at the time. it was very easy to use and i immediately started making my first beats.</p>
+        <p class="story-text">in <span>2020</span> my music teacher taught our class to use a simple <span>DAW</span>. it was called <span>SOUNDTRAP</span>, a free website that was owned by <span>SPOTIFY</span> at the time. it was very easy to use and i immediately started making my first beats.</p>
       </div>
       <div class="story-block">
         <div class="story-year">2021 — GOING DEEPER</div>
-        <p class="story-text">after a couple months i already made a ton of tracks and they got better and better. in 2021 i recorded with an audio interface for the first time. it blew my mind and i finally could play REAL instruments on my songs.</p>
+        <p class="story-text">after a couple months i already made a ton of tracks and they got better and better. in <span>2021</span> i recorded with an <span>AUDIO INTERFACE</span> for the first time. it blew my mind and i finally could play <span>REAL</span> instruments on my songs.</p>
       </div>
       <div class="story-block">
         <div class="story-year">2022 — FIRST ALBUM</div>
-        <p class="story-text">in 2022 i made my first album — not on spotify, but only for friends and family. it was called <span style="cursor:pointer;text-decoration:underline;text-underline-offset:3px;" onclick="document.getElementById('melting-popup').style.display='flex'">MELTING</span>. after that, i was hungry for more and so i started the next one.</p>
+        <p class="story-text">in <span>2022</span> i made my first album — not on spotify, but only for friends and family. it was called <span style="cursor:pointer;color:#c8a96e;text-decoration:underline;text-underline-offset:3px;" onclick="document.getElementById('melting-popup').style.display='flex'">MELTING</span>. after that, i was hungry for more and so i started the next one.</p>
       </div>
       <div class="story-block">
         <div class="story-year">2023 — GOING ONLINE</div>
-        <p class="story-text">one year later i started posting online and started my career on spotify and all the other platforms. it didn't perform very well, so i took it down. some of the music is still online on youtube though.</p>
+        <p class="story-text">one year later i started posting online and started my career on <span>SPOTIFY</span> and all the other platforms. it didn't perform very well, so i took it down. some of the music is still online on <span>YOUTUBE</span> though.</p>
         <button class="old-videos-btn" onclick="document.getElementById('videos-popup').style.display='flex'">► old youtube videos</button>
       </div>
     </div>
@@ -132,8 +133,8 @@
         <div class="popup-title">MELTING — 2022</div>
         <button class="popup-close" onclick="document.getElementById('melting-popup').style.display='none'">✕ close</button>
       </div>
-      <p style="font-family:'VT323',monospace;font-size:clamp(17px,2vw,22px);color:rgba(240,232,216,0.75);line-height:1.6;">my first album, made for friends and family only. never officially released — but you can listen to it on youtube.</p>
-      <a class="popup-link" href="https://www.youtube.com/playlist?list=PLQQhdH1bhSNVDkGlTQEjjCrYJ_rN2JpRb" target="_blank">► listen on youtube</a>
+      <p style="font-family:'VT323',monospace;font-size:clamp(17px,2vw,22px);color:rgba(240,232,216,0.75);line-height:1.6;">my first album, made for friends and family only. once on spotify — but now you can listen to it on youtube.</p>
+      <a class="popup-link" href="https://www.youtube.com/playlist?list=PLQQhdH1bhSNVDkGlTQEjjCrYJ_rN2JpRb" target="_blank">listen on youtube</a>
     </div>
   </div>
  
