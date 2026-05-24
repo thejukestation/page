@@ -79,14 +79,16 @@
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 4px 12px; }
       .nav-links a { font-size: 8px; }
       .orb { top: 14vh; width: 70vw; }
-      .hero { top: calc(14vh + 70vw - 20px); }
+      .hero { top: calc(14vh + 70vw - 70px); }
       .dune { bottom: 0; height: 175vw; object-fit: cover; object-position: center 8%; }
       .hero h1 { font-size: 12px; }
-      .sub { font-size: 16px; }
-      .cards { max-height: 42vh; overflow: hidden; }
-      .card { padding: 5px 14px; gap: 10px; }
-      .card-title { font-size: 18px; }
-      .card-tag { font-size: 5px; min-width: 45px; }
+      .sub { font-size: 15px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { padding: 3px 14px; gap: 8px; border-right: none; border-bottom: 1px solid rgba(232,220,200,0.08); min-height: 0; }
+      .card:last-child { border-bottom: none; }
+      .card-title { font-size: 15px; line-height: 1.2; }
+      .card-tag { font-size: 5px; min-width: 45px; line-height: 1; }
+      .card-desc { display: none; }
       .pill { font-size: 6px; padding: 7px 12px; }
       .cards { grid-template-columns: 1fr; }
       .card { border-right: none; border-bottom: 1px solid rgba(232,220,200,0.08); padding: 11px 18px; display: flex; align-items: center; gap: 14px; }
