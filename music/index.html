@@ -7,94 +7,486 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
-  <title>Music — The Juke Station</title>
+  <title>you found it.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Alfa+Slab+One&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --cream: #f0e8d8; --purple: #c8a96e; --muted: rgba(240,232,216,0.65); --card-bg: rgba(0,0,0,0.35); }
-    html, body { width: 100%; height: 100%; background: #1a0a04; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
-    .scene { position: relative; width: 100%; min-height: 100vh; display: flex; flex-direction: column; }
-    .bg-stars { position: fixed; inset: 0; background: url('../images/HIMMEL1.jpg') center/cover no-repeat; z-index: 0; }
-    .bg-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 0; }
+    :root { --cream: #e8dcc8; --muted: rgba(232,220,200,0.55); }
+    html, body { width: 100%; height: 100vh; background: #05030f; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow: hidden; }
  
-    nav { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; }
-    .back { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
-    .back:hover { color: var(--cream); }
+    .bg { position: fixed; inset: 0; background: url('../images/STARS.jpg') center/cover no-repeat; opacity: 0.75; z-index: 0; }
+    .bg-overlay { position: fixed; inset: 0; background: rgba(0,0,5,0.2); z-index: 0; }
+ 
+    .orb-est {
+      position: fixed;
+      top: calc(80px + clamp(200px, 30vw, 390px) * 0.53);
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(200px, 30vw, 380px);
+      z-index: 3;
+      pointer-events: none;
+    }
+ 
+    /* Satellite */
+    @keyframes satelliteFly {
+      0%   { offset-distance: 0%;   opacity: 0; }
+      5%   { opacity: 1; }
+      95%  { opacity: 1; }
+      100% { offset-distance: 100%; opacity: 0; }
+    }
+    .satellite {
+      position: fixed;
+      z-index: 1;
+      pointer-events: none;
+      font-size: 22px;
+      line-height: 1;
+      offset-path: path('M -100,750 C 150,200 500,-180 900,-120 C 1200,-60 1400,350 1750,780');
+      animation: satelliteFly 42s linear infinite;
+      filter: blur(0.3px);
+    }
+ 
+    @keyframes orbGlow {
+      0%,100% { box-shadow: 0 0 60px rgba(200,180,240,0.2), 0 0 120px rgba(200,180,240,0.07); }
+      50%      { box-shadow: 0 0 90px rgba(200,180,240,0.38), 0 0 180px rgba(200,180,240,0.15); }
+    }
+ 
+    /* ORB — behind the dune */
+    .anim-slot {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: clamp(200px, 30vw, 390px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      z-index: 1;
+      animation: orbGlow 6s ease-in-out infinite;
+    }
+    .anim-slot video { width: 100%; height: 100%; object-fit: cover; display: block; filter: contrast(1.08) saturate(1.05); }
+    .anim-slot::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 500px 500px;
+      opacity: 0.28;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+ 
+    /* Full-page grain removed — only orb grain remains */
+ 
+    /* DUNE — same as homepage */
+    .dune {
+      position: fixed;
+      bottom: -80px; left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 2;
+      pointer-events: none;
+    }
+ 
+    /* BACK LINK */
+    .back { position: fixed; top: 24px; left: 36px; z-index: 10; font-size: clamp(12px, 1.5vw, 18px); color: var(--cream); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; gap: 10px; text-shadow: 0 1px 6px rgba(0,0,0,0.9); }
+    .back:hover { color: #fff; }
     .back::before { content: '◄'; font-size: 0.8em; }
-    .nav-links { list-style: none; display: flex; flex-direction: column; align-items: flex-end; gap: 0; }
-    .nav-links a { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; line-height: 2.2; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--cream); }
-    .nav-links a.active { color: var(--purple); text-shadow: 0 0 12px rgba(200,169,110,0.5); }
  
-    .content { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 20px 40px 60px; gap: 32px; text-align: center; }
-    .page-title { font-size: clamp(22px, 4vw, 52px); color: var(--cream); text-shadow: 0 0 20px rgba(240,232,216,0.4), 0 0 60px rgba(200,169,110,0.2); letter-spacing: 0.08em; }
-    .quote p { font-family: 'VT323', monospace; font-size: clamp(18px, 2.2vw, 26px); color: var(--muted); letter-spacing: 0.05em; }
-    .quote cite { display: block; margin-top: 8px; font-family: 'Press Start 2P', monospace; font-size: clamp(7px, 0.8vw, 10px); color: rgba(232,220,200,0.65); letter-spacing: 0.1em; font-style: normal; text-shadow: 0 0 10px rgba(200,169,110,0.3); }
+    /* PAGE CONTENT — in front of dune */
+    .page {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: clamp(360px, 54vw, 560px) 40px 20px;
+      max-width: 660px;
+      margin: 0 auto;
+      text-align: center;
+    }
  
-    .cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; max-width: 1040px; }
-    .cat { display: flex; flex-direction: column; justify-content: flex-end; padding: 24px 22px 20px; background: var(--card-bg); border: 1px solid rgba(232,220,200,0.1); border-radius: 4px; text-decoration: none; min-height: 160px; transition: border-color 0.25s, background 0.25s; }
-    .cat:hover { border-color: rgba(240,220,160,0.25); background: rgba(30,22,8,0.55); }
-    .cat-tag { font-size: clamp(7px, 0.8vw, 9px); color: var(--purple); letter-spacing: 0.18em; margin-bottom: 10px; text-shadow: 0 0 10px rgba(200,169,110,0.4); }
-    .cat-title { font-family: 'VT323', monospace; font-size: clamp(26px, 3vw, 40px); color: var(--cream); line-height: 1.15; margin-bottom: 6px; letter-spacing: 0.06em; }
-    .cat-desc { font-family: 'VT323', monospace; font-size: clamp(15px, 1.8vw, 21px); color: var(--muted); line-height: 1.4; }
-    .cat-arrow { margin-top: 12px; font-size: clamp(6px, 0.75vw, 9px); color: var(--purple); opacity: 0; transform: translateX(-4px); transition: opacity 0.2s, transform 0.2s; letter-spacing: 0.1em; }
-    .cat-arrow::after { content: ' ►'; font-size: 0.9em; }
-    .cat:hover .cat-arrow { opacity: 1; transform: translateX(0); }
+    .congrats { font-size: clamp(11px, 1.4vw, 17px); color: var(--cream); letter-spacing: 0.18em; text-shadow: 0 0 20px rgba(232,220,200,0.4); }
+    .message { font-family: 'VT323', monospace; font-size: clamp(20px, 2.6vw, 32px); color: var(--muted); line-height: 1.3; }
+ 
+    /* PLAYER */
+    .player-box {
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(232,220,200,0.15);
+      border-radius: 6px;
+      padding: 16px 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .player-header { display: flex; justify-content: space-between; align-items: center; }
+    .player-track { font-family: 'VT323', monospace; font-size: clamp(17px, 2vw, 23px); color: var(--cream); }
+    .library-btn {
+      background: none;
+      border: 1px solid rgba(232,220,200,0.3);
+      border-radius: 3px;
+      color: var(--cream);
+      cursor: pointer;
+      font-family: monospace;
+      font-size: 12px;
+      height: 28px;
+      padding: 0 12px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .library-btn:hover { background: rgba(232,220,200,0.08); border-color: rgba(232,220,200,0.4); }
+ 
+    /* Library popup */
+    .lib-popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 200; align-items: center; justify-content: center; padding: 40px 20px; cursor: pointer; }
+    .lib-popup.open { display: flex; }
+    .lib-box { background: #0c0806; border: 1px solid rgba(232,220,200,0.2); border-radius: 6px; width: 100%; max-width: 420px; display: flex; flex-direction: column; cursor: default; max-height: 70vh; overflow: hidden; }
+    .lib-header { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px; border-bottom: 1px solid rgba(232,220,200,0.1); position: sticky; top: 0; background: #0c0806; }
+    .lib-title { font-size: clamp(7px, 0.8vw, 9px); color: var(--cream); letter-spacing: 0.18em; }
+    .lib-close { font-family: 'Press Start 2P', monospace; font-size: 6px; color: rgba(232,220,200,0.4); background: none; border: 1px solid rgba(232,220,200,0.15); border-radius: 3px; padding: 6px 10px; cursor: pointer; letter-spacing: 0.08em; }
+    .lib-close:hover { color: var(--cream); }
+    .lib-list { overflow-y: auto; padding: 8px 0; scrollbar-width: none; -ms-overflow-style: none; }
+    .lib-list::-webkit-scrollbar { display: none; }
+    .lib-item { font-family: 'VT323', monospace; font-size: clamp(17px, 2vw, 22px); color: rgba(232,220,200,0.7); padding: 10px 22px; cursor: pointer; transition: background 0.15s, color 0.15s; display: flex; align-items: center; gap: 12px; }
+    .lib-item:hover { background: rgba(232,220,200,0.06); color: var(--cream); }
+    .lib-item.playing { color: var(--cream); }
+    .lib-item.playing::before { content: '►'; font-size: 0.7em; color: #c8a96e; }
+    .lib-item:not(.playing)::before { content: ''; display: inline-block; width: 0.7em; }
+    .player-track span { color: rgba(232,220,200,0.7); }
+ 
+    .player-controls { display: flex; align-items: center; gap: 8px; }
+ 
+    .ctrl-btn {
+      background: none;
+      border: 1px solid rgba(232,220,200,0.3);
+      border-radius: 3px;
+      color: var(--cream);
+      cursor: pointer;
+      font-family: monospace;
+      font-size: 12px;
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+      white-space: nowrap;
+      padding: 0 10px;
+      width: auto;
+    }
+    .ctrl-btn.loop-active { color: #c8a96e !important; border-color: #c8a96e !important; background: rgba(200,169,110,0.18) !important; }
+ 
+    .ctrl-btn-play {
+      background: none;
+      border: 1px solid rgba(232,220,200,0.3);
+      border-radius: 3px;
+      color: var(--cream);
+      cursor: pointer;
+      font-family: monospace;
+      font-size: 12px;
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .ctrl-btn-play:hover { background: rgba(232,220,200,0.08); }
+ 
+    .progress-bar { flex: 1; height: 5px; background: rgba(232,220,200,0.15); border-radius: 3px; cursor: pointer; position: relative; overflow: visible; }
+    .progress-fill { height: 100%; background: var(--cream); border-radius: 3px; width: 0%; transition: width 0.1s; position: relative; }
+    .progress-fill::after { content: ''; position: absolute; right: -6px; top: 50%; transform: translateY(-50%); width: 13px; height: 13px; border-radius: 50%; background: var(--cream); pointer-events: none; }
+    .player-time { font-family: 'VT323', monospace; font-size: 14px; color: var(--muted); min-width: 38px; text-align: right; }
+ 
+    .vol-row { display: flex; align-items: center; gap: 6px; }
+    .vol-label { font-size: 6px; color: var(--muted); letter-spacing: 0.1em; }
+    input[type=range].vol-slider { width: 80px; height: 2px; cursor: pointer; accent-color: var(--cream); background: rgba(232,220,200,0.12); border-radius: 2px; appearance: none; -webkit-appearance: none; }
+    input[type=range].vol-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 8px; height: 8px; border-radius: 50%; background: var(--cream); cursor: pointer; }
  
     @media (max-width: 640px) {
-      nav { padding: 16px 20px; }
-      .back { font-size: 10px; }
-      .nav-links a { font-size: 10px; }
-      .content { padding: 16px 20px 50px; gap: 24px; }
-      .cats { grid-template-columns: 1fr; gap: 10px; }
-      .cat { min-height: 100px; padding: 16px 18px 14px; }
+      .back { top: 14px; left: 16px; font-size: 9px; }
+      .page { padding-top: clamp(240px, 55vw, 340px); padding-left: 20px; padding-right: 20px; }
+      .dune { bottom: -40px; }
     }
   </style>
 </head>
 <body>
-<div class="scene">
-  <div class="bg-stars"></div>
+  <div class="bg"></div>
   <div class="bg-overlay"></div>
-  <nav>
-    <a class="back" href="../">back</a>
-    <ul class="nav-links">
-      <li><a href="./" class="active">music</a></li>
-      <li><a href="../films/">films</a></li>
-      <li><a href="../games/">games</a></li>
-      <li><a href="../art/">art</a></li>
-      <li><a href="../photos/">photos</a></li>
-      <li><a href="../about/">about</a></li>
-    </ul>
-  </nav>
-  <div class="content">
-    <h1 class="page-title">MUSIC</h1>
-    <div class="quote">
-      <p>"music in itself is healing. it's an explosive expression of humanity."</p>
-      <cite>— Billy Joel</cite>
-    </div>
-    <div class="cats">
-      <a class="cat" href="mymusic/">
-        <div class="cat-tag">MY MUSIC</div>
-        <div class="cat-title">my music</div>
-        <div class="cat-desc">stories in motion & everything i've made.</div>
-        <div class="cat-arrow">enter</div>
-      </a>
-      <a class="cat" href="collections/">
-        <div class="cat-tag">COLLECTIONS</div>
-        <div class="cat-title">my collections</div>
-        <div class="cat-desc">vinyls, cds & everything i've collected.</div>
-        <div class="cat-arrow">enter</div>
-      </a>
-      <a class="cat" href="concerts/">
-        <div class="cat-tag">LIVE</div>
-        <div class="cat-title">concerts</div>
-        <div class="cat-desc">the most important ones i've been to.</div>
-        <div class="cat-arrow">enter</div>
-      </a>
+ 
+  <!-- Satellite flying in arc behind orb -->
+  <div class="satellite">🛰️</div>
+ 
+  <div class="anim-slot">
+    <video src="../images/HIMMELANIMATION.mp4" autoplay loop muted playsinline></video>
+  </div>
+ 
+  <!-- Radio Station text with retro outline + glow -->
+  <svg class="orb-label-svg" viewBox="0 0 600 180" overflow="visible" xmlns="http://www.w3.org/2000/svg"
+    style="position:fixed;left:50%;transform:translateX(-50%);top:calc(80px + clamp(200px,30vw,390px)*0.31);width:clamp(320px,55vw,700px);z-index:2;pointer-events:none;">
+    <defs>
+      <filter id="retro" x="-20%" y="-40%" width="140%" height="180%">
+        <!-- Hard shadow with slight blur -->
+        <feOffset in="SourceAlpha" dx="6" dy="10" result="shadowOffset"/>
+        <feGaussianBlur in="shadowOffset" stdDeviation="1.5" result="shadowBlur"/>
+        <feFlood flood-color="#050510" flood-opacity="1" result="shadowColor"/>
+        <feComposite in="shadowColor" in2="shadowBlur" operator="in" result="hardShadow"/>
+        <!-- Golden glow centered on text -->
+        <feGaussianBlur in="SourceAlpha" stdDeviation="5" result="blurredAlpha"/>
+        <feFlood flood-color="#a07820" flood-opacity="0.75" result="glowColor"/>
+        <feComposite in="glowColor" in2="blurredAlpha" operator="in" result="glow"/>
+        <!-- Merge: shadow → glow → text -->
+        <feMerge>
+          <feMergeNode in="hardShadow"/>
+          <feMergeNode in="glow"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      <path id="main-arc" d="M -50,60 A 900,180 0 0,1 650,60"/>
+      <path id="est-arc"  d="M 80,100 A 600,120 0 0,0 520,100"/>
+    </defs>
+    <!-- Main text with outline -->
+    <text font-family="'Alfa Slab One', serif" font-size="44" fill="#a07828"
+          stroke="#e8dcc8" stroke-width="1.5" paint-order="stroke fill"
+          letter-spacing="3" filter="url(#retro)">
+      <textPath href="#main-arc" startOffset="50%" text-anchor="middle">· THE JUKE RADIO STATION ·</textPath>
+    </text>
+    <!-- Est text with outline -->
+    <text font-family="'Alfa Slab One', serif" font-size="24" fill="#a07828"
+          stroke="#e8dcc8" stroke-width="1" paint-order="stroke fill"
+          letter-spacing="5" filter="url(#retro)">
+      <textPath href="#est-arc" startOffset="50%" text-anchor="middle">est. 2026</textPath>
+    </text>
+  </svg>
+ 
+  <img class="dune" src="../images/DUNE.webp" alt="">
+  <a class="back" href="/">back</a>
+ 
+  <div class="page">
+    <div class="congrats">★ congrats! you found the secret page. ★</div>
+    <p class="message">now sit back, relax, just leave this tab open<br>and enjoy the music. :)</p>
+ 
+    <div class="player-box">
+      <div class="player-header">
+        <div class="player-track">now playing: <span id="track-name">—</span></div>
+        <button class="library-btn" id="btn-library">☰ library</button>
+      </div>
+      <div class="player-controls">
+        <button class="ctrl-btn" id="btn-prev">◄ prev</button>
+        <button class="ctrl-btn-play" id="btn-play">►</button>
+        <div class="progress-bar" id="prog-bar">
+          <div class="progress-fill" id="prog-fill"></div>
+        </div>
+        <div class="player-time" id="player-time">0:00</div>
+        <button class="ctrl-btn" id="btn-loop" title="loop">↺</button>
+        <button class="ctrl-btn" id="btn-next">next ►</button>
+      </div>
+      <div class="vol-row">
+        <span class="vol-label">VOL</span>
+        <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.01" value="0.3">
+      </div>
     </div>
   </div>
-</div>
+ 
+  <!-- Library popup -->
+  <div class="lib-popup" id="lib-popup" onclick="if(event.target===this)closeLib()">
+    <div class="lib-box">
+      <div class="lib-header">
+        <div class="lib-title">LIBRARY</div>
+        <button class="lib-close" onclick="closeLib()">✕ close</button>
+      </div>
+      <div class="lib-list" id="lib-list"></div>
+    </div>
+  </div>
+ 
+  <audio id="secret-audio"></audio>
+ 
+  <script>
+    const allSlots = [
+      { name: "secret 01", src: "../audio/secret01.mp3" },
+      { name: "secret 02", src: "../audio/secret02.mp3" },
+      { name: "secret 03", src: "../audio/secret03.mp3" },
+      { name: "secret 04", src: "../audio/secret04.mp3" },
+      { name: "secret 05", src: "../audio/secret05.mp3" },
+      { name: "secret 06", src: "../audio/secret06.mp3" },
+      { name: "secret 07", src: "../audio/secret07.mp3" },
+      { name: "secret 08", src: "../audio/secret08.mp3" },
+      { name: "secret 09", src: "../audio/secret09.mp3" },
+      { name: "secret 10", src: "../audio/secret10.mp3" },
+      { name: "secret 11", src: "../audio/secret11.mp3" },
+      { name: "secret 12", src: "../audio/secret12.mp3" },
+      { name: "secret 13", src: "../audio/secret13.mp3" },
+      { name: "secret 14", src: "../audio/secret14.mp3" },
+      { name: "secret 15", src: "../audio/secret15.mp3" },
+      { name: "secret 16", src: "../audio/secret16.mp3" },
+      { name: "secret 17", src: "../audio/secret17.mp3" },
+      { name: "secret 18", src: "../audio/secret18.mp3" },
+      { name: "secret 19", src: "../audio/secret19.mp3" },
+      { name: "secret 20", src: "../audio/secret20.mp3" },
+      { name: "secret 21", src: "../audio/secret21.mp3" },
+      { name: "secret 22", src: "../audio/secret22.mp3" },
+      { name: "secret 23", src: "../audio/secret23.mp3" },
+      { name: "secret 24", src: "../audio/secret24.mp3" },
+      { name: "secret 25", src: "../audio/secret25.mp3" },
+      { name: "secret 26", src: "../audio/secret26.mp3" },
+      { name: "secret 27", src: "../audio/secret27.mp3" },
+      { name: "secret 28", src: "../audio/secret28.mp3" },
+      { name: "secret 29", src: "../audio/secret29.mp3" },
+      { name: "secret 30", src: "../audio/secret30.mp3" },
+    ];
+ 
+    const audio     = document.getElementById('secret-audio');
+    const btnPlay   = document.getElementById('btn-play');
+    const btnNext   = document.getElementById('btn-next');
+    const btnPrev   = document.getElementById('btn-prev');
+    const fill      = document.getElementById('prog-fill');
+    const timeEl    = document.getElementById('player-time');
+    const trackEl   = document.getElementById('track-name');
+    const progBar   = document.getElementById('prog-bar');
+    const volSlider = document.getElementById('vol-slider');
+ 
+    let playlist = [];
+    let currentIdx = -1;
+    let history = [];
+    audio.volume = 0.3;
+ 
+    // Probe which files exist
+    let probesDone = 0;
+    allSlots.forEach(slot => {
+      const probe = new Audio();
+      probe.addEventListener('canplaythrough', () => {
+        playlist.push(slot);
+        checkDone();
+      }, { once: true });
+      probe.addEventListener('error', () => { checkDone(); }, { once: true });
+      probe.src = slot.src;
+    });
+ 
+    function checkDone() {
+      probesDone++;
+      if (probesDone === allSlots.length && playlist.length > 0) {
+        currentIdx = Math.floor(Math.random() * playlist.length);
+        audio.src = playlist[currentIdx].src;
+        trackEl.textContent = playlist[currentIdx].name;
+      }
+    }
+ 
+    function fmt(s) {
+      return Math.floor(s/60) + ':' + String(Math.floor(s%60)).padStart(2,'0');
+    }
+ 
+    function loadAndPlay(idx) {
+      if (currentIdx !== -1) history.push(currentIdx);
+      currentIdx = idx;
+      audio.src = playlist[idx].src;
+      trackEl.textContent = playlist[idx].name;
+      fill.style.width = '0%';
+      timeEl.textContent = '0:00';
+      audio.play().then(() => { btnPlay.textContent = '▐▐'; }).catch(() => {});
+    }
+ 
+    let recentlyPlayed = [];
+ 
+    function randomNext() {
+      if (playlist.length <= 1) return 0;
+      const avoid = Math.min(Math.floor(playlist.length / 2), 4);
+      let available = playlist.map((_, i) => i).filter(i => !recentlyPlayed.includes(i) && i !== currentIdx);
+      if (available.length === 0) {
+        recentlyPlayed = currentIdx !== -1 ? [currentIdx] : [];
+        available = playlist.map((_, i) => i).filter(i => i !== currentIdx);
+      }
+      const next = available[Math.floor(Math.random() * available.length)];
+      recentlyPlayed.push(next);
+      if (recentlyPlayed.length > avoid) recentlyPlayed.shift();
+      return next;
+    }
+ 
+    btnPlay.addEventListener('click', () => {
+      if (!playlist.length) return;
+      if (currentIdx === -1) { loadAndPlay(randomNext()); return; }
+      if (audio.paused) {
+        audio.play().then(() => { btnPlay.textContent = '▐▐'; }).catch(() => {});
+      } else {
+        audio.pause(); btnPlay.textContent = '►';
+      }
+    });
+ 
+    const btnLoop   = document.getElementById('btn-loop');
+    let looping = false;
+    btnLoop.addEventListener('click', () => {
+      looping = !looping;
+      audio.loop = looping;
+      btnLoop.classList.toggle('loop-active', looping);
+    });
+    btnPrev.addEventListener('click', () => {
+      if (!playlist.length) return;
+      if (audio.currentTime > 3) {
+        audio.currentTime = 0;
+      } else if (history.length > 0) {
+        const prevIdx = history.pop();
+        currentIdx = prevIdx;
+        audio.src = playlist[prevIdx].src;
+        trackEl.textContent = playlist[prevIdx].name;
+        fill.style.width = '0%';
+        timeEl.textContent = '0:00';
+        audio.play().then(() => { btnPlay.textContent = '▐▐'; }).catch(() => {});
+      } else {
+        audio.currentTime = 0;
+      }
+    });
+ 
+    audio.addEventListener('timeupdate', () => {
+      if (!audio.duration) return;
+      fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      timeEl.textContent = fmt(audio.currentTime);
+    });
+ 
+    audio.addEventListener('ended', () => { if (playlist.length && !looping) loadAndPlay(randomNext()); });
+    btnNext.addEventListener('click', () => { if (playlist.length) loadAndPlay(randomNext()); });
+ 
+    progBar.addEventListener('click', (e) => {
+      if (!audio.duration) return;
+      const rect = progBar.getBoundingClientRect();
+      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+    });
+ 
+    volSlider.addEventListener('input', () => { audio.volume = parseFloat(volSlider.value); });
+ 
+    const btnLibrary = document.getElementById('btn-library');
+ 
+    function buildLibrary() {
+      const list = document.getElementById('lib-list');
+      list.innerHTML = '';
+      const sorted = [...playlist].sort((a, b) => a.name.localeCompare(b.name));
+      sorted.forEach((track) => {
+        const realIdx = playlist.indexOf(track);
+        const item = document.createElement('div');
+        item.className = 'lib-item' + (realIdx === currentIdx ? ' playing' : '');
+        item.id = 'lib-item-' + realIdx;
+        item.textContent = track.name;
+        item.addEventListener('click', () => {
+          loadAndPlay(realIdx);
+          document.querySelectorAll('.lib-item').forEach(el => el.classList.remove('playing'));
+          item.classList.add('playing');
+        });
+        list.appendChild(item);
+      });
+    }
+ 
+    function closeLib() {
+      document.getElementById('lib-popup').classList.remove('open');
+    }
+ 
+    btnLibrary.addEventListener('click', () => {
+      buildLibrary();
+      document.getElementById('lib-popup').classList.add('open');
+    });
+ 
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLib(); });
+ 
+    document.addEventListener('touchstart', () => {
+      try { const p = audio.play(); if (p) p.then(() => audio.pause()).catch(() => {}); } catch(e) {}
+    }, { once: true });
+  </script>
   <footer style="position:relative;z-index:2;text-align:center;padding:40px 20px 50px;font-family:'Press Start 2P',monospace;font-size:clamp(5px,0.55vw,6px);color:rgba(232,220,200,0.28);letter-spacing:0.12em;line-height:2;">© 2026 The Juke Station · Julien Keraudren · Vienna · <a href="mailto:thejukestation@gmail.com" style="color:inherit;text-decoration:none;">thejukestation@gmail.com</a></footer>
 </body>
 </html>
