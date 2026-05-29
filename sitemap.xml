@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://thejukestation.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://thejukestation.com/music/</loc><priority>0.9</priority></url>
+  <url><loc>https://thejukestation.com/music/mymusic/</loc><priority>0.8</priority></url>
+  <url><loc>https://thejukestation.com/music/collections/</loc><priority>0.8</priority></url>
+  <url><loc>https://thejukestation.com/music/concerts/</loc><priority>0.8</priority></url>
+  <url><loc>https://thejukestation.com/album/</loc><priority>0.9</priority></url>
+  <url><loc>https://thejukestation.com/films/</loc><priority>0.8</priority></url>
+  <url><loc>https://thejukestation.com/games/</loc><priority>0.8</priority></url>
+  <url><loc>https://thejukestation.com/art/</loc><priority>0.8</priority></url>
+  <url><loc>https://thejukestation.com/photos/</loc><priority>0.8</priority></url>
+  <url><loc>https://thejukestation.com/about/</loc><priority>0.9</priority></url>
+</urlset>
