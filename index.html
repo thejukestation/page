@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="google-site-verification" content="Wj44unuJ5ApqjiB7cXzm4LN48E70tRxZ721yxKcNcgY">
+  <meta name="description" content="The Juke Station — music, films, games, art and photos by Julien Keraudren. Vienna-based audio engineer and musician.">
+  <meta name="author" content="Julien Keraudren">
+  <meta property="og:title" content="The Juke Station">
+  <meta property="og:description" content="Music, films, games, art and photos by Julien Keraudren.">
+  <meta property="og:url" content="https://thejukestation.com">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Julien Keraudren","alternateName":"The Juke Station","url":"https://thejukestation.com","sameAs":["https://open.spotify.com/user/31pp2mdrylbejuiri2lobzzbhswu","https://www.instagram.com/julienkeraudren/","https://www.youtube.com/@thejukestation","https://thejukestation.bandcamp.com/","https://soundcloud.com/thejukestation","https://www.tiktok.com/@julien_keraudren","https://www.discogs.com/user/thejukestation"]}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -56,7 +64,11 @@
     .hero h1 { font-size: clamp(15px, 2.3vw, 28px); line-height: 2.2; color: var(--cream); text-shadow: 0 0 20px rgba(232,220,200,0.4), 0 0 60px rgba(180,155,224,0.2); }
     .hero h1 .accent { color: var(--purple); text-shadow: 0 0 20px rgba(184,155,224,0.6), 0 0 50px rgba(140,100,255,0.3); }
     .sub { font-family: 'VT323', monospace; font-size: clamp(18px, 2.2vw, 28px); color: var(--muted); letter-spacing: 0.1em; }
-    .pill { border: 1px solid rgba(184,155,224,0.5); border-radius: 3px; padding: 9px 20px; font-size: clamp(6px, 0.8vw, 9px); color: var(--purple); letter-spacing: 0.12em; text-decoration: none; transition: background 0.2s, border-color 0.2s; }
+    @keyframes pillPulse {
+      0%,100% { box-shadow: 0 0 8px rgba(184,155,224,0.3); transform: scale(1); }
+      50% { box-shadow: 0 0 18px rgba(184,155,224,0.6); transform: scale(1.03); }
+    }
+    .pill { border: 1px solid rgba(184,155,224,0.6); border-radius: 3px; padding: 12px 28px; font-size: clamp(7px, 0.95vw, 11px); color: var(--purple); letter-spacing: 0.14em; text-decoration: none; transition: background 0.2s, border-color 0.2s; animation: pillPulse 3s ease-in-out infinite; display: inline-block; }
     .pill:hover { background: rgba(184,155,224,0.1); border-color: var(--purple); }
  
     nav { position: absolute; top: 0; left: 0; right: 0; z-index: 4; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; }
@@ -89,7 +101,7 @@
       .card-title { font-size: 15px; line-height: 1.2; }
       .card-tag { font-size: 5px; min-width: 45px; line-height: 1; }
       .card-desc { display: none; }
-      .pill { font-size: 6px; padding: 7px 12px; }
+      .pill { font-size: 6px; padding: 8px 14px; }
       .cards { grid-template-columns: 1fr; }
       .card { border-right: none; border-bottom: 1px solid rgba(232,220,200,0.08); padding: 11px 18px; display: flex; align-items: center; gap: 14px; }
       .card:last-child { border-bottom: none; }
@@ -121,7 +133,7 @@
     </ul>
   </nav>
   <div class="cards">
-    <a class="card" href="music/"><div class="card-tag">MUSIC</div><div class="card-title">Stories in Motion</div><div class="card-desc">Debut album, collections & shows.</div></a>
+    <a class="card" href="music/"><div class="card-tag">MUSIC</div><div class="card-title">Music & Shows</div><div class="card-desc">Album, collections & concerts.</div></a>
     <a class="card" href="films/"><div class="card-tag">FILMS</div><div class="card-title">What I Watch & Love</div><div class="card-desc">Absolute Cinema.</div></a>
     <a class="card" href="games/"><div class="card-tag">GAMES</div><div class="card-title">Play, Collect, Create</div><div class="card-desc">A lifelong love for games.</div></a>
     <a class="card" href="photos/"><div class="card-tag">PHOTOS</div><div class="card-title">UltraMax 400</div><div class="card-desc">Film photography & visuals.</div></a>
