@@ -198,7 +198,7 @@
 
       <div class="intro-block">
         <p class="intro-text">i've been watching films very frequently since <span>2025</span>. someone showed me the brilliance both in front of and behind the camera — and since then, i've really fallen in love with <span>cinema</span> and filmmaking. what fascinates me most is the <span>immersion</span> — the atmosphere of a real <span>movie theater</span>, the sound, the scale, and the feeling of being completely drawn into another world in a way that a laptop or phone could never fully recreate.<br><br>i also find the <span>history of cinema</span> incredibly interesting. there's so much to discover, which is why i enjoy watching older films and classics. even decades later, many of them still feel inspiring, unique, and ahead of their time.</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:18px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;flex-wrap:wrap;gap:10px;">
           <a class="letterboxd-btn" href="https://letterboxd.com/thejukestation/" target="_blank">
             <div class="letterboxd-dots">
               <div class="dot dot-o"></div>
@@ -207,9 +207,9 @@
             </div>
             <span class="letterboxd-label">MY LETTERBOXD ►</span>
           </a>
-          <button class="letterboxd-btn" onclick="document.getElementById('films-popup').style.display='flex'" style="cursor:pointer;background:none;">
+          <a class="letterboxd-btn" href="#" onclick="event.preventDefault();document.getElementById('films-popup').style.display='flex'">
             <span class="letterboxd-label">MY FAVORITE FILMS ►</span>
-          </button>
+          </a>
         </div>
       </div>
 
