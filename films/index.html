@@ -27,10 +27,10 @@
       --card-bg: rgba(0,0,0,0.35);
     }
     html, body { width: 100%; background: #020810; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
- 
+
     .bg { position: fixed; inset: 0; background-color: #020810; background: url("../images/HIMMEL2.jpg") center/cover no-repeat; z-index: 0; transition: opacity 0.7s ease; }
     .bg-overlay { position: fixed; inset: 0; background: rgba(0,10,20,0.6); z-index: 0; }
- 
+
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; transition: transform 0.3s ease; }
     .back { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
     .back:hover { color: var(--cream); }
@@ -39,11 +39,11 @@
     .nav-links a { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; line-height: 2.2; transition: color 0.2s; }
     .nav-links a:hover { color: var(--cream); }
     .nav-links a.active { color: var(--blue); text-shadow: 0 0 12px rgba(126,200,216,0.5); }
- 
+
     .page { position: relative; z-index: 2; padding-top: 110px; padding-bottom: 0; display: flex; flex-direction: column; gap: 0; }
- 
+
     .inner { max-width: 900px; margin: 0 auto; padding: 0 40px; }
- 
+
     .page-title {
       font-size: clamp(18px, 3vw, 38px);
       color: var(--cream);
@@ -52,9 +52,9 @@
       text-align: center;
       margin-bottom: 40px;
     }
- 
+
     .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--blue); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(126,200,216,0.4); margin-bottom: 16px; }
- 
+
     .intro-block {
       background: var(--card-bg);
       border: 1px solid rgba(126,200,216,0.12);
@@ -67,7 +67,7 @@
     }
     .intro-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 25px); color: var(--cream); line-height: 1.75; }
     .intro-text span { color: var(--blue); }
- 
+
     .letterboxd-btn {
       display: inline-flex;
       align-items: center;
@@ -87,7 +87,7 @@
     .dot-g { background: #00e054; }
     .dot-b { background: #40bcf4; }
     .letterboxd-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--blue); letter-spacing: 0.1em; }
- 
+
     .films-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 50px; }
     .film-row {
       background: var(--card-bg);
@@ -99,10 +99,10 @@
     .film-row:hover { border-color: rgba(126,200,216,0.25); }
     .film-director { font-size: clamp(6px, 0.7vw, 8px); color: var(--blue); letter-spacing: 0.12em; margin-bottom: 6px; }
     .film-title { font-family: 'VT323', monospace; font-size: clamp(20px, 2.4vw, 28px); color: var(--cream); line-height: 1.1; }
- 
+
     .strips-section { width: 100%; margin-bottom: 50px; }
     .strips-label { max-width: 900px; margin: 0 auto; padding: 0 40px 16px; font-size: clamp(7px, 0.8vw, 9px); color: var(--blue); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(126,200,216,0.4); }
- 
+
     .film-strip {
       width: 100%;
       aspect-ratio: 21/6;
@@ -126,7 +126,7 @@
       letter-spacing: 0.1em;
       text-shadow: 0 1px 6px rgba(0,0,0,0.8);
     }
- 
+
     .childhood-block {
       background: var(--card-bg);
       border: 1px solid rgba(126,200,216,0.08);
@@ -136,7 +136,7 @@
     }
     .childhood-text { font-family: 'VT323', monospace; font-size: clamp(17px, 2vw, 23px); color: var(--cream); line-height: 1.75; }
     .childhood-text span { color: var(--blue); }
- 
+
     .quote-section {
       width: 100%;
       background: rgba(0,0,0,0.65);
@@ -162,7 +162,7 @@
       letter-spacing: 0.15em;
       text-shadow: 0 0 10px rgba(126,200,216,0.3);
     }
- 
+
     @media (max-width: 640px) {
       nav { padding: 12px 16px; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
@@ -178,7 +178,7 @@
 <body>
   <div class="bg"></div>
   <div class="bg-overlay"></div>
- 
+
   <nav>
     <a class="back" href="/">back</a>
     <ul class="nav-links">
@@ -190,24 +190,29 @@
       <li><a href="/about/">about</a></li>
     </ul>
   </nav>
- 
+
   <div class="page">
- 
+
     <div class="inner">
       <h1 class="page-title">FILMS</h1>
- 
+
       <div class="intro-block">
         <p class="intro-text">i've been watching films very frequently since <span>2025</span>. someone showed me the brilliance both in front of and behind the camera — and since then, i've really fallen in love with <span>cinema</span> and filmmaking. what fascinates me most is the <span>immersion</span> — the atmosphere of a real <span>movie theater</span>, the sound, the scale, and the feeling of being completely drawn into another world in a way that a laptop or phone could never fully recreate.<br><br>i also find the <span>history of cinema</span> incredibly interesting. there's so much to discover, which is why i enjoy watching older films and classics. even decades later, many of them still feel inspiring, unique, and ahead of their time.</p>
-        <a class="letterboxd-btn" href="https://letterboxd.com/thejukestation/" target="_blank">
-          <div class="letterboxd-dots">
-            <div class="dot dot-o"></div>
-            <div class="dot dot-g"></div>
-            <div class="dot dot-b"></div>
-          </div>
-          <span class="letterboxd-label">MY LETTERBOXD ►</span>
-        </a>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:18px;">
+          <a class="letterboxd-btn" href="https://letterboxd.com/thejukestation/" target="_blank">
+            <div class="letterboxd-dots">
+              <div class="dot dot-o"></div>
+              <div class="dot dot-g"></div>
+              <div class="dot dot-b"></div>
+            </div>
+            <span class="letterboxd-label">MY LETTERBOXD ►</span>
+          </a>
+          <button class="letterboxd-btn" onclick="document.getElementById('films-popup').style.display='flex'" style="cursor:pointer;background:none;">
+            <span class="letterboxd-label">MY FAVORITE FILMS ►</span>
+          </button>
+        </div>
       </div>
- 
+
       <div class="section-label">MY FAVOURITE FILMS</div>
       <div class="films-grid">
         <div class="film-row"><div class="film-director">Peter Jackson · 2001–2003</div><div class="film-title">The Lord of the Rings Trilogy</div></div>
@@ -219,17 +224,17 @@
         <div class="film-row"><div class="film-director">Barry Levinson · 1988</div><div class="film-title">Rain Man</div></div>
         <div class="film-row"><div class="film-director">Christopher Nolan · 2014</div><div class="film-title">Interstellar</div></div>
       </div>
- 
+
       <div class="section-label">AS A KID</div>
       <div class="childhood-block">
         <p class="childhood-text">i also watched a lot of <span>Star Wars</span>, <span>Harry Potter</span>, <span>Pirates of the Caribbean</span> and the <span>Marvel Cinematic Universe</span> — and i still like them all, but just as memories.</p>
       </div>
     </div>
- 
+
     <!-- FULL WIDTH FILM STRIPS -->
     <div class="strips-section">
       <div class="strips-label">SOME FRAMES</div>
- 
+
       <div class="film-strip">
         <img src="../images/BARRYLYNDON.jpg" alt="Barry Lyndon">
         <div class="film-strip-label">STANLEY KUBRICK · BARRY LYNDON · 1975</div>
@@ -247,7 +252,7 @@
         <div class="film-strip-label">MARTIN SCORSESE · TAXI DRIVER · 1976</div>
       </div>
     </div>
- 
+
     <!-- COMPILATION -->
     <div style="max-width:900px;margin:0 auto;padding:0 40px 50px;width:100%;">
       <div class="section-label">MY FAVORITE SCENES</div>
@@ -258,7 +263,7 @@
         </a>
       </div>
     </div>
- 
+
     <!-- SAMWISE QUOTE -->
     <div style="max-width:900px;margin:0 auto;padding:0 40px;width:100%;">
       <div class="section-label">MY FAVORITE MOVIE QUOTE</div>
@@ -269,9 +274,25 @@
       </p>
       <div class="quote-source">— SAMWISE GAMGEE · THE LORD OF THE RINGS: THE TWO TOWERS</div>
     </div>
- 
+
   </div>
- 
+
+  <!-- FILMS POPUP -->
+  <div class="popup" id="films-popup" onclick="if(event.target===this)this.style.display='none'">
+    <div class="popup-box">
+      <div class="popup-header">
+        <div class="popup-title">MY FAVORITE FILMS</div>
+        <button class="popup-close" onclick="document.getElementById('films-popup').style.display='none'">✕ close</button>
+      </div>
+      <div class="popup-row"><span class="popup-year">1983</span><span class="popup-artist">Scarface</span></div>
+      <div class="popup-row"><span class="popup-year">1986</span><span class="popup-artist">Top Gun</span></div>
+      <div class="popup-row"><span class="popup-year">1989</span><span class="popup-artist">Dead Poets Society</span></div>
+      <div class="popup-row"><span class="popup-year">1994</span><span class="popup-artist">Pulp Fiction</span></div>
+      <div class="popup-row"><span class="popup-year">2000</span><span class="popup-artist">American Psycho</span></div>
+      <div style="font-family:'VT323',monospace;font-size:clamp(16px,1.8vw,20px);color:rgba(126,200,216,0.45);padding:14px 0 4px;letter-spacing:0.08em;">more coming soon...</div>
+    </div>
+  </div>
+
   <script>
     const nav = document.querySelector("nav");
     let lastY = 0;
