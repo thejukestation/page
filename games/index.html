@@ -22,10 +22,10 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --cream: #f0ece4; --orange: #d4845a; --muted: rgba(240,236,228,0.60); --card-bg: rgba(0,0,0,0.35); }
     html, body { width: 100%; background: #1e0f04; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
- 
+
     .bg { position: fixed; inset: 0; background-color: #1e0f04; background: url("../images/HIMMEL3.jpg") center/cover no-repeat; z-index: 0; transition: opacity 0.7s ease; }
     .bg-overlay { position: fixed; inset: 0; background: rgba(10,5,0,0.58); z-index: 0; }
- 
+
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; transition: transform 0.3s ease; }
     .back { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
     .back:hover { color: var(--cream); }
@@ -34,20 +34,20 @@
     .nav-links a { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; line-height: 2.2; transition: color 0.2s; }
     .nav-links a:hover { color: var(--cream); }
     .nav-links a.active { color: var(--orange); text-shadow: 0 0 12px rgba(212,132,90,0.5); }
- 
+
     .page { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; padding: 120px 40px 80px; display: flex; flex-direction: column; gap: 40px; }
- 
+
     .page-title { font-size: clamp(18px, 3vw, 38px); color: var(--cream); letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(212,132,90,0.3); text-align: center; }
     .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--orange); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(212,132,90,0.4); }
- 
+
     .story-block { background: var(--card-bg); border: 1px solid rgba(212,132,90,0.12); border-radius: 4px; padding: 24px 28px; }
     .story-year { font-size: clamp(7px, 0.8vw, 9px); color: var(--orange); letter-spacing: 0.2em; margin-bottom: 12px; text-shadow: 0 0 10px rgba(212,132,90,0.4); }
     .story-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 24px); color: var(--cream); line-height: 1.75; }
     .story-text span { color: var(--orange); }
- 
+
     .players-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--orange); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(212,132,90,0.4); }
     .players { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
- 
+
     .player {
       background: var(--card-bg);
       border: 1px solid rgba(212,132,90,0.15);
@@ -59,7 +59,7 @@
     }
     .player-title { font-size: clamp(6px, 0.7vw, 8px); color: var(--orange); letter-spacing: 0.1em; }
     .player-name { font-family: 'VT323', monospace; font-size: clamp(18px, 2vw, 24px); color: var(--cream); line-height: 1; }
- 
+
     .player-controls { display: flex; align-items: center; gap: 8px; }
     .play-btn {
       width: 28px; height: 28px; flex-shrink: 0;
@@ -94,10 +94,10 @@
       -webkit-appearance: none; width: 10px; height: 10px;
       border-radius: 50%; background: var(--orange); cursor: pointer;
     }
- 
+
     .n64-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 24px); color: var(--cream); line-height: 1.75; }
     .n64-text span { color: var(--orange); }
- 
+
     .photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
     .photo-slot {
       aspect-ratio: 1;
@@ -108,7 +108,7 @@
       display: flex; align-items: center; justify-content: center;
     }
     .photo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
- 
+
     .video-slot {
       width: 100%;
       aspect-ratio: 16/9;
@@ -118,7 +118,7 @@
       overflow: hidden;
       position: relative;
     }
- 
+
     .console-btn {
       font-family: 'Press Start 2P', monospace;
       font-size: clamp(7px, 0.85vw, 10px);
@@ -133,7 +133,7 @@
       align-self: center;
     }
     .console-btn:hover { border-color: var(--orange); color: var(--cream); }
- 
+
     .popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.88); z-index: 100; align-items: flex-start; justify-content: center; padding: 40px 20px; overflow-y: auto; cursor: pointer; }
     .popup-box { background: #0c0806; border: 1px solid rgba(212,132,90,0.25); border-radius: 6px; padding: 32px; width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 20px; cursor: default; }
     .popup-header { position: sticky; top: 0; background: #0c0806; padding-bottom: 16px; border-bottom: 1px solid rgba(212,132,90,0.15); display: flex; justify-content: space-between; align-items: center; z-index: 1; }
@@ -145,7 +145,7 @@
     .console-row:last-child { border-bottom: none; }
     .console-name { font-family: 'VT323', monospace; font-size: clamp(20px, 2.4vw, 26px); color: var(--cream); flex: 1; }
     .console-tag { font-size: clamp(6px, 0.65vw, 7px); color: var(--orange); letter-spacing: 0.1em; }
- 
+
     @media (max-width: 640px) {
       nav { padding: 12px 16px; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
@@ -159,7 +159,7 @@
 <body>
   <div class="bg"></div>
   <div class="bg-overlay"></div>
- 
+
   <nav>
     <a class="back" href="/">back</a>
     <ul class="nav-links">
@@ -171,10 +171,10 @@
       <li><a href="/about/">about</a></li>
     </ul>
   </nav>
- 
+
   <div class="page">
     <h1 class="page-title">GAMES</h1>
- 
+
     <div class="story-block">
       <p class="story-text">games are such a cool piece of media. even in the <span>AUDIO</span> department it's very unique — games offer an <span>INTERACTIVE</span> and immersive experience rather than a passive one that allows you to actively shape stories and explore detailed worlds. i also found a fascination for <span>ONLINE MULTIPLAYER</span> games over the years through <span>STEAM</span>. but now i want to tell you the whole story.</p>
       <a href="https://steamcommunity.com/profiles/76561198377579911/" target="_blank" style="display:inline-flex;align-items:center;gap:10px;margin-top:18px;font-size:clamp(7px,0.8vw,9px);color:var(--orange);letter-spacing:0.15em;text-decoration:none;border:1px solid rgba(212,132,90,0.3);border-radius:3px;padding:10px 16px;transition:background 0.2s;" onmouseover="this.style.background='rgba(212,132,90,0.08)'" onmouseout="this.style.background='none'">
@@ -182,32 +182,32 @@
         MY STEAM PROFILE ►
       </a>
     </div>
- 
+
     <div class="story-block">
       <div class="story-year">2012 — THE BEGINNING</div>
       <p class="story-text">i always played video games and i never really stopped. we got a <span>NINTENDO WII U</span> at home in 2012 and at that time it was the best thing that could've happened. later, in 2015 we got a <span>NINTENDO 3DS</span> and in 2018 i bought myself a <span>NINTENDO SWITCH</span>. i bought it with all the money i had at the time. 320 euros. i was broke for months because i still owed my brother money for <span>SUPER MARIO ODYSSEY</span>.</p>
     </div>
- 
+
     <div class="story-block">
       <div class="story-year">2020 — THE PC ERA</div>
       <p class="story-text">in 2020, when the pandemic started, i bought his old PC. for the first time i could play all the <span>ASSASSIN'S CREEDS</span>, the <span>GTAs</span>, and of course <span>MINECRAFT</span> with my friends. <span>MINECRAFT</span> is a magical game. and if you ask me, it's the best ever made.</p>
     </div>
- 
+
     <div class="story-block">
       <div class="story-year">2021 — RED DEAD</div>
       <p class="story-text">speaking of the best game ever: in 2021 i started playing other games on PC, especially <span>RED DEAD REDEMPTION 2</span>. i loved it and i still do. i have around 500 hours of playing time and i still like to play it sometimes.</p>
     </div>
- 
+
     <div class="story-block">
       <div class="story-year">2024 → NOW</div>
       <p class="story-text">since 2024, i am playing new games regularly. some of the best were <span>GOD OF WAR 2018</span>, <span>RAGNAROK</span>, <span>GHOST OF TSUSHIMA</span>, <span>OUTER WILDS</span>, <span>RED DEAD REDEMPTION</span>, <span>THE LAST OF US PART I</span>, <span>MAFIA I&amp;II</span>, <span>UNDERTALE</span>, <span>THE WITCHER 3</span> and recently <span>KINGDOM COME DELIVERANCE II</span>.<br>also a couple of games that i enjoy playing with friends are <span>PEAK</span>, <span>RV THERE YET</span>, <span>LETHAL COMPANY</span>, <span>R.E.P.O.</span>, <span>HOLDFAST</span>, <span>LIAR'S BAR</span>, <span>ONCE HUMAN</span>, <span>ASTRONEER</span> and <span>RED DEAD ONLINE</span>.</p>
     </div>
- 
+
     <div class="story-block">
       <div class="story-year">2025 — MY OWN GAME</div>
       <p class="story-text">in 2025 i almost made a dream come true. i started making my own video game in <span>GODOT</span> engine. i composed half the soundtrack and started creating the hubworld and lots of textures. then, due to work and university i shelved the project FOR NOW!! i'd really like to finish the game one day.</p>
     </div>
- 
+
     <div class="section-label">HERE SOME SNEAK PEEKS</div>
     <div class="players">
       <div class="player" id="p1">
@@ -250,19 +250,19 @@
         <audio id="p3-audio" src="../audio/Gaming%20Theme%2012.mp3"></audio>
       </div>
     </div>
- 
+
     <div class="story-block">
       <div class="story-year">2025 — NINTENDO 64</div>
       <p class="n64-text">but a dream that i made come true was buying a <span>NINTENDO 64</span> in 2025. with that, i bought <span>SUPER MARIO 64</span>, <span>ZELDA OCARINA OF TIME</span>, <span>BANJO KAZOOIE</span> and <span>DONKEY KONG 64</span>. i finished <span>SUPER MARIO 64</span> 100% in a few days and loved it so much. now i'm playing <span>OCARINA OF TIME</span> and finishing <span>BANJO KAZOOIE</span>.</p>
     </div>
- 
+
     <div class="section-label">N64</div>
     <div class="photos">
       <div class="photo-slot"><img src="../images/GAMEPIC1.jpg" alt="Zelda Ocarina of Time N64"></div>
       <div class="photo-slot"><img src="../images/GAMEPIC2.jpg" alt="Nintendo 64 console"></div>
       <div class="photo-slot"><img src="../images/GAMEPIC3.jpg" alt="Super Mario 64 100%"></div>
     </div>
- 
+
     <div class="section-label">OCARINA OF TIME — OPENING</div>
     <div class="video-slot">
       <iframe
@@ -274,15 +274,15 @@
       <div style="position:absolute;bottom:0;left:0;right:0;height:46px;background:#000;z-index:2;pointer-events:none;"></div>
       <div style="position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.15) 0%,transparent 8%,transparent 92%,rgba(0,0,0,0.15) 100%);z-index:1;pointer-events:none;"></div>
     </div>
- 
+
     <div class="section-label">CONSOLES & GAMES</div>
     <div style="display:flex;gap:12px;flex-wrap:wrap;">
       <button class="console-btn" onclick="document.getElementById('console-popup').style.display='flex'">► view consoles</button>
       <button class="console-btn" onclick="document.getElementById('games-popup').style.display='flex'">► view game collection</button>
     </div>
- 
+
   </div>
- 
+
   <!-- CONSOLE POPUP -->
   <div class="popup" id="console-popup" onclick="if(event.target===this)this.style.display='none'">
     <div class="popup-box">
@@ -305,219 +305,148 @@
       </div>
     </div>
   </div>
- 
+
   <!-- GAMES COLLECTION POPUP -->
   <div class="popup" id="games-popup" onclick="if(event.target===this)this.style.display='none'">
-    <div class="popup-box" style="max-height:85vh;overflow-y:auto;">
-      <div class="popup-header" style="position:sticky;top:0;background:#1e0f04;z-index:1;padding-bottom:12px;">
+    <div class="popup-box" style="max-height:85vh;overflow-y:auto;scrollbar-width:none;">
+      <div class="popup-header" style="position:sticky;top:0;background:#1e0f04;z-index:1;">
         <div class="popup-title">MY GAME COLLECTION</div>
         <button class="popup-close" onclick="document.getElementById('games-popup').style.display='none'">✕ close</button>
       </div>
- 
-      <div class="popup-section-label" style="color:var(--orange);font-size:7px;letter-spacing:0.2em;margin:16px 0 8px;">PC</div>
-      <div class="popup-row"><span class="popup-year">2009</span><span class="popup-artist">Assassin's Creed II</span></div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">Assassin's Creed IV: Black Flag</span></div>
-      <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Assassin's Creed Mirage</span></div>
-      <div class="popup-row"><span class="popup-year">2018</span><span class="popup-artist">Assassin's Creed Odyssey</span></div>
-      <div class="popup-row"><span class="popup-year">2017</span><span class="popup-artist">Assassin's Creed Origins</span></div>
-      <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">Assassin's Creed Syndicate</span></div>
-      <div class="popup-row"><span class="popup-year">2014</span><span class="popup-artist">Assassin's Creed Unity</span></div>
-      <div class="popup-row"><span class="popup-year">2020</span><span class="popup-artist">Assassin's Creed Valhalla</span></div>
-      <div class="popup-row"><span class="popup-year">2019</span><span class="popup-artist">A Short Hike</span></div>
-      <div class="popup-row"><span class="popup-year">2019</span><span class="popup-artist">Astroneer</span></div>
-      <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Baldur's Gate 3</span></div>
-      <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">Batman: Arkham Knight</span></div>
-      <div class="popup-row"><span class="popup-year">2007</span><span class="popup-artist">Bee Movie: The Game</span></div>
-      <div class="popup-row"><span class="popup-year">2007</span><span class="popup-artist">BioShock</span></div>
-      <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Blanc</span></div>
-      <div class="popup-row"><span class="popup-year">2006</span><span class="popup-artist">Cars</span></div>
-      <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Counter-Strike 2</span></div>
-      <div class="popup-row"><span class="popup-year">2019</span><span class="popup-artist">Disco Elysium</span></div>
-      <div class="popup-row"><span class="popup-year">2010</span><span class="popup-artist">Fallout: New Vegas</span></div>
-      <div class="popup-row"><span class="popup-year">2009</span><span class="popup-artist">FIFA 10</span></div>
-      <div class="popup-row"><span class="popup-year">2017</span><span class="popup-artist">Fortnite</span></div>
-      <div class="popup-row"><span class="popup-year">~2010</span><span class="popup-artist">Forestia Junior (FR)</span></div>
-      <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Ghost of Tsushima</span></div>
-      <div class="popup-row"><span class="popup-year">2022</span><span class="popup-artist">God of War (2018)</span></div>
-      <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">God of War: Ragnarök</span></div>
-      <div class="popup-row"><span class="popup-year">2008</span><span class="popup-artist">Grand Theft Auto IV</span></div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">Grand Theft Auto V</span></div>
-      <div class="popup-row"><span class="popup-year">soon</span><span class="popup-artist">Grand Theft Auto VI</span></div>
-      <div class="popup-row"><span class="popup-year">2004</span><span class="popup-artist">Grand Theft Auto: San Andreas</span></div>
-      <div class="popup-row"><span class="popup-year">2002</span><span class="popup-artist">Grand Theft Auto: Vice City</span></div>
-      <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Helldivers 2</span></div>
-      <div class="popup-row"><span class="popup-year">2017</span><span class="popup-artist">Holdfast: Nations at War</span></div>
-      <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Kingdom Come: Deliverance II</span></div>
-      <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">L.A. Noire</span></div>
-      <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">The Last of Us Part I</span></div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">LEGO Marvel Super Heroes</span></div>
-      <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">LEGO Pirates of the Caribbean</span></div>
-      <div class="popup-row"><span class="popup-year">2007</span><span class="popup-artist">LEGO Star Wars: The Complete Saga</span></div>
-      <div class="popup-row"><span class="popup-year">2014</span><span class="popup-artist">LEGO The Hobbit</span></div>
-      <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Lethal Company</span></div>
-      <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Liar's Bar</span></div>
-      <div class="popup-row"><span class="popup-year">2020</span><span class="popup-artist">Mafia: Definitive Edition</span></div>
-      <div class="popup-row"><span class="popup-year">2010</span><span class="popup-artist">Mafia II</span></div>
-      <div class="popup-row"><span class="popup-year">2016</span><span class="popup-artist">Mafia III</span></div>
-      <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">Minecraft</span></div>
-      <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Once Human</span></div>
-      <div class="popup-row"><span class="popup-year">2019</span><span class="popup-artist">Outer Wilds</span></div>
-      <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Peak</span></div>
-      <div class="popup-row"><span class="popup-year">2010</span><span class="popup-artist">Red Dead Redemption</span></div>
-      <div class="popup-row"><span class="popup-year">2018</span><span class="popup-artist">Red Dead Redemption 2</span></div>
-      <div class="popup-row"><span class="popup-year">2025</span><span class="popup-artist">Repo</span></div>
-      <div class="popup-row"><span class="popup-year">2006</span><span class="popup-artist">Roblox</span></div>
-      <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">RV There Yet?</span></div>
-      <div class="popup-row"><span class="popup-year">2005</span><span class="popup-artist">Samorost 2</span></div>
-      <div class="popup-row"><span class="popup-year">2014</span><span class="popup-artist">The Sims 4</span></div>
-      <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">The Elder Scrolls V: Skyrim</span></div>
-      <div class="popup-row"><span class="popup-year">2016</span><span class="popup-artist">Stardew Valley</span></div>
-      <div class="popup-row"><span class="popup-year">2017</span><span class="popup-artist">Star Wars: Battlefront II</span></div>
-      <div class="popup-row"><span class="popup-year">2019</span><span class="popup-artist">Star Wars Jedi: Fallen Order</span></div>
-      <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Star Wars Jedi: Survivor</span></div>
-      <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Straftat</span></div>
-      <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">Tiny Terry's Turbo Trip</span></div>
-      <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">Undertale</span></div>
-      <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">The Witcher 2: Assassins of Kings</span></div>
-      <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">The Witcher 3: Wild Hunt</span></div>
-      <div class="popup-row"><span class="popup-year">2021</span><span class="popup-artist">Witch It</span></div>
- 
-      <div class="popup-section-label" style="color:var(--orange);font-size:7px;letter-spacing:0.2em;margin:16px 0 8px;">GAME BOY COLOR</div>
-      <div class="popup-row"><span class="popup-year">1990</span><span class="popup-artist">Dr. Mario</span></div>
-      <div class="popup-row"><span class="popup-year">1999</span><span class="popup-artist">Game & Watch Gallery 3</span></div>
-      <div class="popup-row"><span class="popup-year">1992</span><span class="popup-artist">Mortal Kombat</span></div>
-      <div class="popup-row"><span class="popup-year">1998</span><span class="popup-artist">Pokémon Yellow (JP)</span></div>
-      <div class="popup-row"><span class="popup-year">1989</span><span class="popup-artist">Super Mario Land</span></div>
-      <div class="popup-row"><span class="popup-year">2000</span><span class="popup-artist">The Amazing Spider-Man</span></div>
-      <div class="popup-row"><span class="popup-year">1989</span><span class="popup-artist">Tetris</span></div>
-      <div class="popup-row"><span class="popup-year">2000</span><span class="popup-artist">Wario Land 3</span></div>
- 
-      <div class="popup-section-label" style="color:var(--orange);font-size:7px;letter-spacing:0.2em;margin:16px 0 8px;">DS / 3DS</div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">Animal Crossing: New Leaf</span></div>
-      <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">Cars 2</span></div>
-      <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">Face Raiders</span></div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">LEGO City Undercover: The Chase Begins</span></div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">Luigi's Mansion: Dark Moon</span></div>
-      <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">Mario Kart 7</span></div>
-      <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">The Legend of Zelda: Ocarina of Time 3D</span></div>
-      <div class="popup-row"><span class="popup-year">2014</span><span class="popup-artist">Pokémon Omega Ruby</span></div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">Pokémon X</span></div>
-      <div class="popup-row"><span class="popup-year">2016</span><span class="popup-artist">Yo-Kai Watch</span></div>
- 
-      <div class="popup-section-label" style="color:var(--orange);font-size:7px;letter-spacing:0.2em;margin:16px 0 8px;">NINTENDO SWITCH</div>
-      <div class="popup-row"><span class="popup-year">2020</span><span class="popup-artist">Animal Crossing: New Horizons</span></div>
-      <div class="popup-row"><span class="popup-year">2021</span><span class="popup-artist">Disco Elysium</span></div>
-      <div class="popup-row"><span class="popup-year">virtual</span><span class="popup-artist">Donkey Kong Country 1 / 2 / 3</span></div>
-      <div class="popup-row"><span class="popup-year">2017</span><span class="popup-artist">Goat Simulator</span></div>
-      <div class="popup-row"><span class="popup-year">2019</span><span class="popup-artist">Luigi's Mansion 3</span></div>
-      <div class="popup-row"><span class="popup-year">2017</span><span class="popup-artist">Mario Kart 8 Deluxe</span></div>
-      <div class="popup-row"><span class="popup-year">2022</span><span class="popup-artist">Master's Pupil</span></div>
-      <div class="popup-row"><span class="popup-year">2018</span><span class="popup-artist">Minecraft</span></div>
-      <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">One Piece: Pirate Warriors 3</span></div>
-      <div class="popup-row"><span class="popup-year">2017</span><span class="popup-artist">Rayman Legends: Definitive Edition</span></div>
-      <div class="popup-row"><span class="popup-year">2021</span><span class="popup-artist">Rocket League</span></div>
-      <div class="popup-row"><span class="popup-year">2020</span><span class="popup-artist">Super Mario 3D All-Stars</span></div>
-      <div class="popup-row"><span class="popup-year">2021</span><span class="popup-artist">Super Mario 3D World + Bowser's Fury</span></div>
-      <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">Super Mario Bros. Wonder</span></div>
-      <div class="popup-row"><span class="popup-year">virtual</span><span class="popup-artist">Super Mario Bros. 1 / 2 / 3</span></div>
-      <div class="popup-row"><span class="popup-year">2019</span><span class="popup-artist">Super Mario Maker 2</span></div>
-      <div class="popup-row"><span class="popup-year">2017</span><span class="popup-artist">Super Mario Odyssey</span></div>
-      <div class="popup-row"><span class="popup-year">virtual</span><span class="popup-artist">Super Mario World</span></div>
-      <div class="popup-row"><span class="popup-year">2018</span><span class="popup-artist">Super Smash Bros. Ultimate</span></div>
-      <div class="popup-row"><span class="popup-year">2024</span><span class="popup-artist">The Cub</span></div>
-      <div class="popup-row"><span class="popup-year">2017</span><span class="popup-artist">The Legend of Zelda: Breath of the Wild</span></div>
-      <div class="popup-row"><span class="popup-year">2023</span><span class="popup-artist">The Legend of Zelda: Tears of the Kingdom</span></div>
-      <div class="popup-row"><span class="popup-year">2019</span><span class="popup-artist">Untitled Goose Game</span></div>
-      <div class="popup-row"><span class="popup-year">2017</span><span class="popup-artist">Yooka-Laylee</span></div>
- 
-      <div class="popup-section-label" style="color:var(--orange);font-size:7px;letter-spacing:0.2em;margin:16px 0 8px;">WII / WII U</div>
-      <div class="popup-row"><span class="popup-year">2014</span><span class="popup-artist">Disney Infinity 2.0</span></div>
-      <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">Disney Infinity 3.0</span></div>
-      <div class="popup-row"><span class="popup-year">2014</span><span class="popup-artist">Donkey Kong Country: Tropical Freeze</span></div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">LEGO City Undercover</span></div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">LEGO Marvel Super Heroes</span></div>
-      <div class="popup-row"><span class="popup-year">2014</span><span class="popup-artist">Mario Kart 8</span></div>
-      <div class="popup-row"><span class="popup-year">2016</span><span class="popup-artist">Minecraft: Wii U Edition</span></div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">New Super Luigi U</span></div>
-      <div class="popup-row"><span class="popup-year">2012</span><span class="popup-artist">New Super Mario Bros. U</span></div>
-      <div class="popup-row"><span class="popup-year">2012</span><span class="popup-artist">Nintendo Land</span></div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">Rayman Legends</span></div>
-      <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">Splatoon</span></div>
-      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">Super Mario 3D World</span></div>
-      <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">Super Mario Maker</span></div>
- 
-      <div class="popup-section-label" style="color:var(--orange);font-size:7px;letter-spacing:0.2em;margin:16px 0 8px;">NINTENDO 64</div>
-      <div class="popup-row"><span class="popup-year">1998</span><span class="popup-artist">Banjo-Kazooie</span></div>
-      <div class="popup-row"><span class="popup-year">1999</span><span class="popup-artist">Donkey Kong 64</span></div>
-      <div class="popup-row"><span class="popup-year">1996</span><span class="popup-artist">Super Mario 64</span></div>
-      <div class="popup-row"><span class="popup-year">1998</span><span class="popup-artist">The Legend of Zelda: Ocarina of Time</span></div>
+
+      <div class="console-tag" style="margin:16px 0 6px;">GAME BOY COLOR</div>
+      <div class="console-row"><div class="console-name">Super Mario Land</div><div class="console-tag">1989</div></div>
+      <div class="console-row"><div class="console-name">Tetris</div><div class="console-tag">1989</div></div>
+      <div class="console-row"><div class="console-name">Dr. Mario</div><div class="console-tag">1990</div></div>
+      <div class="console-row"><div class="console-name">Mortal Kombat</div><div class="console-tag">1992</div></div>
+      <div class="console-row"><div class="console-name">Pokémon Yellow (JP)</div><div class="console-tag">1998</div></div>
+      <div class="console-row"><div class="console-name">Game & Watch Gallery 3</div><div class="console-tag">1999</div></div>
+      <div class="console-row"><div class="console-name">Wario Land 3</div><div class="console-tag">2000</div></div>
+      <div class="console-row"><div class="console-name">The Amazing Spider-Man</div><div class="console-tag">2000</div></div>
+
+      <div class="console-tag" style="margin:16px 0 6px;">NINTENDO 64</div>
+      <div class="console-row"><div class="console-name">Super Mario 64</div><div class="console-tag">1996</div></div>
+      <div class="console-row"><div class="console-name">The Legend of Zelda: Ocarina of Time</div><div class="console-tag">1998</div></div>
+      <div class="console-row"><div class="console-name">Banjo-Kazooie</div><div class="console-tag">1998</div></div>
+      <div class="console-row"><div class="console-name">Donkey Kong 64</div><div class="console-tag">1999</div></div>
+
+      <div class="console-tag" style="margin:16px 0 6px;">DS / 3DS</div>
+      <div class="console-row"><div class="console-name">Mario Kart 7</div><div class="console-tag">2011</div></div>
+      <div class="console-row"><div class="console-name">The Legend of Zelda: Ocarina of Time 3D</div><div class="console-tag">2011</div></div>
+      <div class="console-row"><div class="console-name">Cars 2</div><div class="console-tag">2011</div></div>
+      <div class="console-row"><div class="console-name">Face Raiders</div><div class="console-tag">2011</div></div>
+      <div class="console-row"><div class="console-name">Animal Crossing: New Leaf</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">Luigi's Mansion: Dark Moon</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">LEGO City Undercover: The Chase Begins</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">Pokémon X</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">Pokémon Omega Ruby</div><div class="console-tag">2014</div></div>
+      <div class="console-row"><div class="console-name">Yo-Kai Watch</div><div class="console-tag">2016</div></div>
+
+      <div class="console-tag" style="margin:16px 0 6px;">WII / WII U</div>
+      <div class="console-row"><div class="console-name">Nintendo Land</div><div class="console-tag">2012</div></div>
+      <div class="console-row"><div class="console-name">New Super Mario Bros. U</div><div class="console-tag">2012</div></div>
+      <div class="console-row"><div class="console-name">New Super Luigi U</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">Super Mario 3D World</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">Rayman Legends</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">LEGO City Undercover</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">LEGO Marvel Super Heroes</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">Donkey Kong Country: Tropical Freeze</div><div class="console-tag">2014</div></div>
+      <div class="console-row"><div class="console-name">Disney Infinity 2.0</div><div class="console-tag">2014</div></div>
+      <div class="console-row"><div class="console-name">Mario Kart 8</div><div class="console-tag">2014</div></div>
+      <div class="console-row"><div class="console-name">Splatoon</div><div class="console-tag">2015</div></div>
+      <div class="console-row"><div class="console-name">Super Mario Maker</div><div class="console-tag">2015</div></div>
+      <div class="console-row"><div class="console-name">Disney Infinity 3.0</div><div class="console-tag">2015</div></div>
+      <div class="console-row"><div class="console-name">Minecraft: Wii U Edition</div><div class="console-tag">2016</div></div>
+
+      <div class="console-tag" style="margin:16px 0 6px;">NINTENDO SWITCH</div>
+      <div class="console-row"><div class="console-name">Super Mario Odyssey</div><div class="console-tag">2017</div></div>
+      <div class="console-row"><div class="console-name">The Legend of Zelda: Breath of the Wild</div><div class="console-tag">2017</div></div>
+      <div class="console-row"><div class="console-name">Mario Kart 8 Deluxe</div><div class="console-tag">2017</div></div>
+      <div class="console-row"><div class="console-name">Rayman Legends: Definitive Edition</div><div class="console-tag">2017</div></div>
+      <div class="console-row"><div class="console-name">Yooka-Laylee</div><div class="console-tag">2017</div></div>
+      <div class="console-row"><div class="console-name">Super Smash Bros. Ultimate</div><div class="console-tag">2018</div></div>
+      <div class="console-row"><div class="console-name">Minecraft</div><div class="console-tag">2018</div></div>
+      <div class="console-row"><div class="console-name">Luigi's Mansion 3</div><div class="console-tag">2019</div></div>
+      <div class="console-row"><div class="console-name">Super Mario Maker 2</div><div class="console-tag">2019</div></div>
+      <div class="console-row"><div class="console-name">Untitled Goose Game</div><div class="console-tag">2019</div></div>
+      <div class="console-row"><div class="console-name">Animal Crossing: New Horizons</div><div class="console-tag">2020</div></div>
+      <div class="console-row"><div class="console-name">Super Mario 3D All-Stars</div><div class="console-tag">2020</div></div>
+      <div class="console-row"><div class="console-name">Disco Elysium</div><div class="console-tag">2021</div></div>
+      <div class="console-row"><div class="console-name">Rocket League</div><div class="console-tag">2021</div></div>
+      <div class="console-row"><div class="console-name">Super Mario 3D World + Bowser's Fury</div><div class="console-tag">2021</div></div>
+      <div class="console-row"><div class="console-name">Master's Pupil</div><div class="console-tag">2022</div></div>
+      <div class="console-row"><div class="console-name">The Legend of Zelda: Tears of the Kingdom</div><div class="console-tag">2023</div></div>
+      <div class="console-row"><div class="console-name">Super Mario Bros. Wonder</div><div class="console-tag">2023</div></div>
+      <div class="console-row"><div class="console-name">The Cub</div><div class="console-tag">2024</div></div>
+      <div class="console-row"><div class="console-name">One Piece: Pirate Warriors 3</div><div class="console-tag">2015</div></div>
+      <div class="console-row"><div class="console-name">Goat Simulator</div><div class="console-tag">2017</div></div>
+      <div class="console-row"><div class="console-name">DKC 1 / 2 / 3 · NES · SNES · N64 (virtual)</div><div class="console-tag">virtual</div></div>
+
+      <div class="console-tag" style="margin:16px 0 6px;">PC</div>
+      <div class="console-row"><div class="console-name">Forestia Junior (FR)</div><div class="console-tag">1999</div></div>
+      <div class="console-row"><div class="console-name">Samorost 2</div><div class="console-tag">2005</div></div>
+      <div class="console-row"><div class="console-name">Cars</div><div class="console-tag">2006</div></div>
+      <div class="console-row"><div class="console-name">Roblox</div><div class="console-tag">2006</div></div>
+      <div class="console-row"><div class="console-name">Bee Movie: The Game</div><div class="console-tag">2007</div></div>
+      <div class="console-row"><div class="console-name">BioShock</div><div class="console-tag">2007</div></div>
+      <div class="console-row"><div class="console-name">LEGO Star Wars: The Complete Saga</div><div class="console-tag">2007</div></div>
+      <div class="console-row"><div class="console-name">Grand Theft Auto IV</div><div class="console-tag">2008</div></div>
+      <div class="console-row"><div class="console-name">Assassin's Creed II</div><div class="console-tag">2009</div></div>
+      <div class="console-row"><div class="console-name">FIFA 10</div><div class="console-tag">2009</div></div>
+      <div class="console-row"><div class="console-name">Fallout: New Vegas</div><div class="console-tag">2010</div></div>
+      <div class="console-row"><div class="console-name">Mafia (Definitive Edition)</div><div class="console-tag">2002</div></div>
+      <div class="console-row"><div class="console-name">Mafia II</div><div class="console-tag">2010</div></div>
+      <div class="console-row"><div class="console-name">Red Dead Redemption</div><div class="console-tag">2010</div></div>
+      <div class="console-row"><div class="console-name">L.A. Noire</div><div class="console-tag">2011</div></div>
+      <div class="console-row"><div class="console-name">LEGO Pirates of the Caribbean</div><div class="console-tag">2011</div></div>
+      <div class="console-row"><div class="console-name">Minecraft</div><div class="console-tag">2011</div></div>
+      <div class="console-row"><div class="console-name">The Elder Scrolls V: Skyrim</div><div class="console-tag">2011</div></div>
+      <div class="console-row"><div class="console-name">The Witcher 2: Assassins of Kings</div><div class="console-tag">2011</div></div>
+      <div class="console-row"><div class="console-name">Grand Theft Auto V</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">Assassin's Creed IV: Black Flag</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">LEGO Marvel Super Heroes</div><div class="console-tag">2013</div></div>
+      <div class="console-row"><div class="console-name">The Sims 4</div><div class="console-tag">2014</div></div>
+      <div class="console-row"><div class="console-name">Assassin's Creed Unity</div><div class="console-tag">2014</div></div>
+      <div class="console-row"><div class="console-name">LEGO The Hobbit</div><div class="console-tag">2014</div></div>
+      <div class="console-row"><div class="console-name">Assassin's Creed Syndicate</div><div class="console-tag">2015</div></div>
+      <div class="console-row"><div class="console-name">Batman: Arkham Knight</div><div class="console-tag">2015</div></div>
+      <div class="console-row"><div class="console-name">Undertale</div><div class="console-tag">2015</div></div>
+      <div class="console-row"><div class="console-name">The Witcher 3: Wild Hunt</div><div class="console-tag">2015</div></div>
+      <div class="console-row"><div class="console-name">Mafia III</div><div class="console-tag">2016</div></div>
+      <div class="console-row"><div class="console-name">Stardew Valley</div><div class="console-tag">2016</div></div>
+      <div class="console-row"><div class="console-name">Assassin's Creed Origins</div><div class="console-tag">2017</div></div>
+      <div class="console-row"><div class="console-name">Fortnite</div><div class="console-tag">2017</div></div>
+      <div class="console-row"><div class="console-name">Holdfast: Nations at War</div><div class="console-tag">2017</div></div>
+      <div class="console-row"><div class="console-name">Star Wars: Battlefront II</div><div class="console-tag">2017</div></div>
+      <div class="console-row"><div class="console-name">Assassin's Creed Odyssey</div><div class="console-tag">2018</div></div>
+      <div class="console-row"><div class="console-name">God of War (2018)</div><div class="console-tag">2022 PC</div></div>
+      <div class="console-row"><div class="console-name">Red Dead Redemption 2</div><div class="console-tag">2018</div></div>
+      <div class="console-row"><div class="console-name">A Short Hike</div><div class="console-tag">2019</div></div>
+      <div class="console-row"><div class="console-name">Astroneer</div><div class="console-tag">2019</div></div>
+      <div class="console-row"><div class="console-name">Disco Elysium</div><div class="console-tag">2019</div></div>
+      <div class="console-row"><div class="console-name">Outer Wilds</div><div class="console-tag">2019</div></div>
+      <div class="console-row"><div class="console-name">Star Wars Jedi: Fallen Order</div><div class="console-tag">2019</div></div>
+      <div class="console-row"><div class="console-name">Assassin's Creed Valhalla</div><div class="console-tag">2020</div></div>
+      <div class="console-row"><div class="console-name">Grand Theft Auto: San Andreas</div><div class="console-tag">2004</div></div>
+      <div class="console-row"><div class="console-name">Grand Theft Auto: Vice City</div><div class="console-tag">2002</div></div>
+      <div class="console-row"><div class="console-name">Witch It</div><div class="console-tag">2021</div></div>
+      <div class="console-row"><div class="console-name">Assassin's Creed Mirage</div><div class="console-tag">2023</div></div>
+      <div class="console-row"><div class="console-name">Baldur's Gate 3</div><div class="console-tag">2023</div></div>
+      <div class="console-row"><div class="console-name">Blanc</div><div class="console-tag">2023</div></div>
+      <div class="console-row"><div class="console-name">Counter-Strike 2</div><div class="console-tag">2023</div></div>
+      <div class="console-row"><div class="console-name">The Last of Us Part I</div><div class="console-tag">2023 PC</div></div>
+      <div class="console-row"><div class="console-name">Star Wars Jedi: Survivor</div><div class="console-tag">2023</div></div>
+      <div class="console-row"><div class="console-name">Ghost of Tsushima</div><div class="console-tag">2024 PC</div></div>
+      <div class="console-row"><div class="console-name">God of War: Ragnarök</div><div class="console-tag">2024 PC</div></div>
+      <div class="console-row"><div class="console-name">Helldivers 2</div><div class="console-tag">2024</div></div>
+      <div class="console-row"><div class="console-name">Liar's Bar</div><div class="console-tag">2024</div></div>
+      <div class="console-row"><div class="console-name">Once Human</div><div class="console-tag">2024</div></div>
+      <div class="console-row"><div class="console-name">RV There Yet?</div><div class="console-tag">2024</div></div>
+      <div class="console-row"><div class="console-name">Straftat</div><div class="console-tag">2024</div></div>
+      <div class="console-row"><div class="console-name">Tiny Terry's Turbo Trip</div><div class="console-tag">2024</div></div>
+      <div class="console-row"><div class="console-name">Kingdom Come: Deliverance II</div><div class="console-tag">2025</div></div>
+      <div class="console-row"><div class="console-name">Peak</div><div class="console-tag">2025</div></div>
+      <div class="console-row"><div class="console-name">Repo</div><div class="console-tag">2025</div></div>
+      <div class="console-row"><div class="console-name">Grand Theft Auto VI</div><div class="console-tag">soon</div></div>
     </div>
   </div>
- 
-    const nav = document.querySelector("nav");
-    let lastY = 0;
-    window.addEventListener("scroll", () => {
-      if (window.innerWidth > 640) { nav.style.transform = "translateY(0)"; return; }
-      const y = window.scrollY;
-      nav.style.transform = (y > lastY && y > 80) ? "translateY(-100%)" : "translateY(0)";
-      lastY = y;
-    });
-    window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
- 
-    // iOS/Mobile audio unlock
-    document.addEventListener('touchstart', function unlock() {
-      ['p1','p2','p3'].forEach(id => {
-        const a = document.getElementById(id+'-audio');
-        const p = a.play();
-        if (p) p.then(() => a.pause()).catch(() => {});
-      });
-      document.removeEventListener('touchstart', unlock);
-    }, { once: true });
- 
-    ['p1','p2','p3'].forEach(id => {
-      const audio = document.getElementById(id+'-audio');
-      audio.volume = 0.20;
-      audio.ontimeupdate = () => {
-        if (!audio.duration) return;
-        document.getElementById(id+'-fill').style.width = (audio.currentTime/audio.duration*100)+'%';
-        const m = Math.floor(audio.currentTime/60);
-        const s = Math.floor(audio.currentTime%60).toString().padStart(2,'0');
-        document.getElementById(id+'-time').textContent = m+':'+s;
-      };
-      audio.onended = () => {
-        document.querySelector('#'+id+' .play-btn').textContent = '►';
-        document.getElementById(id+'-fill').style.width = '0%';
-      };
-    });
- 
-    function togglePlay(id) {
-      const audio = document.getElementById(id+'-audio');
-      const btn = document.querySelector('#'+id+' .play-btn');
-      if (audio.paused) {
-        ['p1','p2','p3'].forEach(p => {
-          if (p !== id) {
-            document.getElementById(p+'-audio').pause();
-            document.querySelector('#'+p+' .play-btn').textContent = '►';
-          }
-        });
-        audio.play().then(() => {
-          btn.textContent = '▐▐';
-        }).catch(() => {
-          btn.textContent = '►';
-        });
-      } else {
-        audio.pause();
-        btn.textContent = '►';
-      }
-    }
- 
-    function seek(e, id) {
-      const audio = document.getElementById(id+'-audio');
-      if (!audio.duration) return;
-      const rect = e.currentTarget.getBoundingClientRect();
-      audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
-    }
-  </script>
-  <footer style="position:relative;z-index:2;text-align:center;padding:40px 20px 50px;font-family:'Press Start 2P',monospace;font-size:clamp(5px,0.55vw,6px);color:rgba(232,220,200,0.28);letter-spacing:0.12em;line-height:2;">© 2026 The Juke Station · Julien Keraudren · Vienna · <a href="mailto:thejukestation@gmail.com" style="color:inherit;text-decoration:none;">thejukestation@gmail.com</a></footer>
-</body>
-</html>
