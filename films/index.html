@@ -207,8 +207,8 @@
             </div>
             <span class="letterboxd-label">MY LETTERBOXD ►</span>
           </a>
-          <a class="letterboxd-btn" href="#" onclick="event.preventDefault();document.getElementById('films-popup').style.display='flex'">
-            <span class="letterboxd-label">MY FAVORITE FILMS ►</span>
+          <a class="letterboxd-btn" style="cursor:pointer;" onclick="document.getElementById('films-popup').style.display='flex'">
+            <span class="letterboxd-label">MY DVD COLLECTION ►</span>
           </a>
         </div>
       </div>
@@ -281,7 +281,7 @@
   <div class="popup" id="films-popup" onclick="if(event.target===this)this.style.display='none'">
     <div class="popup-box">
       <div class="popup-header">
-        <div class="popup-title">MY FAVORITE FILMS</div>
+        <div class="popup-title">MY DVD COLLECTION</div>
         <button class="popup-close" onclick="document.getElementById('films-popup').style.display='none'">✕ close</button>
       </div>
       <div class="popup-row"><span class="popup-year">1983</span><span class="popup-artist">Scarface</span></div>
