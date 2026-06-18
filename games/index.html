@@ -308,145 +308,148 @@
 
   <!-- GAMES COLLECTION POPUP -->
   <div class="popup" id="games-popup" onclick="if(event.target===this)this.style.display='none'">
-    <div class="popup-box" style="max-height:85vh;overflow-y:auto;scrollbar-width:none;">
-      <div class="popup-header" style="position:sticky;top:0;background:#1e0f04;z-index:1;">
+    <div class="popup-box" style="max-height:85vh;overflow-y:scroll;scrollbar-width:thin;scrollbar-color:var(--orange) rgba(212,132,90,0.1);padding-right:8px;">
+      <style>.popup-box::-webkit-scrollbar{width:5px}.popup-box::-webkit-scrollbar-track{background:rgba(212,132,90,0.08);border-radius:3px}.popup-box::-webkit-scrollbar-thumb{background:var(--orange);border-radius:3px}</style>
+      <div class="popup-header">
         <div class="popup-title">MY GAME COLLECTION</div>
         <button class="popup-close" onclick="document.getElementById('games-popup').style.display='none'">✕ close</button>
       </div>
 
-      <div class="console-tag" style="margin:16px 0 6px;">GAME BOY COLOR</div>
-      <div class="console-row"><div class="console-name">Super Mario Land</div><div class="console-tag">1989</div></div>
-      <div class="console-row"><div class="console-name">Tetris</div><div class="console-tag">1989</div></div>
-      <div class="console-row"><div class="console-name">Dr. Mario</div><div class="console-tag">1990</div></div>
-      <div class="console-row"><div class="console-name">Mortal Kombat</div><div class="console-tag">1992</div></div>
-      <div class="console-row"><div class="console-name">Pokémon Yellow (JP)</div><div class="console-tag">1998</div></div>
-      <div class="console-row"><div class="console-name">Game & Watch Gallery 3</div><div class="console-tag">1999</div></div>
-      <div class="console-row"><div class="console-name">Wario Land 3</div><div class="console-tag">2000</div></div>
-      <div class="console-row"><div class="console-name">The Amazing Spider-Man</div><div class="console-tag">2000</div></div>
+      <div class="console-tag" style="margin:14px 0 4px;">GAME BOY COLOR</div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Super Mario Land</div><div class="console-tag">1989</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Tetris</div><div class="console-tag">1989</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Dr. Mario</div><div class="console-tag">1990</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Mortal Kombat</div><div class="console-tag">1992</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Pokémon Yellow (JP)</div><div class="console-tag">1998</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Game & Watch Gallery 3</div><div class="console-tag">1999</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Wario Land 3</div><div class="console-tag">2000</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">The Amazing Spider-Man</div><div class="console-tag">2000</div></div>
 
-      <div class="console-tag" style="margin:16px 0 6px;">NINTENDO 64</div>
-      <div class="console-row"><div class="console-name">Super Mario 64</div><div class="console-tag">1996</div></div>
-      <div class="console-row"><div class="console-name">The Legend of Zelda: Ocarina of Time</div><div class="console-tag">1998</div></div>
-      <div class="console-row"><div class="console-name">Banjo-Kazooie</div><div class="console-tag">1998</div></div>
-      <div class="console-row"><div class="console-name">Donkey Kong 64</div><div class="console-tag">1999</div></div>
+      <div class="console-tag" style="margin:14px 0 4px;">NINTENDO 64</div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Super Mario 64</div><div class="console-tag">1996</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">The Legend of Zelda: Ocarina of Time</div><div class="console-tag">1998</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Banjo-Kazooie</div><div class="console-tag">1998</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Donkey Kong 64</div><div class="console-tag">1999</div></div>
 
-      <div class="console-tag" style="margin:16px 0 6px;">DS / 3DS</div>
-      <div class="console-row"><div class="console-name">Mario Kart 7</div><div class="console-tag">2011</div></div>
-      <div class="console-row"><div class="console-name">The Legend of Zelda: Ocarina of Time 3D</div><div class="console-tag">2011</div></div>
-      <div class="console-row"><div class="console-name">Cars 2</div><div class="console-tag">2011</div></div>
-      <div class="console-row"><div class="console-name">Face Raiders</div><div class="console-tag">2011</div></div>
-      <div class="console-row"><div class="console-name">Animal Crossing: New Leaf</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">Luigi's Mansion: Dark Moon</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">LEGO City Undercover: The Chase Begins</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">Pokémon X</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">Pokémon Omega Ruby</div><div class="console-tag">2014</div></div>
-      <div class="console-row"><div class="console-name">Yo-Kai Watch</div><div class="console-tag">2016</div></div>
+      <div class="console-tag" style="margin:14px 0 4px;">DS / 3DS</div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Mario Kart 7</div><div class="console-tag">2011</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">The Legend of Zelda: Ocarina of Time 3D</div><div class="console-tag">2011</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Cars 2</div><div class="console-tag">2011</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Face Raiders</div><div class="console-tag">2011</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Animal Crossing: New Leaf</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Luigi's Mansion: Dark Moon</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">LEGO City Undercover: The Chase Begins</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Pokémon X</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Pokémon Omega Ruby</div><div class="console-tag">2014</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Yo-Kai Watch</div><div class="console-tag">2016</div></div>
 
-      <div class="console-tag" style="margin:16px 0 6px;">WII / WII U</div>
-      <div class="console-row"><div class="console-name">Nintendo Land</div><div class="console-tag">2012</div></div>
-      <div class="console-row"><div class="console-name">New Super Mario Bros. U</div><div class="console-tag">2012</div></div>
-      <div class="console-row"><div class="console-name">New Super Luigi U</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">Super Mario 3D World</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">Rayman Legends</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">LEGO City Undercover</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">LEGO Marvel Super Heroes</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">Donkey Kong Country: Tropical Freeze</div><div class="console-tag">2014</div></div>
-      <div class="console-row"><div class="console-name">Disney Infinity 2.0</div><div class="console-tag">2014</div></div>
-      <div class="console-row"><div class="console-name">Mario Kart 8</div><div class="console-tag">2014</div></div>
-      <div class="console-row"><div class="console-name">Splatoon</div><div class="console-tag">2015</div></div>
-      <div class="console-row"><div class="console-name">Super Mario Maker</div><div class="console-tag">2015</div></div>
-      <div class="console-row"><div class="console-name">Disney Infinity 3.0</div><div class="console-tag">2015</div></div>
-      <div class="console-row"><div class="console-name">Minecraft: Wii U Edition</div><div class="console-tag">2016</div></div>
+      <div class="console-tag" style="margin:14px 0 4px;">WII / WII U</div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Nintendo Land</div><div class="console-tag">2012</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">New Super Mario Bros. U</div><div class="console-tag">2012</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">LEGO City Undercover</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">LEGO Marvel Super Heroes</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">New Super Luigi U</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Rayman Legends</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Super Mario 3D World</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Disney Infinity 2.0</div><div class="console-tag">2014</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Donkey Kong Country: Tropical Freeze</div><div class="console-tag">2014</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Mario Kart 8</div><div class="console-tag">2014</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Disney Infinity 3.0</div><div class="console-tag">2015</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Splatoon</div><div class="console-tag">2015</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Super Mario Maker</div><div class="console-tag">2015</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Minecraft: Wii U Edition</div><div class="console-tag">2016</div></div>
 
-      <div class="console-tag" style="margin:16px 0 6px;">NINTENDO SWITCH</div>
-      <div class="console-row"><div class="console-name">Super Mario Odyssey</div><div class="console-tag">2017</div></div>
-      <div class="console-row"><div class="console-name">The Legend of Zelda: Breath of the Wild</div><div class="console-tag">2017</div></div>
-      <div class="console-row"><div class="console-name">Mario Kart 8 Deluxe</div><div class="console-tag">2017</div></div>
-      <div class="console-row"><div class="console-name">Rayman Legends: Definitive Edition</div><div class="console-tag">2017</div></div>
-      <div class="console-row"><div class="console-name">Yooka-Laylee</div><div class="console-tag">2017</div></div>
-      <div class="console-row"><div class="console-name">Super Smash Bros. Ultimate</div><div class="console-tag">2018</div></div>
-      <div class="console-row"><div class="console-name">Minecraft</div><div class="console-tag">2018</div></div>
-      <div class="console-row"><div class="console-name">Luigi's Mansion 3</div><div class="console-tag">2019</div></div>
-      <div class="console-row"><div class="console-name">Super Mario Maker 2</div><div class="console-tag">2019</div></div>
-      <div class="console-row"><div class="console-name">Untitled Goose Game</div><div class="console-tag">2019</div></div>
-      <div class="console-row"><div class="console-name">Animal Crossing: New Horizons</div><div class="console-tag">2020</div></div>
-      <div class="console-row"><div class="console-name">Super Mario 3D All-Stars</div><div class="console-tag">2020</div></div>
-      <div class="console-row"><div class="console-name">Disco Elysium</div><div class="console-tag">2021</div></div>
-      <div class="console-row"><div class="console-name">Rocket League</div><div class="console-tag">2021</div></div>
-      <div class="console-row"><div class="console-name">Super Mario 3D World + Bowser's Fury</div><div class="console-tag">2021</div></div>
-      <div class="console-row"><div class="console-name">Master's Pupil</div><div class="console-tag">2022</div></div>
-      <div class="console-row"><div class="console-name">The Legend of Zelda: Tears of the Kingdom</div><div class="console-tag">2023</div></div>
-      <div class="console-row"><div class="console-name">Super Mario Bros. Wonder</div><div class="console-tag">2023</div></div>
-      <div class="console-row"><div class="console-name">The Cub</div><div class="console-tag">2024</div></div>
-      <div class="console-row"><div class="console-name">One Piece: Pirate Warriors 3</div><div class="console-tag">2015</div></div>
-      <div class="console-row"><div class="console-name">Goat Simulator</div><div class="console-tag">2017</div></div>
-      <div class="console-row"><div class="console-name">DKC 1 / 2 / 3 · NES · SNES · N64 (virtual)</div><div class="console-tag">virtual</div></div>
+      <div class="console-tag" style="margin:14px 0 4px;">NINTENDO SWITCH</div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">One Piece: Pirate Warriors 3</div><div class="console-tag">2015</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Donkey Kong Country 1</div><div class="console-tag">1994</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Donkey Kong Country 2</div><div class="console-tag">1995</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Donkey Kong Country 3</div><div class="console-tag">1996</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Goat Simulator</div><div class="console-tag">2017</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Mario Kart 8 Deluxe</div><div class="console-tag">2017</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Rayman Legends: Definitive Edition</div><div class="console-tag">2017</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Super Mario Odyssey</div><div class="console-tag">2017</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">The Legend of Zelda: Breath of the Wild</div><div class="console-tag">2017</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Yooka-Laylee</div><div class="console-tag">2017</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Minecraft</div><div class="console-tag">2018</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Super Smash Bros. Ultimate</div><div class="console-tag">2018</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Luigi's Mansion 3</div><div class="console-tag">2019</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Super Mario Maker 2</div><div class="console-tag">2019</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Untitled Goose Game</div><div class="console-tag">2019</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Animal Crossing: New Horizons</div><div class="console-tag">2020</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Super Mario 3D All-Stars</div><div class="console-tag">2020</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Disco Elysium</div><div class="console-tag">2021</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Rocket League</div><div class="console-tag">2021</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Super Mario 3D World + Bowser's Fury</div><div class="console-tag">2021</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Master's Pupil</div><div class="console-tag">2022</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Super Mario Bros. Wonder</div><div class="console-tag">2023</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">The Legend of Zelda: Tears of the Kingdom</div><div class="console-tag">2023</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">The Cub</div><div class="console-tag">2024</div></div>
 
-      <div class="console-tag" style="margin:16px 0 6px;">PC</div>
-      <div class="console-row"><div class="console-name">Forestia Junior (FR)</div><div class="console-tag">1999</div></div>
-      <div class="console-row"><div class="console-name">Samorost 2</div><div class="console-tag">2005</div></div>
-      <div class="console-row"><div class="console-name">Cars</div><div class="console-tag">2006</div></div>
-      <div class="console-row"><div class="console-name">Roblox</div><div class="console-tag">2006</div></div>
-      <div class="console-row"><div class="console-name">Bee Movie: The Game</div><div class="console-tag">2007</div></div>
-      <div class="console-row"><div class="console-name">BioShock</div><div class="console-tag">2007</div></div>
-      <div class="console-row"><div class="console-name">LEGO Star Wars: The Complete Saga</div><div class="console-tag">2007</div></div>
-      <div class="console-row"><div class="console-name">Grand Theft Auto IV</div><div class="console-tag">2008</div></div>
-      <div class="console-row"><div class="console-name">Assassin's Creed II</div><div class="console-tag">2009</div></div>
-      <div class="console-row"><div class="console-name">FIFA 10</div><div class="console-tag">2009</div></div>
-      <div class="console-row"><div class="console-name">Fallout: New Vegas</div><div class="console-tag">2010</div></div>
-      <div class="console-row"><div class="console-name">Mafia (Definitive Edition)</div><div class="console-tag">2002</div></div>
-      <div class="console-row"><div class="console-name">Mafia II</div><div class="console-tag">2010</div></div>
-      <div class="console-row"><div class="console-name">Red Dead Redemption</div><div class="console-tag">2010</div></div>
-      <div class="console-row"><div class="console-name">L.A. Noire</div><div class="console-tag">2011</div></div>
-      <div class="console-row"><div class="console-name">LEGO Pirates of the Caribbean</div><div class="console-tag">2011</div></div>
-      <div class="console-row"><div class="console-name">Minecraft</div><div class="console-tag">2011</div></div>
-      <div class="console-row"><div class="console-name">The Elder Scrolls V: Skyrim</div><div class="console-tag">2011</div></div>
-      <div class="console-row"><div class="console-name">The Witcher 2: Assassins of Kings</div><div class="console-tag">2011</div></div>
-      <div class="console-row"><div class="console-name">Grand Theft Auto V</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">Assassin's Creed IV: Black Flag</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">LEGO Marvel Super Heroes</div><div class="console-tag">2013</div></div>
-      <div class="console-row"><div class="console-name">The Sims 4</div><div class="console-tag">2014</div></div>
-      <div class="console-row"><div class="console-name">Assassin's Creed Unity</div><div class="console-tag">2014</div></div>
-      <div class="console-row"><div class="console-name">LEGO The Hobbit</div><div class="console-tag">2014</div></div>
-      <div class="console-row"><div class="console-name">Assassin's Creed Syndicate</div><div class="console-tag">2015</div></div>
-      <div class="console-row"><div class="console-name">Batman: Arkham Knight</div><div class="console-tag">2015</div></div>
-      <div class="console-row"><div class="console-name">Undertale</div><div class="console-tag">2015</div></div>
-      <div class="console-row"><div class="console-name">The Witcher 3: Wild Hunt</div><div class="console-tag">2015</div></div>
-      <div class="console-row"><div class="console-name">Mafia III</div><div class="console-tag">2016</div></div>
-      <div class="console-row"><div class="console-name">Stardew Valley</div><div class="console-tag">2016</div></div>
-      <div class="console-row"><div class="console-name">Assassin's Creed Origins</div><div class="console-tag">2017</div></div>
-      <div class="console-row"><div class="console-name">Fortnite</div><div class="console-tag">2017</div></div>
-      <div class="console-row"><div class="console-name">Holdfast: Nations at War</div><div class="console-tag">2017</div></div>
-      <div class="console-row"><div class="console-name">Star Wars: Battlefront II</div><div class="console-tag">2017</div></div>
-      <div class="console-row"><div class="console-name">Assassin's Creed Odyssey</div><div class="console-tag">2018</div></div>
-      <div class="console-row"><div class="console-name">God of War (2018)</div><div class="console-tag">2022 PC</div></div>
-      <div class="console-row"><div class="console-name">Red Dead Redemption 2</div><div class="console-tag">2018</div></div>
-      <div class="console-row"><div class="console-name">A Short Hike</div><div class="console-tag">2019</div></div>
-      <div class="console-row"><div class="console-name">Astroneer</div><div class="console-tag">2019</div></div>
-      <div class="console-row"><div class="console-name">Disco Elysium</div><div class="console-tag">2019</div></div>
-      <div class="console-row"><div class="console-name">Outer Wilds</div><div class="console-tag">2019</div></div>
-      <div class="console-row"><div class="console-name">Star Wars Jedi: Fallen Order</div><div class="console-tag">2019</div></div>
-      <div class="console-row"><div class="console-name">Assassin's Creed Valhalla</div><div class="console-tag">2020</div></div>
-      <div class="console-row"><div class="console-name">Grand Theft Auto: San Andreas</div><div class="console-tag">2004</div></div>
-      <div class="console-row"><div class="console-name">Grand Theft Auto: Vice City</div><div class="console-tag">2002</div></div>
-      <div class="console-row"><div class="console-name">Witch It</div><div class="console-tag">2021</div></div>
-      <div class="console-row"><div class="console-name">Assassin's Creed Mirage</div><div class="console-tag">2023</div></div>
-      <div class="console-row"><div class="console-name">Baldur's Gate 3</div><div class="console-tag">2023</div></div>
-      <div class="console-row"><div class="console-name">Blanc</div><div class="console-tag">2023</div></div>
-      <div class="console-row"><div class="console-name">Counter-Strike 2</div><div class="console-tag">2023</div></div>
-      <div class="console-row"><div class="console-name">The Last of Us Part I</div><div class="console-tag">2023 PC</div></div>
-      <div class="console-row"><div class="console-name">Star Wars Jedi: Survivor</div><div class="console-tag">2023</div></div>
-      <div class="console-row"><div class="console-name">Ghost of Tsushima</div><div class="console-tag">2024 PC</div></div>
-      <div class="console-row"><div class="console-name">God of War: Ragnarök</div><div class="console-tag">2024 PC</div></div>
-      <div class="console-row"><div class="console-name">Helldivers 2</div><div class="console-tag">2024</div></div>
-      <div class="console-row"><div class="console-name">Liar's Bar</div><div class="console-tag">2024</div></div>
-      <div class="console-row"><div class="console-name">Once Human</div><div class="console-tag">2024</div></div>
-      <div class="console-row"><div class="console-name">RV There Yet?</div><div class="console-tag">2024</div></div>
-      <div class="console-row"><div class="console-name">Straftat</div><div class="console-tag">2024</div></div>
-      <div class="console-row"><div class="console-name">Tiny Terry's Turbo Trip</div><div class="console-tag">2024</div></div>
-      <div class="console-row"><div class="console-name">Kingdom Come: Deliverance II</div><div class="console-tag">2025</div></div>
-      <div class="console-row"><div class="console-name">Peak</div><div class="console-tag">2025</div></div>
-      <div class="console-row"><div class="console-name">Repo</div><div class="console-tag">2025</div></div>
-      <div class="console-row"><div class="console-name">Grand Theft Auto VI</div><div class="console-tag">soon</div></div>
+      <div class="console-tag" style="margin:14px 0 4px;">PC</div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Forestia Junior (FR)</div><div class="console-tag">1999</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Grand Theft Auto: Vice City</div><div class="console-tag">2002</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Mafia</div><div class="console-tag">2002</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Grand Theft Auto: San Andreas</div><div class="console-tag">2004</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Samorost 2</div><div class="console-tag">2005</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Cars</div><div class="console-tag">2006</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Roblox</div><div class="console-tag">2006</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Bee Movie: The Game</div><div class="console-tag">2007</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">BioShock</div><div class="console-tag">2007</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">LEGO Star Wars: The Complete Saga</div><div class="console-tag">2007</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Grand Theft Auto IV</div><div class="console-tag">2008</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Assassin's Creed II</div><div class="console-tag">2009</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">FIFA 10</div><div class="console-tag">2009</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Fallout: New Vegas</div><div class="console-tag">2010</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Mafia II</div><div class="console-tag">2010</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Red Dead Redemption</div><div class="console-tag">2010</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">L.A. Noire</div><div class="console-tag">2011</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">LEGO Pirates of the Caribbean</div><div class="console-tag">2011</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Minecraft</div><div class="console-tag">2011</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">The Elder Scrolls V: Skyrim</div><div class="console-tag">2011</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">The Witcher 2: Assassins of Kings</div><div class="console-tag">2011</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Assassin's Creed IV: Black Flag</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Grand Theft Auto V</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">LEGO Marvel Super Heroes</div><div class="console-tag">2013</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Assassin's Creed Unity</div><div class="console-tag">2014</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">LEGO The Hobbit</div><div class="console-tag">2014</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">The Sims 4</div><div class="console-tag">2014</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Assassin's Creed Syndicate</div><div class="console-tag">2015</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Batman: Arkham Knight</div><div class="console-tag">2015</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">The Witcher 3: Wild Hunt</div><div class="console-tag">2015</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Undertale</div><div class="console-tag">2015</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Mafia III</div><div class="console-tag">2016</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Stardew Valley</div><div class="console-tag">2016</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Assassin's Creed Origins</div><div class="console-tag">2017</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Fortnite</div><div class="console-tag">2017</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Holdfast: Nations at War</div><div class="console-tag">2017</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Star Wars: Battlefront II</div><div class="console-tag">2017</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Assassin's Creed Odyssey</div><div class="console-tag">2018</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Red Dead Redemption 2</div><div class="console-tag">2018</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">A Short Hike</div><div class="console-tag">2019</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Astroneer</div><div class="console-tag">2019</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Disco Elysium</div><div class="console-tag">2019</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Outer Wilds</div><div class="console-tag">2019</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Star Wars Jedi: Fallen Order</div><div class="console-tag">2019</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Assassin's Creed Valhalla</div><div class="console-tag">2020</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Witch It</div><div class="console-tag">2021</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">God of War (2018)</div><div class="console-tag">2022 PC</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Assassin's Creed Mirage</div><div class="console-tag">2023</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Baldur's Gate 3</div><div class="console-tag">2023</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Blanc</div><div class="console-tag">2023</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Counter-Strike 2</div><div class="console-tag">2023</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Star Wars Jedi: Survivor</div><div class="console-tag">2023</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">The Last of Us Part I</div><div class="console-tag">2023 PC</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Ghost of Tsushima</div><div class="console-tag">2024 PC</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">God of War: Ragnarök</div><div class="console-tag">2024 PC</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Helldivers 2</div><div class="console-tag">2024</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Liar's Bar</div><div class="console-tag">2024</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Once Human</div><div class="console-tag">2024</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">RV There Yet?</div><div class="console-tag">2024</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Straftat</div><div class="console-tag">2024</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Tiny Terry's Turbo Trip</div><div class="console-tag">2024</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Kingdom Come: Deliverance II</div><div class="console-tag">2025</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Peak</div><div class="console-tag">2025</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">R.E.P.O.</div><div class="console-tag">2025</div></div>
+      <div class="console-row" style="padding:5px 0;"><div class="console-name">Grand Theft Auto VI</div><div class="console-tag">soon</div></div>
     </div>
   </div>
