@@ -100,6 +100,7 @@
     }
     .tool-link { display:inline-flex; align-items:center; padding:8px 16px; border:1px solid rgba(176,80,96,0.3); border-radius:3px; color:var(--red); font-family:'Press Start 2P',monospace; font-size:clamp(5px,0.65vw,7px); letter-spacing:0.1em; text-decoration:none; transition:background 0.2s,border-color 0.2s; }
     .tool-link:hover { background:rgba(176,80,96,0.08); border-color:var(--red); }
+    @media (max-width: 640px) {
       nav { padding: 12px 16px; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
       .nav-links a { font-size: 8px; line-height: 2; }
@@ -131,7 +132,7 @@
       <p class="intro-text">this page covers two sides of my visual world: <span>VISUAL ART</span> — paintings, photography and the works of others that move me — and <span>DIGITAL ART</span>, where i create my own edits and artworks. certain images, colors or compositions can evoke emotions that are hard to explain — inspiring, comforting, or sometimes unsettling. i'm fascinated by how art can do that without a single word. platforms like <span>PINTEREST</span> helped expand that fascination and shape my visual taste.</p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;align-items:center;">
         <a href="https://de.pinterest.com/thejukestation/" target="_blank" style="display:inline-flex;align-items:center;gap:10px;font-size:clamp(7px,0.8vw,9px);color:var(--red);letter-spacing:0.15em;text-decoration:none;border:1px solid rgba(176,80,96,0.3);border-radius:3px;padding:10px 16px;transition:background 0.2s;" onmouseover="this.style.background='rgba(176,80,96,0.08)'" onmouseout="this.style.background='none'"><img src="https://www.google.com/s2/favicons?domain=pinterest.com&sz=32" style="width:16px;height:16px;"> MY PINTEREST ►</a>
-        <a href="#digital-art" style="display:inline-flex;align-items:center;padding:10px 16px;border:1px solid rgba(176,80,96,0.3);border-radius:3px;color:var(--red);font-family:'Press Start 2P',monospace;font-size:clamp(7px,0.8vw,9px);letter-spacing:0.15em;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='rgba(176,80,96,0.08)'" onmouseout="this.style.background='none'">► jump to digital art</a>
+        <a onclick="document.getElementById('digital-art').scrollIntoView({behavior:'smooth'});return false;" style="display:inline-flex;align-items:center;padding:10px 16px;border:1px solid rgba(176,80,96,0.3);border-radius:3px;color:var(--red);font-family:'Press Start 2P',monospace;font-size:clamp(7px,0.8vw,9px);letter-spacing:0.15em;text-decoration:none;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='rgba(176,80,96,0.08)'" onmouseout="this.style.background='none'">► jump to digital art</a>
       </div>
     </div>
 
@@ -217,7 +218,6 @@
           div.className = 'gallery-item';
           div.setAttribute('data-title', '');
           div.setAttribute('data-artist', '');
-          div.setAttribute('onclick', 'openLight(this)');
           div.innerHTML = `<img src="${src}" alt="edit ${i}">`;
           div.onclick = () => openLight(div);
           editsGrid.appendChild(div);
@@ -225,6 +225,8 @@
         img.src = src;
       }
     }
+
+    function openLight(el) {
       const img = el.querySelector('img');
       const title = el.dataset.title || '';
       const artist = el.dataset.artist || '';
