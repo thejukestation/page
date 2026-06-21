@@ -207,7 +207,7 @@
     });
     window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
 
-    // Edits grid — edit1–12 direct, 13–30 probed
+    // Edits grid — probe edit1–12 as jpg and png, 13–30 as slots
     const editsGrid = document.getElementById('edits-grid');
     if (editsGrid) {
       const addEdit = (src) => {
@@ -215,19 +215,30 @@
         div.className = 'gallery-item';
         div.setAttribute('data-title', '');
         div.setAttribute('data-artist', '');
-        div.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        img.loading = 'lazy';
+        div.appendChild(img);
         div.onclick = () => openLight(div);
         editsGrid.appendChild(div);
       };
-      // Direct — confirmed uploaded
-      for (let i = 1; i <= 12; i++) addEdit(`../images/edit${i}.jpg`);
-      // Probe extra slots
-      for (let i = 13; i <= 30; i++) {
-        const src = `../images/edit${i}.jpg`;
-        const img = new Image();
-        img.onload = () => addEdit(src);
-        img.src = src;
-      }
+      const tryLoad = (base) => {
+        return new Promise(resolve => {
+          const jpg = new Image();
+          jpg.onload = () => { addEdit(`../images/${base}.jpg`); resolve(); };
+          jpg.onerror = () => {
+            const png = new Image();
+            png.onload = () => { addEdit(`../images/${base}.png`); resolve(); };
+            png.onerror = () => resolve();
+            png.src = `../images/${base}.png`;
+          };
+          jpg.src = `../images/${base}.jpg`;
+        });
+      };
+      (async () => {
+        for (let i = 1; i <= 30; i++) await tryLoad(`edit${i}`);
+      })();
     }
 
     function openLight(el) {
