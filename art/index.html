@@ -207,21 +207,25 @@
     });
     window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
 
-    // Edits grid — probe edit1.jpg through edit30.jpg
+    // Edits grid — edit1–12 direct, 13–30 probed
     const editsGrid = document.getElementById('edits-grid');
     if (editsGrid) {
-      for (let i = 1; i <= 30; i++) {
+      const addEdit = (src) => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.setAttribute('data-title', '');
+        div.setAttribute('data-artist', '');
+        div.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
+        div.onclick = () => openLight(div);
+        editsGrid.appendChild(div);
+      };
+      // Direct — confirmed uploaded
+      for (let i = 1; i <= 12; i++) addEdit(`../images/edit${i}.jpg`);
+      // Probe extra slots
+      for (let i = 13; i <= 30; i++) {
         const src = `../images/edit${i}.jpg`;
         const img = new Image();
-        img.onload = () => {
-          const div = document.createElement('div');
-          div.className = 'gallery-item';
-          div.setAttribute('data-title', '');
-          div.setAttribute('data-artist', '');
-          div.innerHTML = `<img src="${src}" alt="edit ${i}">`;
-          div.onclick = () => openLight(div);
-          editsGrid.appendChild(div);
-        };
+        img.onload = () => addEdit(src);
         img.src = src;
       }
     }
