@@ -42,9 +42,9 @@
     .intro-text { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 25px); color: var(--cream); line-height: 1.75; }
     .intro-text span { color: var(--accent); }
 
-    /* Featured 3 photos */
-    .featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .featured-item { border: 1px solid rgba(248,248,248,0.1); border-radius: 3px; overflow: hidden; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
+    /* Featured photos — masonry */
+    .featured-grid { columns: 3; column-gap: 8px; }
+    .featured-item { break-inside: avoid; margin-bottom: 8px; border: 1px solid rgba(248,248,248,0.1); border-radius: 3px; overflow: hidden; cursor: pointer; transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s; }
     .featured-item:hover { transform: scale(1.03); border-color: rgba(184,204,224,0.5); box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
     .featured-item img { width: 100%; height: auto; display: block; }
 
@@ -92,7 +92,7 @@
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
       .nav-links a { font-size: 8px; line-height: 2; }
       .page { padding: 100px 20px 60px; gap: 36px; }
-      .featured-grid { grid-template-columns: 1fr 1fr; }
+      .featured-grid { columns: 2; }
       .popup-gallery { columns: 2; }
       .edits-grid { columns: 2; }
     }
@@ -117,9 +117,7 @@
   <div class="page">
     <h1 class="page-title">PHOTOS</h1>
 
-    <!-- FILM ROLL CHAPTER -->
-    <div class="chapter-title">ANALOG PHOTOGRAPHY</div>
-
+    <!-- FILM ROLL -->
     <div class="intro-block">
       <p class="intro-text">in <span>2024</span> i got really interested in photography and filmmaking. what fascinates me most is the camera — the <span>TOOL</span> itself — the lens, the settings, and how small technical choices can completely change the feeling of an image.<br><br>i also bought my first <span>FILM ROLL</span>, which made the whole process feel more intentional and real. there's something special about not being able to instantly see the result, but instead trusting the moment you captured. for me, photography is about freezing a moment in time — turning something fleeting into something that stays.<br><br>anyway, here are some photos i made with my very first camera roll in <span>2025</span>. it's <span>KODAK ULTRAMAX 400</span>, ISO-400 in 35mm.</p>
     </div>
