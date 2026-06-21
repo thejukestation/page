@@ -117,10 +117,6 @@
   <div class="page">
     <h1 class="page-title">PHOTOS</h1>
 
-    <div class="intro-block">
-      <p class="intro-text">this page is about how i see things — literally. it covers two sides of the same interest: <span>ANALOG PHOTOGRAPHY</span>, where i try to capture real moments with a film camera, and <span>DIGITAL ART</span>, where i take images — often those same photos — and push them into something new. both feel like different tools for the same thing.</p>
-    </div>
-
     <!-- FILM ROLL CHAPTER -->
     <div class="chapter-title">ANALOG PHOTOGRAPHY</div>
 
@@ -132,30 +128,6 @@
 
     <!-- 3 random featured photos -->
     <div class="featured-grid" id="featured-grid"></div>
-
-    <button class="view-all-btn" onclick="document.getElementById('film-popup').classList.add('open')">► view all photos</button>
-
-    <!-- DIVIDER -->
-    <hr class="chapter-divider">
-
-    <!-- DIGITAL ART CHAPTER -->
-    <div class="chapter-title">DIGITAL ART</div>
-
-    <div class="intro-block">
-      <p class="intro-text">i've been into <span>DIGITAL ART</span> for about 5 years — and a lot of it starts with something analog. a photo, a scan, a texture. i take that and push it into something new. i've always worked in <span>PAINT.NET</span> — layering filters, making collages, cutting things out and building something new from scratch. now, with the album and my new online presence, i want to push in a specific direction. i feel most at home in a <span>DIGITAL STYLE</span> defined by hard edges, strong <span>DITHERING</span> and <span>HALFTONES</span>.</p>
-    </div>
-
-    <div class="section-label">EDITS & ARTWORKS</div>
-    <div class="edits-grid" id="edits-grid"></div>
-
-    <div class="section-label">TOOLS I USE</div>
-    <div class="site-links">
-      <a class="site-link" href="https://spacetypegenerator.com/" target="_blank">spacetypegenerator.com ►</a>
-      <a class="site-link" href="https://grainrad.com/" target="_blank">grainrad.com ►</a>
-      <a class="site-link" href="https://eyecannndy.com/" target="_blank">eyecannndy.com ►</a>
-      <a class="site-link" href="https://app.endlesstools.io/" target="_blank">endlesstools.io ►</a>
-      <a class="site-link" href="https://artkit.cc/" target="_blank">artkit.cc ►</a>
-    </div>
 
   </div>
 
@@ -206,11 +178,10 @@
       return a;
     }
 
-    // Build featured (3 random)
+    // Build photo grid (all photos, shuffled)
     const shuffled = shuffle(filmPhotos);
-    const featured = shuffled.slice(0, 3);
     const featuredGrid = document.getElementById('featured-grid');
-    featured.forEach(src => {
+    shuffled.forEach(src => {
       const div = document.createElement('div');
       div.className = 'featured-item';
       div.innerHTML = `<img src="${src}" alt="" loading="lazy">`;
