@@ -22,10 +22,10 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root { --cream: #e8dcc8; --purple: #b89be0; --muted: rgba(232,220,200,0.60); --card-bg: rgba(0,0,0,0.40); }
     html, body { width: 100%; background: #05030f; color: var(--cream); font-family: 'Press Start 2P', monospace; overflow-x: hidden; }
- 
+
     .bg { position: fixed; inset: 0; background: url('../images/HIMMEL7.jpg') center/cover no-repeat; z-index: 0; }
     .bg-overlay { position: fixed; inset: 0; background: rgba(0,0,5,0.62); z-index: 0; }
- 
+
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; display: flex; justify-content: space-between; align-items: flex-start; padding: 24px 36px; transition: transform 0.3s ease; }
     .back { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; display: flex; align-items: center; gap: 10px; }
     .back:hover { color: var(--cream); }
@@ -34,9 +34,9 @@
     .nav-links a { font-family: 'Press Start 2P', monospace; font-size: clamp(12px, 1.5vw, 18px); color: var(--muted); text-decoration: none; letter-spacing: 0.06em; line-height: 2.2; transition: color 0.2s; }
     .nav-links a:hover { color: var(--cream); }
     .nav-links a.active { color: var(--purple); text-shadow: 0 0 12px rgba(184,155,224,0.5); }
- 
+
     .page { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; padding: 110px 40px 80px; display: flex; flex-direction: column; gap: 50px; }
- 
+
     /* HERO */
     .hero { display: flex; gap: 48px; align-items: flex-start; }
     .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -45,9 +45,9 @@
     .album-title { font-family: 'VT323', monospace; font-size: clamp(38px, 5vw, 66px); color: var(--cream); line-height: 1; letter-spacing: 0.04em; text-shadow: 0 0 30px rgba(184,155,224,0.2); }
     .album-artist { font-family: 'Press Start 2P', monospace; font-size: clamp(7px, 0.85vw, 10px); color: var(--purple); letter-spacing: 0.15em; text-decoration: none; display: block; }
     .album-artist:hover { opacity: 0.7; }
- 
+
     .album-meta { font-family: 'VT323', monospace; font-size: clamp(16px, 1.8vw, 22px); color: var(--muted); line-height: 1.6; margin-top: 4px; }
- 
+
     /* PRESAVE PILL */
     .presave-btn {
       display: inline-flex;
@@ -67,7 +67,7 @@
       align-self: flex-start;
     }
     .presave-btn:hover { border-color: var(--purple); background: rgba(184,155,224,0.15); color: var(--cream); }
- 
+
     /* STREAMING LINKS */
     .stream-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .stream-link {
@@ -82,15 +82,15 @@
     .stream-link:hover { border-color: rgba(184,155,224,0.35); background: rgba(184,155,224,0.06); }
     .stream-name { font-family: 'VT323', monospace; font-size: clamp(18px, 2vw, 24px); color: var(--cream); }
     .stream-label { font-size: clamp(5px, 0.6vw, 7px); color: var(--purple); letter-spacing: 0.15em; display: block; margin-bottom: 2px; }
- 
+
     /* SECTION LABEL */
     .section-label { font-size: clamp(7px, 0.8vw, 9px); color: var(--purple); letter-spacing: 0.2em; text-shadow: 0 0 10px rgba(184,155,224,0.4); }
- 
+
     /* TEXT BLOCK */
     .text-block { background: var(--card-bg); border: 1px solid rgba(184,155,224,0.12); border-radius: 4px; padding: 28px 32px; }
     .text-block p { font-family: 'VT323', monospace; font-size: clamp(18px, 2.1vw, 25px); color: var(--cream); line-height: 1.75; }
     .text-block p span { color: var(--purple); }
- 
+
     /* TRACKLIST */
     .tracklist { display: flex; flex-direction: column; gap: 4px; }
     .track {
@@ -108,10 +108,10 @@
     .track-num { font-size: clamp(6px, 0.7vw, 8px); color: var(--purple); letter-spacing: 0.1em; }
     .track-name { font-family: 'VT323', monospace; font-size: clamp(19px, 2.2vw, 26px); color: var(--cream); }
     .track-dur { font-family: 'VT323', monospace; font-size: clamp(15px, 1.7vw, 20px); color: var(--muted); }
- 
+
     /* Mini preview player */
     .track { grid-template-columns: 36px 1fr auto; }
- 
+
     .track-play {
       width: 26px; height: 26px; flex-shrink: 0;
       background: none;
@@ -151,7 +151,7 @@
     .album-artist:hover { opacity: 0.7; }
     input[type=range].track-vol-slider { width: 55px; height: 2px; cursor: pointer; accent-color: var(--purple); background: rgba(232,220,200,0.15); border-radius: 2px; appearance: none; -webkit-appearance: none; }
     input[type=range].track-vol-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 9px; height: 9px; border-radius: 50%; background: var(--purple); cursor: pointer; }
- 
+
     @media (max-width: 640px) {
       nav { padding: 12px 16px; }
       .nav-links { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; gap: 2px 10px; }
@@ -170,7 +170,7 @@
 <body>
   <div class="bg"></div>
   <div class="bg-overlay"></div>
- 
+
   <nav>
     <a class="back" href="/">back</a>
     <ul class="nav-links">
@@ -182,9 +182,9 @@
       <li><a href="/about/">about</a></li>
     </ul>
   </nav>
- 
+
   <div class="page">
- 
+
     <!-- HERO -->
     <div class="hero">
       <div class="cover">
@@ -198,13 +198,13 @@
       <a class="presave-btn" href="https://open.spotify.com/intl-de/album/1GPJahGiUaDPSclqyTtpGZ?si=RhZQ4p7OQreaTwJGZdQIIw" target="_blank">★ listen now — stories in motion</a>
       </div>
     </div>
- 
+
     <!-- ABOUT TEXT -->
     <div class="section-label">ABOUT THE ALBUM</div>
     <div class="text-block">
       <p>this is my first album for <a href="/about/" style="color:var(--purple);text-decoration:none;font-size:inherit;">the juke station</a>. it's a <span>psychedelic pop/rock</span> album with <span>funk influences</span>. it's about <span>love and loss</span>. i started making it in november 2025, writing, arranging and making all the music on my own in my bedroom. make sure to give it a listen.</p>
     </div>
- 
+
     <!-- STREAMING -->
     <div class="section-label">LISTEN ON</div>
     <div class="stream-grid">
@@ -227,7 +227,7 @@
         <div><div class="stream-label">STREAMING</div><div class="stream-name">Deezer</div></div>
       </a>
     </div>
- 
+
     <!-- BUY ON ITUNES -->
     <div class="section-label">BUY</div>
     <a class="itunes-btn" href="https://music.apple.com/us/album/stories-in-motion/6769337557" target="_blank">
@@ -238,7 +238,7 @@
       </div>
       <div class="itunes-arrow">►</div>
     </a>
- 
+
     <!-- TRACKLIST with 30s preview players -->
     <!-- Add your 30s preview files to /audio/ as preview01.mp3, preview02.mp3 etc. -->
     <div class="section-label">TRACKLIST</div>
@@ -255,7 +255,7 @@
       <div class="track" id="t10"><div class="track-num">10</div><div class="track-name">My Way</div><div class="track-right"><button class="track-play" onclick="previewPlay('t10')">►</button><div class="track-bar" onclick="previewSeek(event,'t10')"><div class="track-fill" id="t10-fill"></div></div><div class="track-time" id="t10-time">0:30</div><div class="track-vol"><span class="track-vol-icon">VOL</span><input type="range" class="track-vol-slider" min="0" max="1" step="0.01" value="0.2" oninput="document.getElementById('t10-audio').volume=this.value"></div></div><audio id="t10-audio" src="../audio/preview10.mp3"></audio></div>
       <div class="track" id="t11"><div class="track-num">11</div><div class="track-name">The Motion Coda</div><div class="track-right"><button class="track-play" onclick="previewPlay('t11')">►</button><div class="track-bar" onclick="previewSeek(event,'t11')"><div class="track-fill" id="t11-fill"></div></div><div class="track-time" id="t11-time">0:30</div><div class="track-vol"><span class="track-vol-icon">VOL</span><input type="range" class="track-vol-slider" min="0" max="1" step="0.01" value="0.2" oninput="document.getElementById('t11-audio').volume=this.value"></div></div><audio id="t11-audio" src="../audio/preview11.mp3"></audio></div>
     </div>
- 
+
     <!-- FUN FACTS -->
     <div class="section-label">MAKING OF — FUN FACTS</div>
     <div class="text-block">
@@ -269,9 +269,25 @@
         <span>bass:</span> höfner ignition se violin bass
       </p>
     </div>
- 
+
+    <!-- DIGITAL ART -->
+    <div class="section-label">DIGITAL ART</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+      <img src="../images/1sim.jpg" onerror="this.src='../images/1sim.png'" alt="track 1" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid rgba(184,155,224,0.15);">
+      <img src="../images/2sim.jpg" onerror="this.src='../images/2sim.png'" alt="track 2" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid rgba(184,155,224,0.15);">
+      <img src="../images/3sim.jpg" onerror="this.src='../images/3sim.png'" alt="track 3" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid rgba(184,155,224,0.15);">
+      <img src="../images/4sim.jpg" onerror="this.src='../images/4sim.png'" alt="track 4" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid rgba(184,155,224,0.15);">
+      <img src="../images/5sim.jpg" onerror="this.src='../images/5sim.png'" alt="track 5" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid rgba(184,155,224,0.15);">
+      <img src="../images/6sim.jpg" onerror="this.src='../images/6sim.png'" alt="track 6" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid rgba(184,155,224,0.15);">
+      <img src="../images/7sim.jpg" onerror="this.src='../images/7sim.png'" alt="track 7" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid rgba(184,155,224,0.15);">
+      <img src="../images/8sim.jpg" onerror="this.src='../images/8sim.png'" alt="track 8" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid rgba(184,155,224,0.15);">
+      <img src="../images/9sim.jpg" onerror="this.src='../images/9sim.png'" alt="track 9" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid rgba(184,155,224,0.15);">
+      <img src="../images/10sim.jpg" onerror="this.src='../images/10sim.png'" alt="track 10" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid rgba(184,155,224,0.15);">
+      <img src="../images/11sim.jpg" onerror="this.src='../images/11sim.png'" alt="track 11" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px;border:1px solid rgba(184,155,224,0.15);">
+    </div>
+
   </div>
- 
+
   <script>
     const nav = document.querySelector("nav");
     let lastY = 0;
@@ -282,9 +298,9 @@
       lastY = y;
     });
     window.addEventListener("resize", () => { if (window.innerWidth > 640) nav.style.transform = "translateY(0)"; });
- 
+
     const trackIds = ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11'];
- 
+
     function stopAll(exceptId) {
       trackIds.forEach(id => {
         if (id === exceptId) return;
@@ -298,7 +314,7 @@
         if (t) t.textContent = '0:30';
       });
     }
- 
+
     // iOS audio unlock on first touch
     document.addEventListener('touchstart', function unlock() {
       trackIds.forEach(id => {
@@ -309,7 +325,7 @@
       });
       document.removeEventListener('touchstart', unlock);
     }, { once: true });
- 
+
     trackIds.forEach(id => {
       const audio = document.getElementById(id+'-audio');
       const btn   = document.querySelector('#'+id+' .track-play');
@@ -317,12 +333,12 @@
       const fill  = document.getElementById(id+'-fill');
       const time  = document.getElementById(id+'-time');
       const vol   = document.querySelector('#'+id+' .track-vol-slider');
- 
+
       if (!audio || !btn) return;
- 
+
       audio.volume = vol ? parseFloat(vol.value) : 0.2;
       if (vol) vol.addEventListener('input', () => { audio.volume = parseFloat(vol.value); });
- 
+
       btn.addEventListener('click', () => {
         if (audio.paused) {
           stopAll(id);
@@ -336,12 +352,12 @@
           audio.pause(); btn.textContent = '►';
         }
       });
- 
+
       if (bar) bar.addEventListener('click', (e) => {
         const rect = bar.getBoundingClientRect();
         audio.currentTime = ((e.clientX - rect.left) / rect.width) * 30;
       });
- 
+
       audio.addEventListener('timeupdate', () => {
         if (!fill || !time) return;
         fill.style.width = Math.min((audio.currentTime / 30) * 100, 100) + '%';
@@ -352,7 +368,7 @@
           btn.textContent = '►'; fill.style.width = '0%'; time.textContent = '0:30';
         }
       });
- 
+
       audio.addEventListener('ended', () => {
         btn.textContent = '►';
         if (fill) fill.style.width = '0%';
