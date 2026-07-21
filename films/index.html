@@ -289,16 +289,64 @@
 
   <!-- FILMS POPUP -->
   <div class="popup" id="films-popup" onclick="if(event.target===this)this.style.display='none'">
-    <div class="popup-box">
+    <div class="popup-box" style="max-height:85vh;overflow-y:scroll;scrollbar-width:thin;scrollbar-color:var(--blue) rgba(126,200,216,0.1);">
+      <style>.popup-box::-webkit-scrollbar{width:5px}.popup-box::-webkit-scrollbar-thumb{background:var(--blue);border-radius:3px}</style>
       <div class="popup-header">
         <div class="popup-title">MY DVD COLLECTION</div>
         <button class="popup-close" onclick="document.getElementById('films-popup').style.display='none'">✕ close</button>
       </div>
+      <div class="popup-row"><span class="popup-year">1949</span><span class="popup-artist">Jour de Fête</span></div>
+      <div class="popup-row"><span class="popup-year">1953</span><span class="popup-artist">Les Vacances de M. Hulot</span></div>
+      <div class="popup-row"><span class="popup-year">1958</span><span class="popup-artist">Mon Oncle</span></div>
+      <div class="popup-row"><span class="popup-year">1960</span><span class="popup-artist">The Magnificent Seven</span></div>
+      <div class="popup-row"><span class="popup-year">1966</span><span class="popup-artist">La Grande Vadrouille</span></div>
+      <div class="popup-row"><span class="popup-year">1966</span><span class="popup-artist">Le Grand Restaurant</span></div>
+      <div class="popup-row"><span class="popup-year">1967</span><span class="popup-artist">The Jungle Book</span></div>
+      <div class="popup-row"><span class="popup-year">1973</span><span class="popup-artist">Robin Hood</span></div>
+      <div class="popup-row"><span class="popup-year">1976</span><span class="popup-artist">Les 12 Travaux d'Astérix</span></div>
+      <div class="popup-row"><span class="popup-year">1976</span><span class="popup-artist">L'Aile ou la Cuisse</span></div>
+      <div class="popup-row"><span class="popup-year">1977</span><span class="popup-artist">The Rescuers</span></div>
+      <div class="popup-row"><span class="popup-year">1980</span><span class="popup-artist">Le Roi et l'Oiseau</span></div>
       <div class="popup-row"><span class="popup-year">1983</span><span class="popup-artist">Scarface</span></div>
       <div class="popup-row"><span class="popup-year">1986</span><span class="popup-artist">Top Gun</span></div>
       <div class="popup-row"><span class="popup-year">1989</span><span class="popup-artist">Dead Poets Society</span></div>
+      <div class="popup-row"><span class="popup-year">1990</span><span class="popup-artist">DuckTales: Treasure of the Lost Lamp</span></div>
       <div class="popup-row"><span class="popup-year">1994</span><span class="popup-artist">Pulp Fiction</span></div>
+      <div class="popup-row"><span class="popup-year">1996</span><span class="popup-artist">Mission: Impossible</span></div>
+      <div class="popup-row"><span class="popup-year">1997</span><span class="popup-artist">The Lost World: Jurassic Park</span></div>
+      <div class="popup-row"><span class="popup-year">1998</span><span class="popup-artist">Kirikou et la Sorcière</span></div>
+      <div class="popup-row"><span class="popup-year">1998</span><span class="popup-artist">The Prince of Egypt</span></div>
       <div class="popup-row"><span class="popup-year">2000</span><span class="popup-artist">American Psycho</span></div>
+      <div class="popup-row"><span class="popup-year">2001</span><span class="popup-artist">Jurassic Park III</span></div>
+      <div class="popup-row"><span class="popup-year">2001</span><span class="popup-artist">Ocean's Eleven</span></div>
+      <div class="popup-row"><span class="popup-year">2001</span><span class="popup-artist">The Lord of the Rings: The Fellowship of the Ring</span></div>
+      <div class="popup-row"><span class="popup-year">2002</span><span class="popup-artist">The Bourne Identity</span></div>
+      <div class="popup-row"><span class="popup-year">2002</span><span class="popup-artist">The Lord of the Rings: The Two Towers</span></div>
+      <div class="popup-row"><span class="popup-year">2003</span><span class="popup-artist">Pirates of the Caribbean: The Curse of the Black Pearl</span></div>
+      <div class="popup-row"><span class="popup-year">2003</span><span class="popup-artist">The Lord of the Rings: The Return of the King</span></div>
+      <div class="popup-row"><span class="popup-year">2004</span><span class="popup-artist">Mickey, Donald & Goofy: The Three Musketeers</span></div>
+      <div class="popup-row"><span class="popup-year">2004</span><span class="popup-artist">Ocean's Twelve</span></div>
+      <div class="popup-row"><span class="popup-year">2004</span><span class="popup-artist">The Bourne Supremacy</span></div>
+      <div class="popup-row"><span class="popup-year">2005</span><span class="popup-artist">Batman Begins</span></div>
+      <div class="popup-row"><span class="popup-year">2006</span><span class="popup-artist">Azur et Asmar</span></div>
+      <div class="popup-row"><span class="popup-year">2006</span><span class="popup-artist">Letters from Iwo Jima</span></div>
+      <div class="popup-row"><span class="popup-year">2006</span><span class="popup-artist">Pirates of the Caribbean: Dead Man's Chest</span></div>
+      <div class="popup-row"><span class="popup-year">2007</span><span class="popup-artist">Pirates of the Caribbean: At World's End</span></div>
+      <div class="popup-row"><span class="popup-year">2007</span><span class="popup-artist">Ratatouille</span></div>
+      <div class="popup-row"><span class="popup-year">2007</span><span class="popup-artist">The Bourne Ultimatum</span></div>
+      <div class="popup-row"><span class="popup-year">2008</span><span class="popup-artist">The Dark Knight</span></div>
+      <div class="popup-row"><span class="popup-year">2009</span><span class="popup-artist">Avatar</span></div>
+      <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">Cars 2</span></div>
+      <div class="popup-row"><span class="popup-year">2011</span><span class="popup-artist">Pirates of the Caribbean: On Stranger Tides</span></div>
+      <div class="popup-row"><span class="popup-year">2012</span><span class="popup-artist">Django Unchained</span></div>
+      <div class="popup-row"><span class="popup-year">2012</span><span class="popup-artist">The Bourne Legacy</span></div>
+      <div class="popup-row"><span class="popup-year">2012</span><span class="popup-artist">The Dark Knight Rises</span></div>
+      <div class="popup-row"><span class="popup-year">2012</span><span class="popup-artist">The Hobbit: An Unexpected Journey</span></div>
+      <div class="popup-row"><span class="popup-year">2013</span><span class="popup-artist">The Hobbit: The Desolation of Smaug</span></div>
+      <div class="popup-row"><span class="popup-year">2014</span><span class="popup-artist">The Hobbit: The Battle of the Five Armies</span></div>
+      <div class="popup-row"><span class="popup-year">2015</span><span class="popup-artist">Inside Out</span></div>
+      <div class="popup-row"><span class="popup-year">2016</span><span class="popup-artist">La La Land</span></div>
+      <div class="popup-row"><span class="popup-year">2017</span><span class="popup-artist">Pirates of the Caribbean: Dead Men Tell No Tales</span></div>
       <div style="font-family:'VT323',monospace;font-size:clamp(16px,1.8vw,20px);color:rgba(126,200,216,0.45);padding:14px 0 4px;letter-spacing:0.08em;">more coming soon...</div>
     </div>
   </div>
